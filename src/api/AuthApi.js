@@ -1,21 +1,26 @@
 import AxiosClient from "./AxiosClient";
 
 export default class AuthApi {
-  static async register({user}) {
+  //async trả về 1 promise
+  static async createUser(req) {
     try {
-      console.log(user);
-      const response = await AxiosClient.post(`/auth/register`, user);
-      // console.log(response);
+      const response = await AxiosClient.post("auth/register", req);
       return response;
     } catch (error) {
-      // console.log(error);
       throw new Error(error.message);
     }
   }
-  static async login({user}) {
+  // static async createUser({user}) {
+  //   try {
+  //     const response = await AxiosClient.post("auth/register", user);
+  //     return response;
+  //   } catch (error) {
+  //     throw new Error(error.message);
+  //   }
+  // }
+  static async login(req) {
     try {
-      const response = await AxiosClient.post(`/auth/login`, user);
-      console.log(response);
+      const response = await AxiosClient.post("auth/login", req);
       return response;
     } catch (error) {
       throw new Error(error.message);

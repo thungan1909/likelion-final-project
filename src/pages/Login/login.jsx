@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthApi from "../../api/AuthApi";
 import LoginImg from "../../assets/img/login-img.jpg";
+import authServices from "../../service/authServices";
 import "./login.css";
 
 export default function Login() {
@@ -12,6 +13,7 @@ export default function Login() {
     username: "",
     password: "",
   });
+
   const [isFinish, setIsFinish] = useState(false);
   const onFinish = (value) => {
     setUser({
@@ -20,13 +22,37 @@ export default function Login() {
     });
     setIsFinish(true);
   };
+
+  const setToken = async () => {
+    const res = await authServices.login(user);
+    if (res) {
+      localStorage.setItem("accessToken", res.accessToken);
+      navigate("/home", { replace: true });
+    }
+  };
   useEffect(() => {
     if (isFinish) {
-      AuthApi.login({ user }).then((res) => {
-        // console.log(res);
-        localStorage.setItem("token", res.accessToken);
-      });
-      navigate("/home", { replace: "true" });
+      setToken();
+      // authServices.login(user)
+      // AuthApi.login({ user }).then((res) => {
+      //   // console.log(res);
+      //
+      // });
+      // authServices.login(user).then((res) => {
+      //   console.log(res);
+      //   if (res) {
+      //     console.log("IS");
+      //     // localStorage.setItem("token", res.accessToken);
+      //     // navigate("/home", { replace: "true" });
+      //   }
+      // });
+      // const fetchApi = async () => {
+      //   authServices.login(user).then((res) => {
+      //     console.log(res);
+      //   });
+      //   // console.log("result", result);
+      // };
+      // fetchApi();
     }
   });
   return (

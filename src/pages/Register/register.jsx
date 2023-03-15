@@ -3,6 +3,7 @@ import { Button, Checkbox, Form, Input, Space } from "antd";
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthApi from "../../api/AuthApi";
+import authServices from "../../service/authServices";
 // import LoginImg from "../../assets/img/login-img.jpg";
 // import "./login.css";
 
@@ -23,19 +24,19 @@ export default function Register() {
     });
 
     setIsFinish(true);
-    // console.log(value);
   };
+
   useEffect(() => {
     if (isFinish) {
+      authServices.createNewUser(user);
       //   console.log(user);
-      AuthApi.register({ user });
+      // AuthApi.createUser({ user });
       //TODO: Return exists users error
       navigate("/login", { replace: "true" });
+      // addMember();
     }
   }, [isFinish]);
-  //   useEffect(() => {
-  //     console.log(user);
-  //   }, user);
+
   return (
     <Space
       style={{
