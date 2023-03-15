@@ -1,34 +1,41 @@
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input, Space } from "antd";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthApi from "../../api/AuthApi";
-import LoginImg from "../../assets/img/login-img.jpg";
-import "./login.css";
+// import LoginImg from "../../assets/img/login-img.jpg";
+// import "./login.css";
 
-export default function Login() {
-  const navigate = useNavigate();
+export default function Register() {
   const [user, setUser] = useState({
+    email: "",
     username: "",
     password: "",
   });
+
   const [isFinish, setIsFinish] = useState(false);
+  const navigate = useNavigate();
   const onFinish = (value) => {
     setUser({
+      email: value.email,
       username: value.username,
       password: value.password,
     });
+
     setIsFinish(true);
+    // console.log(value);
   };
   useEffect(() => {
     if (isFinish) {
-      AuthApi.login({ user }).then((res) => {
-        // console.log(res);
-        localStorage.setItem("token", res.accessToken);
-      });
-      navigate("/home", { replace: "true" });
+      //   console.log(user);
+      AuthApi.register({ user });
+      //TODO: Return exists users error
+      navigate("/login", { replace: "true" });
     }
-  });
+  }, [isFinish]);
+  //   useEffect(() => {
+  //     console.log(user);
+  //   }, user);
   return (
     <Space
       style={{
@@ -46,11 +53,35 @@ export default function Login() {
         onFinish={onFinish}
         layout="vertical"
       >
-        <h1>Log in</h1>
+        <h1>Register</h1>
         <span style={{ color: "#A3AED0" }}>
           Enter your username and password to sign in!
         </span>
-
+        <Form.Item
+          style={{ marginTop: "24px" }}
+          label={
+            <label
+              style={{
+                color: "#7e57c2",
+                fontWeight: "bold",
+              }}
+            >
+              Email
+            </label>
+          }
+          name="email"
+          rules={[
+            {
+              required: true,
+              message: "Please input your Email!",
+            },
+          ]}
+        >
+          <Input
+            prefix={<UserOutlined className="site-form-item-icon" />}
+            placeholder="Your email"
+          />
+        </Form.Item>
         <Form.Item
           style={{ marginTop: "24px" }}
           label={
@@ -103,9 +134,9 @@ export default function Login() {
           />
         </Form.Item>
         <Form.Item>
-          <Form.Item name="remember" valuePropName="checked" noStyle>
+          {/* <Form.Item name="remember" valuePropName="checked" noStyle>
             <Checkbox style={{ color: "#7e57c2" }}>Remember me</Checkbox>
-          </Form.Item>
+          </Form.Item> */}
 
           <a className="login-form-forgot" href="">
             Forgot password
@@ -123,7 +154,7 @@ export default function Login() {
               marginBottom: "24px",
             }}
           >
-            Log in
+            Register
           </Button>
           Not registered yet?{" "}
           <a href="" style={{ color: "#7e57c2" }}>
@@ -131,9 +162,9 @@ export default function Login() {
           </a>
         </Form.Item>
       </Form>
-      <Space>
+      {/* <Space>
         <img src={LoginImg}></img>
-      </Space>
+      </Space> */}
     </Space>
   );
 }

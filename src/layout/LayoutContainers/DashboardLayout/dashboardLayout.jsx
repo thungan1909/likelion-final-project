@@ -1,23 +1,18 @@
 import { Breadcrumb, Layout } from "antd";
-import CustomCard from "../CustomCard/customCard";
-import CustomSider from "../CustomSider/customSider";
+import Sidebar from "../../Sidebar/sidebar";
 
 const { Content } = Layout;
-
-export default function CustomLayout() {
+export default function DashboardLayout({ children }) {
   return (
-    <Layout style={{ minHeight: "100vh" }}>
-      <CustomSider></CustomSider>
+    <Layout style={{ width: "100%" }}>
       <Layout className="site-layout">
+        <Sidebar></Sidebar>
         <Content style={{ margin: "0 16px" }}>
           <Breadcrumb style={{ margin: "16px 0" }}>
             <Breadcrumb.Item>Pages</Breadcrumb.Item>
             <Breadcrumb.Item>Dashboard</Breadcrumb.Item>
           </Breadcrumb>
-          <div style={{ display: "flex" }}>
-            <CustomCard></CustomCard>
-            <CustomCard></CustomCard>
-          </div>
+          {children}
         </Content>
       </Layout>
     </Layout>

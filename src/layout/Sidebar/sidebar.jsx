@@ -18,13 +18,13 @@ function getItem(label, key, icon, children) {
   };
 }
 const items = [
-  getItem("Dashboard", "1", <HomeOutlined />),
+  getItem("Home", "1", <HomeOutlined />),
   getItem("Employee", "2", <TeamOutlined />),
   getItem("Statistic", "sub1", <BarChartOutlined />),
   getItem("Setting", "sub2", <SettingOutlined />),
   getItem("Logout", "9", <LogoutOutlined />),
 ];
-export default function CustomSider() {
+export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
   return (
     <Sider
@@ -54,6 +54,7 @@ export default function CustomSider() {
           style={{ width: "64px", height: "64px", marginBottom: "16px" }}
         ></img>
         <span style={{ fontWeight: "500", fontSize: "24px" }}>Admin</span>
+        <span style={{ fontWeight: "400", fontSize: "16px" }}>Admin</span>
       </div>
 
       <Menu defaultSelectedKeys={["1"]} mode="inline" items={items} />
