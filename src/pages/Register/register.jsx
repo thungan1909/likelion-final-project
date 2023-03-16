@@ -2,11 +2,9 @@ import { LockOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input, Space } from "antd";
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import AuthApi from "../../api/AuthApi";
 import authServices from "../../service/authServices";
-// import LoginImg from "../../assets/img/login-img.jpg";
-// import "./login.css";
-
+import LoginImg from "../../assets/img/login-img.jpg";
+import AuthApi from "../../api/authApi";
 export default function Register() {
   const [user, setUser] = useState({
     email: "",
@@ -26,14 +24,18 @@ export default function Register() {
     setIsFinish(true);
   };
 
-  useEffect(() => {
-    if (isFinish) {
-      authServices.createNewUser(user);
-      //   console.log(user);
-      // AuthApi.createUser({ user });
+  const register = async (req) => {
+    try {
+      const response = await AuthApi.createUser(req);
       //TODO: Return exists users error
       navigate("/login", { replace: "true" });
-      // addMember();
+    } catch (error) {
+      console.log("register error", error);
+    }
+  };
+  useEffect(() => {
+    if (isFinish) {
+      register(user);
     }
   }, [isFinish]);
 
@@ -53,6 +55,11 @@ export default function Register() {
         initialValues={{ remember: true }}
         onFinish={onFinish}
         layout="vertical"
+        style={{
+          padding: "24px",
+          borderRadius: "4px",
+          boxShadow: "rgba(0, 0, 0, 0.15) 0px 2px 4px 0px",
+        }}
       >
         <div style={{ marginBottom: "24px" }}>
           <h1>Register</h1>
@@ -83,7 +90,7 @@ export default function Register() {
               message: "This field is required",
             },
           ]}
-          style={{ width: "380px" }}
+          style={{ width: "380px", marginBottom: "8px" }}
         >
           <Input
             prefix={<MailOutlined className="site-form-item-icon" />}
@@ -110,7 +117,7 @@ export default function Register() {
               message: "This field is required!",
             },
           ]}
-          style={{ width: "380px" }}
+          style={{ width: "380px", marginBottom: "8px" }}
         >
           <Input
             prefix={<UserOutlined className="site-form-item-icon" />}
@@ -144,12 +151,12 @@ export default function Register() {
                 "Your password needs to be between 8 and 30 characters long and contain one uppercase letter, one lowercase, one number and one special character.",
             },
           ]}
-          style={{ width: "380px" }}
+          style={{ width: "380px", marginBottom: "8px" }}
         >
           <Input.Password
             prefix={<LockOutlined className="site-form-item-icon" />}
             type="password"
-            placeholder="Password"
+            placeholder="Your password"
             style={{ height: "33px" }}
           />
         </Form.Item>
@@ -186,7 +193,7 @@ export default function Register() {
               },
             }),
           ]}
-          style={{ width: "380px" }}
+          style={{ width: "380px", marginBottom: "8px" }}
         >
           <Input.Password
             prefix={<LockOutlined className="site-form-item-icon" />}
@@ -213,9 +220,9 @@ export default function Register() {
           </a>
         </Form.Item>
       </Form>
-      {/* <Space>
+      <Space>
         <img src={LoginImg}></img>
-      </Space> */}
+      </Space>
     </Space>
   );
 }

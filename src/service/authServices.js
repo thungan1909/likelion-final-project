@@ -1,10 +1,10 @@
-import AuthApi from "../api/AuthApi";
+import AuthApi from "../api/authApi";
 const createNewUser = async (req) => {
   try {
     const response = await AuthApi.createUser(req);
     // if (response.returnCode === 200) {
-      console.log("Register success");
-      return response;
+    console.log("Register success");
+    return response;
     //}
   } catch (error) {
     console.log("Create error", error);
@@ -13,12 +13,10 @@ const createNewUser = async (req) => {
 };
 
 const login = async (req) => {
-  console.log("1");
   try {
     const response = await AuthApi.login(req);
-      console.log("response", response);
-      return response;
-   
+    console.log("response", response);
+    return response.data;
   } catch (error) {
     console.log("Login error", error);
   }

@@ -2,7 +2,7 @@ import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input, Space } from "antd";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import AuthApi from "../../api/AuthApi";
+import AuthApi from "../../api/authApi";
 import LoginImg from "../../assets/img/login-img.jpg";
 import authServices from "../../service/authServices";
 import "./login.css";
@@ -22,37 +22,23 @@ export default function Login() {
     });
     setIsFinish(true);
   };
-
-  const setToken = async () => {
-    const res = await authServices.login(user);
-    if (res) {
-      localStorage.setItem("accessToken", res.accessToken);
-      navigate("/home", { replace: true });
+  const login = async (req) => {
+    try {
+      const response = await AuthApi.login(req);
+      console.log("response", response.accessToken);
+      //todo: check is success response
+      localStorage.setItem("access_token", response.accessToken);
+      navigate("/home", { replace: "true" });
+    } catch (error) {
+      console.log(error.message);
+      // console.log(error.response);
+      // console.log("Login error", error);
+      // console.log(parseInt(error.message, 10));
     }
   };
   useEffect(() => {
     if (isFinish) {
-      setToken();
-      // authServices.login(user)
-      // AuthApi.login({ user }).then((res) => {
-      //   // console.log(res);
-      //
-      // });
-      // authServices.login(user).then((res) => {
-      //   console.log(res);
-      //   if (res) {
-      //     console.log("IS");
-      //     // localStorage.setItem("token", res.accessToken);
-      //     // navigate("/home", { replace: "true" });
-      //   }
-      // });
-      // const fetchApi = async () => {
-      //   authServices.login(user).then((res) => {
-      //     console.log(res);
-      //   });
-      //   // console.log("result", result);
-      // };
-      // fetchApi();
+      login(user);
     }
   });
   return (
@@ -71,11 +57,18 @@ export default function Login() {
         initialValues={{ remember: true }}
         onFinish={onFinish}
         layout="vertical"
+        style={{
+          padding: "24px",
+          borderRadius: "4px",
+          boxShadow: "rgba(0, 0, 0, 0.15) 0px 2px 4px 0px",
+        }}
       >
-        <h1>Log in</h1>
-        <span style={{ color: "#A3AED0" }}>
-          Enter your username and password to sign in!
-        </span>
+        <div style={{ marginBottom: "24px" }}>
+          <h1>Login</h1>
+          <span style={{ color: "#A3AED0", marginBottom: "24px" }}>
+            Enter your username and password to sign in!
+          </span>
+        </div>
 
         <Form.Item
           label={
@@ -96,7 +89,7 @@ export default function Login() {
               message: "This field is required!",
             },
           ]}
-          style={{ width: "380px" }}
+          style={{ width: "380px", marginBottom: "8px" }}
         >
           <Input
             prefix={<UserOutlined className="site-form-item-icon" />}
@@ -124,7 +117,7 @@ export default function Login() {
               message: "This field is required!",
             },
           ]}
-          style={{ width: "380px" }}
+          style={{ width: "380px", marginBottom: "8px" }}
         >
           <Input.Password
             prefix={<LockOutlined className="site-form-item-icon" />}
@@ -134,9 +127,9 @@ export default function Login() {
           />
         </Form.Item>
         <Form.Item>
-          <Form.Item name="remember" valuePropName="checked" noStyle>
+          {/* <Form.Item name="remember" valuePropName="checked" noStyle>
             <Checkbox style={{ color: "#7e57c2" }}>Remember me</Checkbox>
-          </Form.Item>
+          </Form.Item> */}
 
           <a className="login-form-forgot" href="/forgotPassword">
             Forgot password
@@ -156,7 +149,7 @@ export default function Login() {
           >
             Log in
           </Button>
-          Not registered yet?{" "}
+          Don't have an account?{" "}
           <a href="/register" style={{ color: "#7e57c2" }}>
             Create an account
           </a>
