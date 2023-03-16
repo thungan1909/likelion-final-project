@@ -78,7 +78,6 @@ export default function Login() {
         </span>
 
         <Form.Item
-          style={{ marginTop: "24px" }}
           label={
             <label
               style={{
@@ -90,16 +89,19 @@ export default function Login() {
             </label>
           }
           name="username"
+          hasFeedback
           rules={[
             {
               required: true,
-              message: "Please input your Username!",
+              message: "This field is required!",
             },
           ]}
+          style={{ width: "380px" }}
         >
           <Input
             prefix={<UserOutlined className="site-form-item-icon" />}
             placeholder="Your username"
+            style={{ height: "33px" }}
           />
         </Form.Item>
 
@@ -115,17 +117,20 @@ export default function Login() {
             </label>
           }
           name="password"
+          hasFeedback
           rules={[
             {
               required: true,
-              message: "Please input your Password!",
+              message: "This field is required!",
             },
           ]}
+          style={{ width: "380px" }}
         >
-          <Input
+          <Input.Password
             prefix={<LockOutlined className="site-form-item-icon" />}
             type="password"
             placeholder="Password"
+            style={{ height: "33px" }}
           />
         </Form.Item>
         <Form.Item>
@@ -133,7 +138,7 @@ export default function Login() {
             <Checkbox style={{ color: "#7e57c2" }}>Remember me</Checkbox>
           </Form.Item>
 
-          <a className="login-form-forgot" href="">
+          <a className="login-form-forgot" href="/forgotPassword">
             Forgot password
           </a>
         </Form.Item>
@@ -152,7 +157,7 @@ export default function Login() {
             Log in
           </Button>
           Not registered yet?{" "}
-          <a href="" style={{ color: "#7e57c2" }}>
+          <a href="/register" style={{ color: "#7e57c2" }}>
             Create an account
           </a>
         </Form.Item>

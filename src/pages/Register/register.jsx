@@ -1,4 +1,4 @@
-import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import { LockOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input, Space } from "antd";
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -48,18 +48,19 @@ export default function Register() {
       }}
     >
       <Form
-        name="loginForm"
-        className="login-form"
+        name="authForm"
+        className="authen-Form"
         initialValues={{ remember: true }}
         onFinish={onFinish}
         layout="vertical"
       >
-        <h1>Register</h1>
-        <span style={{ color: "#A3AED0" }}>
-          Enter your username and password to sign in!
-        </span>
+        <div style={{ marginBottom: "24px" }}>
+          <h1>Register</h1>
+          <span style={{ color: "#A3AED0", marginBottom: "24px" }}>
+            Enter your email, username and password to register!
+          </span>
+        </div>
         <Form.Item
-          style={{ marginTop: "24px" }}
           label={
             <label
               style={{
@@ -71,20 +72,26 @@ export default function Register() {
             </label>
           }
           name="email"
+          hasFeedback
           rules={[
             {
+              type: "email",
+              message: "Please enter a valid email address",
+            },
+            {
               required: true,
-              message: "Please input your Email!",
+              message: "This field is required",
             },
           ]}
+          style={{ width: "380px" }}
         >
           <Input
-            prefix={<UserOutlined className="site-form-item-icon" />}
+            prefix={<MailOutlined className="site-form-item-icon" />}
             placeholder="Your email"
+            style={{ height: "33px" }}
           />
         </Form.Item>
         <Form.Item
-          style={{ marginTop: "24px" }}
           label={
             <label
               style={{
@@ -96,16 +103,19 @@ export default function Register() {
             </label>
           }
           name="username"
+          hasFeedback
           rules={[
             {
               required: true,
-              message: "Please input your Username!",
+              message: "This field is required!",
             },
           ]}
+          style={{ width: "380px" }}
         >
           <Input
             prefix={<UserOutlined className="site-form-item-icon" />}
             placeholder="Your username"
+            style={{ height: "33px" }}
           />
         </Form.Item>
 
@@ -121,34 +131,74 @@ export default function Register() {
             </label>
           }
           name="password"
+          hasFeedback
           rules={[
             {
               required: true,
-              message: "Please input your Password!",
+              message: "This field is required!",
+            },
+            {
+              pattern:
+                "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,30}$",
+              message:
+                "Your password needs to be between 8 and 30 characters long and contain one uppercase letter, one lowercase, one number and one special character.",
             },
           ]}
+          style={{ width: "380px" }}
         >
-          <Input
+          <Input.Password
             prefix={<LockOutlined className="site-form-item-icon" />}
             type="password"
             placeholder="Password"
+            style={{ height: "33px" }}
           />
         </Form.Item>
-        <Form.Item>
-          {/* <Form.Item name="remember" valuePropName="checked" noStyle>
-            <Checkbox style={{ color: "#7e57c2" }}>Remember me</Checkbox>
-          </Form.Item> */}
-
-          <a className="login-form-forgot" href="">
-            Forgot password
-          </a>
+        <Form.Item
+          name="confirm"
+          label={
+            <label>
+              {" "}
+              <label
+                style={{
+                  color: "#7e57c2",
+                  fontWeight: "bold",
+                }}
+              >
+                Confirm Password
+              </label>
+            </label>
+          }
+          dependencies={["password"]}
+          hasFeedback
+          rules={[
+            {
+              required: true,
+              message: "This field is required!",
+            },
+            ({ getFieldValue }) => ({
+              validator(_, value) {
+                if (!value || getFieldValue("password") === value) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(
+                  new Error("The two passwords that you entered do not match!")
+                );
+              },
+            }),
+          ]}
+          style={{ width: "380px" }}
+        >
+          <Input.Password
+            prefix={<LockOutlined className="site-form-item-icon" />}
+            placeholder="Confirm password"
+            style={{ height: "33px" }}
+          />
         </Form.Item>
-
         <Form.Item>
           <Button
             type="primary"
             htmlType="submit"
-            className="login-form-button"
+            className="authen-form-button"
             style={{
               backgroundColor: "#b299da",
               width: "100%",
@@ -157,9 +207,9 @@ export default function Register() {
           >
             Register
           </Button>
-          Not registered yet?{" "}
-          <a href="" style={{ color: "#7e57c2" }}>
-            Create an account
+          Already have an account?{" "}
+          <a href="/login" style={{ color: "#7e57c2" }}>
+            Login
           </a>
         </Form.Item>
       </Form>
