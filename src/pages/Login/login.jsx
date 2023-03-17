@@ -2,45 +2,60 @@ import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input, Space } from "antd";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import AuthApi from "../../api/authApi";
 import LoginImg from "../../assets/img/login-img.jpg";
 import authServices from "../../service/authServices";
 import "./login.css";
+import { login, loginSuccess } from "../../redux/actions/auth";
 
 export default function Login() {
   const navigate = useNavigate();
-  const [user, setUser] = useState({
-    username: "",
-    password: "",
-  });
+  // const [user, setUser] = useState({
+  //   username: "",
+  //   password: "",
+  // });
+  const dispatch = useDispatch();
 
-  const [isFinish, setIsFinish] = useState(false);
-  const onFinish = (value) => {
-    setUser({
+  //const [isFinish, setIsFinish] = useState(false);
+  const onFinish = async (value) => {
+    const user = {
       username: value.username,
       password: value.password,
-    });
-    setIsFinish(true);
-  };
-  const login = async (req) => {
+    };
+    dispatch(login());
     try {
-      const response = await AuthApi.login(req);
-      console.log("response", response.accessToken);
-      //todo: check is success response
-      localStorage.setItem("access_token", response.accessToken);
+      const response = await AuthApi.login(user);
+      dispatch(
+        loginSuccess({
+          accessToken: response.accessToken,
+          userId: response._id,
+        })
+      );
       navigate("/home", { replace: "true" });
     } catch (error) {
-      console.log(error.message);
-      // console.log(error.response);
-      // console.log("Login error", error);
-      // console.log(parseInt(error.message, 10));
+      console.log(error);
     }
   };
-  useEffect(() => {
-    if (isFinish) {
-      login(user);
-    }
-  });
+
+  // const login = async (req) => {
+  //   try {
+
+  //     //todo: check is success response
+  //     localStorage.setItem("access_token", response.accessToken);
+  //     navigate("/home", { replace: "true" });
+  //   } catch (error) {
+  //     console.log(error.message);
+  //     // console.log(error.response);
+  //     // console.log("Login error", error);
+  //     // console.log(parseInt(error.message, 10));
+  //   }
+  // };
+  // useEffect(() => {
+  //   if (isFinish) {
+  //     // dispatch(login(user));
+
+  // });
   return (
     <Space
       style={{

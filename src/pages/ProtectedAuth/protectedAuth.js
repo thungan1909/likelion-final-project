@@ -3,7 +3,6 @@ import DashboardLayout from "../../layout/LayoutContainers/DashboardLayout/dashb
 import { checkIsAuthenticated } from "../../utils";
 
 function ProtectedAuth({children}){
-    const navigate = useNavigate();
     const token = localStorage.getItem("access_token");
     const isAuthenticated = token && token.length > 0 ? checkIsAuthenticated(token) : false;
     // console.log(isAuthenticated);
@@ -12,7 +11,7 @@ function ProtectedAuth({children}){
         return <Navigate to="/login" replace />;
     }
    else{
-    return <DashboardLayout>{children}</DashboardLayout>
+    return children;
    }
 }
 export default ProtectedAuth;

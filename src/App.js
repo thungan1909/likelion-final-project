@@ -6,7 +6,23 @@ import Login from "./pages/Login/login";
 import ProtectedAuth from "./pages/ProtectedAuth/protectedAuth";
 import routes from "./routes";
 
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+
 function App() {
+  const {accessToken, userId} = useSelector((state) => state.auth);
+  useEffect(() => {
+    if(
+      !localStorage.getItem("access_token") ||
+      !localStorage.getItem("userId")
+    ) {
+      console.log("access_token", accessToken);
+      console.log("userId", userId);
+      localStorage.setItem("access_token", accessToken);
+      localStorage.setItem("userId", userId);
+    }
+  }, [accessToken, userId]);
+
   const getRoutes = (allRoutes) =>
     allRoutes.map((route) => {
       if (route.route) {
