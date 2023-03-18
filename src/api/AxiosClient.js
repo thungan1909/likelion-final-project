@@ -21,7 +21,7 @@ AxiosClient.interceptors.request.use(
     const token = localStorage.getItem("access_token");
     const additional = config;
     additional.headers = additional.headers ?? {};
-    additional.headers.Authorization = token ? `Bearer ${token}` : "";
+    additional.headers.token = token ? `Bearer ${token}` : "";
     return additional;
   },
   (error) => {

@@ -2,10 +2,8 @@ import DashboardLayout from "./layout/LayoutContainers/DashboardLayout/dashboard
 import EmployeeManagement from "./pages/EmployeeManagement/employeeManagement";
 import Home from "./pages/Home/home";
 import Login from "./pages/Login/login";
-import AdminContext from "./pages/ProtectedAuth/AdminContext";
 import ProtectedAuth from "./pages/ProtectedAuth/protectedAuth";
 import Register from "./pages/Register/register";
-import UserHome from "./pages/UserHome/userHome";
 
 const routes = [
   {
@@ -30,7 +28,7 @@ const routes = [
     key: "home",
     name: "Home",
     route: "/home",
-    component: <ProtectedAuth><Home></Home></ProtectedAuth>,
+    component: <ProtectedAuth><DashboardLayout><Home></Home></DashboardLayout></ProtectedAuth>,
   },
   {
     key: "employee",

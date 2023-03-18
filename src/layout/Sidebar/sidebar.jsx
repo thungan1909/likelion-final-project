@@ -5,9 +5,13 @@ import {
   BarChartOutlined,
   SettingOutlined,
   LogoutOutlined,
+  InfoCircleOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import UserApi from "../../api/userApi";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 const { Sider } = Layout;
 function getItem(label, key, icon, children) {
   return {
@@ -17,15 +21,36 @@ function getItem(label, key, icon, children) {
     label,
   };
 }
-const items = [
+const adminItems = [
   getItem("Home", "1", <HomeOutlined />),
   getItem("Employee", "2", <TeamOutlined />),
-  getItem("Statistic", "sub1", <BarChartOutlined />),
-  getItem("Setting", "sub2", <SettingOutlined />),
+  getItem("Statistic", "3", <BarChartOutlined />),
+  getItem("Setting", "4", <SettingOutlined />),
+  getItem("Logout", "5", <LogoutOutlined />),
+];
+const userItems = [
+  getItem("Home", "1", <HomeOutlined />),
+  getItem("My info", "2", <InfoCircleOutlined />),
   getItem("Logout", "9", <LogoutOutlined />),
 ];
 export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
+  const userId = localStorage.getItem("userId");
+  const [user, setUser] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  const getCurrentUser = async () => {
+    try {
+      const response = await UserApi.getUserById(userId);
+      setUser(response);
+      console.log(response.isAdmin);
+      setIsAdmin(response.isAdmin);
+    } catch (error) {}
+  };
+  useEffect(() => {
+    getCurrentUser();
+  }, [userId]);
+
   return (
     <Sider
       collapsible
@@ -53,11 +78,19 @@ export default function Sidebar() {
           src={ProfileImg}
           style={{ width: "64px", height: "64px", marginBottom: "16px" }}
         ></img>
-        <span style={{ fontWeight: "500", fontSize: "24px" }}>Admin</span>
-        <span style={{ fontWeight: "400", fontSize: "16px" }}>Admin</span>
+        <span style={{ fontWeight: "500", fontSize: "16px" }}>
+          {user.username}
+        </span>
+        <span style={{ fontWeight: "400", fontSize: "14px" }}>
+          {isAdmin ? "Admin" : "User"}
+        </span>
       </div>
 
-      <Menu defaultSelectedKeys={["1"]} mode="inline" items={items} />
+      <Menu
+        defaultSelectedKeys={["1"]}
+        mode="inline"
+        items={isAdmin ? adminItems : userItems}
+      />
     </Sider>
   );
 }
