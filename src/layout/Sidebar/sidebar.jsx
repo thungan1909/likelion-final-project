@@ -10,7 +10,7 @@ import {
 import { Layout, Menu } from "antd";
 import { useEffect, useState } from "react";
 import UserApi from "../../api/userApi";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 const { Sider } = Layout;
 function getItem(label, key, icon, children) {
@@ -30,14 +30,15 @@ const adminItems = [
 ];
 const userItems = [
   getItem("Home", "1", <HomeOutlined />),
-  getItem("My info", "2", <InfoCircleOutlined />),
-  getItem("Logout", "9", <LogoutOutlined />),
+  getItem("My info", "6", <InfoCircleOutlined />),
+  getItem("Logout", "5", <LogoutOutlined />),
 ];
 export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
   const userId = localStorage.getItem("userId");
   const [user, setUser] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
+  const navigate = useNavigate();
 
   const getCurrentUser = async () => {
     try {
@@ -50,6 +51,37 @@ export default function Sidebar() {
   useEffect(() => {
     getCurrentUser();
   }, [userId]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("userId");
+    navigate("/login", { replace: true });
+  };
+  const handleSwitchCase = (number) => {
+    switch (number) {
+      case 1:
+        navigate("/home", { replace: true });
+        break;
+      case 2:
+        navigate("/employee", { replace: true });
+        break;
+      case 3:
+        navigate("/statistic", { replace: true });
+        break;
+      case 4:
+        navigate("/setting", { replace: true });
+        break;
+      case 5:
+        handleLogout();
+        break;
+      case 6:
+        handleLogout();
+        break;
+    }
+  };
+  const onClick = (e) => {
+    handleSwitchCase(parseInt(e.key));
+  };
 
   return (
     <Sider
@@ -87,6 +119,7 @@ export default function Sidebar() {
       </div>
 
       <Menu
+        onClick={onClick}
         defaultSelectedKeys={["1"]}
         mode="inline"
         items={isAdmin ? adminItems : userItems}

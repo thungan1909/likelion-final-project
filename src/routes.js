@@ -34,7 +34,7 @@ const routes = [
     key: "employee",
     name: "Employee",
     route: "/employee",
-    component: <ProtectedAuth><EmployeeManagement></EmployeeManagement></ProtectedAuth>,
+    component: <ProtectedAuth><DashboardLayout><EmployeeManagement></EmployeeManagement></DashboardLayout></ProtectedAuth>,
   },
 
 ];

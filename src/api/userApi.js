@@ -10,4 +10,13 @@ export default class UserApi {
             throw new Error(error.message);
         }
     }
+    static async getAllUser () {
+        try {
+            const response = await AxiosClient.get(`user`);
+            return response;
+        }
+        catch (error) {
+            throw new Error (error.message);
+        }
+    }
 }

@@ -38,24 +38,6 @@ export default function Login() {
     }
   };
 
-  // const login = async (req) => {
-  //   try {
-
-  //     //todo: check is success response
-  //     localStorage.setItem("access_token", response.accessToken);
-  //     navigate("/home", { replace: "true" });
-  //   } catch (error) {
-  //     console.log(error.message);
-  //     // console.log(error.response);
-  //     // console.log("Login error", error);
-  //     // console.log(parseInt(error.message, 10));
-  //   }
-  // };
-  // useEffect(() => {
-  //   if (isFinish) {
-  //     // dispatch(login(user));
-
-  // });
   return (
     <Space
       style={{
