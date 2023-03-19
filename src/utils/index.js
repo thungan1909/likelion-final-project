@@ -7,6 +7,8 @@ export const checkIsAuthenticated = (token) => {
     const decode = jwtDecode(token);
     const expirationDate = decode.exp;
     const currentTime = Date.now() / 1000;
+    console.log(expirationDate);
+    console.log(currentTime);
     if (expirationDate < currentTime) return false;
     return true;
   };
