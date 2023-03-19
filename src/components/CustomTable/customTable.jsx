@@ -1,30 +1,8 @@
-import { Table } from "antd";
+import { QuestionCircleOutlined } from "@ant-design/icons";
+import { Button, Popconfirm, Table } from "antd";
 import { useEffect, useState } from "react";
 import UserApi from "../../api/userApi";
 
-const columns = [
-  {
-    title: "Username",
-    dataIndex: "username",
-    key: "username",
-    render: (username) => `${username}`,
-    width: "30%",
-  },
-  {
-    title: "Email",
-    dataIndex: "email",
-    key: "email",
-    render: (email) => `${email}`,
-    width: "30%",
-  },
-  {
-    title: "Role",
-    dataIndex: "isAdmin",
-    key: "role",
-    render: (isAdmin) => `${isAdmin}`,
-    width: "20%",
-  },
-];
 export default function CustomTable() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -34,6 +12,59 @@ export default function CustomTable() {
       pageSize: 10,
     },
   });
+  const columns = [
+    {
+      title: "Username",
+      dataIndex: "username",
+      key: "username",
+      sorter: true,
+      render: (username) => `${username}`,
+      width: "30%",
+    },
+    {
+      title: "Email",
+      dataIndex: "email",
+      key: "email",
+      sorter: true,
+      render: (email) => `${email}`,
+      width: "30%",
+    },
+    {
+      title: "Role",
+      dataIndex: "isAdmin",
+      key: "role",
+      render: (isAdmin) => `${isAdmin}`,
+      filters: [
+        {
+          text: "Admin",
+          value: "admin",
+        },
+        {
+          text: "User",
+          value: "user",
+        },
+      ],
+      width: "20%",
+    },
+    {
+      title: "Action",
+      dataIndex: "_id",
+      key: "delete",
+      render: (_id) => (
+        <Popconfirm
+          title="Delete user"
+          description="Are you sure to delete this user?"
+          okText="Yes"
+          cancelText="No"
+          onConfirm={() => handleConfirmDelete(_id)}
+          icon={<QuestionCircleOutlined style={{ color: "red" }} />}
+        >
+          <a>Delete</a>
+        </Popconfirm>
+      ),
+      width: "20%",
+    },
+  ];
   const getAllUsers = async () => {
     try {
       const response = await UserApi.getAllUser();
@@ -49,6 +80,13 @@ export default function CustomTable() {
       });
     } catch (error) {}
   };
+  const deleteUser = async (id) => {
+    try {
+      const response = await UserApi.deleteUserById(id);
+      getAllUsers();
+    } catch (error) {}
+  };
+
   useEffect(() => {
     getAllUsers();
   }, [JSON.stringify(tableParams)]);
@@ -64,5 +102,18 @@ export default function CustomTable() {
       setData([]);
     }
   };
-  return <Table columns={columns} dataSource={data}></Table>;
+  const handleConfirmDelete = (id) => {
+    console.log(id);
+    deleteUser(id);
+  };
+  return (
+    <Table
+      columns={columns}
+      // rowKey={(record) => record.login.uuid}
+      dataSource={data}
+      pagination={tableParams.pagination}
+      loading={loading}
+      onChange={handleTableChange}
+    ></Table>
+  );
 }
