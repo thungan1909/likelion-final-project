@@ -5,9 +5,6 @@ import { checkIsAuthenticated } from "../../utils";
 function ProtectedAuth({children}){
     const token = localStorage.getItem("access_token");
     const isAuthenticated = token && token.length > 0 ? checkIsAuthenticated(token) : false;
-    console.log(checkIsAuthenticated(token));
-    console.log(token);
-    console.log(isAuthenticated);
     if(!isAuthenticated){
        
         console.log("Not authenticated");

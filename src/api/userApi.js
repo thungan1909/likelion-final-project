@@ -28,4 +28,14 @@ export default class UserApi {
             throw new Error(error.message);
         }
     }
+    static async updateUser(userId, userInfo) {
+        try {
+            const response = await AxiosClient.put(`user/${userId}/update`, userInfo);
+            console.log(response);
+            return response;
+        }
+        catch (error) {
+            throw new Error(error.message);
+        }
+    }
 }

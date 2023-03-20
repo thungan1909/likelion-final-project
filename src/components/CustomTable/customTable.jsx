@@ -69,7 +69,7 @@ export default function CustomTable() {
     try {
       const response = await UserApi.getAllUser();
       setData(response);
-      console.log(response);
+      // console.log(response);
       setLoading(false);
       setTableParams({
         ...tableParams,
@@ -103,7 +103,7 @@ export default function CustomTable() {
     }
   };
   const handleConfirmDelete = (id) => {
-    console.log(id);
+    // console.log(id);
     deleteUser(id);
   };
   return (

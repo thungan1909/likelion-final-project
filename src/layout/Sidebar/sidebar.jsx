@@ -6,6 +6,7 @@ import {
   SettingOutlined,
   LogoutOutlined,
   InfoCircleOutlined,
+  UserOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
 import { useEffect, useState } from "react";
@@ -25,12 +26,13 @@ const adminItems = [
   getItem("Home", "1", <HomeOutlined />),
   getItem("Employee", "2", <TeamOutlined />),
   getItem("Statistic", "3", <BarChartOutlined />),
-  getItem("Setting", "4", <SettingOutlined />),
-  getItem("Logout", "5", <LogoutOutlined />),
+  getItem("My Profile", "4", <UserOutlined></UserOutlined>),
+  getItem("Setting", "5", <SettingOutlined />),
+  getItem("Logout", "6", <LogoutOutlined />),
 ];
 const userItems = [
   getItem("Home", "1", <HomeOutlined />),
-  getItem("My info", "6", <InfoCircleOutlined />),
+  getItem("My Profile", "4", <UserOutlined></UserOutlined>),
   getItem("Logout", "5", <LogoutOutlined />),
 ];
 export default function Sidebar() {
@@ -44,7 +46,7 @@ export default function Sidebar() {
     try {
       const response = await UserApi.getUserById(userId);
       setUser(response);
-      console.log(response.isAdmin);
+      // console.log(response.isAdmin);
       setIsAdmin(response.isAdmin);
     } catch (error) {}
   };
@@ -69,10 +71,10 @@ export default function Sidebar() {
         navigate("/statistic", { replace: true });
         break;
       case 4:
-        navigate("/setting", { replace: true });
+        navigate("/profile", { replace: true });
         break;
       case 5:
-        handleLogout();
+        navigate("/setting", { replace: true });
         break;
       case 6:
         handleLogout();
