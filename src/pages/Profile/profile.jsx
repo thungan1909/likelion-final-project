@@ -1,14 +1,7 @@
 import { useEffect, useState } from "react";
 import UserApi from "../../api/userApi";
-import {
-  EditOutlined,
-  EllipsisOutlined,
-  MailOutlined,
-  SettingOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
-import { Avatar, Button, Card, Form, Input, Modal } from "antd";
-const { Meta } = Card;
+import { EditOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
+import { Button, Input, Modal } from "antd";
 export default function Profile() {
   const userId = localStorage.getItem("userId");
   const [user, setUser] = useState("");

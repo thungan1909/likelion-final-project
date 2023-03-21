@@ -1,4 +1,3 @@
-import { Button } from "antd";
 import CustomTable from "../../components/CustomTable/customTable";
 
 export default function EmployeeManagement() {

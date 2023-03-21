@@ -1,23 +1,16 @@
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Form, Input, Space } from "antd";
-import { useEffect, useState } from "react";
+import { Button, Form, Input, Space } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import AuthApi from "../../api/authApi";
 import LoginImg from "../../assets/img/login-img.jpg";
-import authServices from "../../service/authServices";
 import "./login.css";
 import { login, loginSuccess } from "../../redux/actions/auth";
 
 export default function Login() {
   const navigate = useNavigate();
-  // const [user, setUser] = useState({
-  //   username: "",
-  //   password: "",
-  // });
-  const dispatch = useDispatch();
 
-  //const [isFinish, setIsFinish] = useState(false);
+  const dispatch = useDispatch();
   const onFinish = async (value) => {
     const user = {
       username: value.username,
@@ -153,7 +146,7 @@ export default function Login() {
         </Form.Item>
       </Form>
       <Space>
-        <img src={LoginImg}></img>
+        <img alt="authenimg" src={LoginImg}></img>
       </Space>
     </Space>
   );

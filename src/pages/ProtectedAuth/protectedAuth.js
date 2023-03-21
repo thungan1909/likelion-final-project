@@ -1,5 +1,4 @@
-import { Navigate, useNavigate } from "react-router-dom";
-import DashboardLayout from "../../layout/LayoutContainers/DashboardLayout/dashboardLayout";
+import { Navigate} from "react-router-dom";
 import { checkIsAuthenticated } from "../../utils";
 
 function ProtectedAuth({children}){

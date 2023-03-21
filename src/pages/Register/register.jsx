@@ -1,8 +1,7 @@
 import { LockOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Form, Input, Space } from "antd";
-import { useCallback, useEffect, useState } from "react";
+import { Button, Form, Input, Space } from "antd";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import authServices from "../../service/authServices";
 import LoginImg from "../../assets/img/login-img.jpg";
 import AuthApi from "../../api/authApi";
 export default function Register() {
@@ -27,6 +26,7 @@ export default function Register() {
   const register = async (req) => {
     try {
       const response = await AuthApi.createUser(req);
+      console.log(response);
       //TODO: Return exists users error
       navigate("/login", { replace: "true" });
     } catch (error) {

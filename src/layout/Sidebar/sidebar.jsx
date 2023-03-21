@@ -5,14 +5,12 @@ import {
   BarChartOutlined,
   SettingOutlined,
   LogoutOutlined,
-  InfoCircleOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
 import { useEffect, useState } from "react";
 import UserApi from "../../api/userApi";
-import { useNavigate, useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 const { Sider } = Layout;
 function getItem(label, key, icon, children) {
   return {
