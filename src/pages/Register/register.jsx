@@ -86,6 +86,10 @@ export default function Register() {
               message: "Please enter a valid email address",
             },
             {
+              max: 50,
+              message: "Your email needs to max 50 characters long",
+            },
+            {
               required: true,
               message: "This field is required",
             },
@@ -115,6 +119,16 @@ export default function Register() {
             {
               required: true,
               message: "This field is required!",
+            },
+            {
+              min: 6,
+              message:
+                "Your password needs to be between 6 and 20 characters long",
+            },
+            {
+              max: 20,
+              message:
+                "Your password needs to be between 6 and 20 characters long",
             },
           ]}
           style={{ width: "380px", marginBottom: "8px" }}
@@ -146,9 +160,9 @@ export default function Register() {
             },
             {
               pattern:
-                "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,30}$",
+                "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{6,30}$",
               message:
-                "Your password needs to be between 8 and 30 characters long and contain one uppercase letter, one lowercase, one number and one special character.",
+                "Your password needs to be between 6 and 30 characters long and contain one uppercase letter, one lowercase, one number and one special character.",
             },
           ]}
           style={{ width: "380px", marginBottom: "8px" }}

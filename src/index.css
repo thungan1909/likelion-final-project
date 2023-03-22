@@ -1,3 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Rashi+Hebrew:wght@100;200;300;400;500;600;700;800;900&display=swap');
 body {
   background-color: #FFF;
+  font-family: 'Noto Rashi Hebrew', serif;
+}
+
+
+:root {
+  --primary-color: #9543ff;
+  --primary-hover-color: #6834ab;
+  --white-color: #FFF;
+  --black-color: #000;
+  --text-color: #333;
+  --border-color: #DBDBDB;
+  --header-height: 120px;
+  --navbar-height: 34px;
+  --header-with-search-height: calc(var(--header-height) - var (--navbar-height));
 }

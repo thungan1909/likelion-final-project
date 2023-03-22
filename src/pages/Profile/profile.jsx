@@ -2,20 +2,22 @@ import { useEffect, useState } from "react";
 import UserApi from "../../api/userApi";
 import { EditOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Input, Modal } from "antd";
+import GetCurrentUserService from "../../service/getCurrentUserSevice";
 export default function Profile() {
   const userId = localStorage.getItem("userId");
   const [user, setUser] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newData, setNewData] = useState(null);
   const [isUpdateUser, setIsUpdateUser] = useState(false);
-  const getCurrentUser = async () => {
-    try {
-      const response = await UserApi.getUserById(userId);
-      setUser(response);
-    } catch (error) {}
-  };
+  // const getCurrentUser = async () => {
+  //   try {
+  //     const response = await UserApi.getUserById(userId);
+  //     setUser(response);
+  //   } catch (error) {}
+  // };
   useEffect(() => {
-    getCurrentUser();
+    const res = GetCurrentUserService.getCurrentUser();
+    setUser(res);
   }, [userId, isUpdateUser]);
   const handleEditProfile = () => {
     showModal();

@@ -1,0 +1,45 @@
+.banner-section{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    background-color: rgba(189, 153, 251, 0.3);
+   
+}
+.banner-section__info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: 32px;
+}
+.banner-section__quotes{
+    font-size: 28px;
+    color: var(--primary-color);
+    margin-bottom: 16px;
+}
+.banner-section__btn{
+    width: 145px;
+    height: 35px;
+    margin-right: 16px;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 16px;
+    text-align: center;
+    color: var(--white-color);
+    background-color: var(--primary-color);
+    border: none;
+    box-shadow: 1px;
+    cursor: pointer;
+}
+.banner-section__btn:hover{
+    top: 0.125em;
+}
+
+
+.banner-section__btn:hover{
+    background-color: var(--primary-hover-color);
+}
+.banner-section__img{
+    width: 40%;
+}

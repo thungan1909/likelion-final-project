@@ -29,7 +29,7 @@ const routes = [
     key: "home",
     name: "Home",
     route: "/home",
-    component: <ProtectedAuth><DashboardLayout><Home></Home></DashboardLayout></ProtectedAuth>,
+    component: <Home/>,
   },
   {
     key: "employee",
