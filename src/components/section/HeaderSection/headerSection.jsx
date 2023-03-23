@@ -1,9 +1,9 @@
 import { Header } from "antd/es/layout/layout";
 import "./headerSection.css";
 import LogoImg from "../../../assets/img/logo.png";
-import { Menu } from "antd";
+import { Input, Menu } from "antd";
 import UserSection from "../UserSection/userSection";
-
+const { Search } = Input;
 export default function HeaderSection({ isAuthen }) {
   const items = [
     { key: 1, label: "Popular" },
@@ -11,9 +11,11 @@ export default function HeaderSection({ isAuthen }) {
     { key: 3, label: "Your ideas" },
   ];
 
+  const onSearch = (value) => console.log(value);
+
   return (
     <Header className="header">
-      <a href="/home">
+      <a className="header__logo-link" href="/home">
         <img src={LogoImg} className="header__logo"></img>
       </a>
 
@@ -22,6 +24,12 @@ export default function HeaderSection({ isAuthen }) {
         mode="horizontal"
         defaultSelectedKeys={["2"]}
         items={items}
+      />
+      <Search
+        style={{ margin: "0px 32px", width: "230px", height: "33px" }}
+        className="header-section__search"
+        placeholder="Search..."
+        onSearch={onSearch}
       />
       <UserSection isAuthen={isAuthen}></UserSection>
     </Header>

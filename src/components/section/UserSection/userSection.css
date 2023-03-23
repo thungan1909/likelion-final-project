@@ -1,3 +1,25 @@
 .user-section_addBtn{
+    width: 100px;
+    height: 35px;
+    padding: 0 4px;
+    margin-right: 16px;
+}
+.user-section_notify{
+    position: relative;
+    top: 3px;
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    margin-right: 16px;
+    padding: 0px 6px;
     
+}
+.user-section_Wrapper{
+    margin: 0;
+}
+.account-menu__user-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }

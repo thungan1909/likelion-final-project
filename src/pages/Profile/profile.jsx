@@ -9,15 +9,16 @@ export default function Profile() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newData, setNewData] = useState(null);
   const [isUpdateUser, setIsUpdateUser] = useState(false);
-  // const getCurrentUser = async () => {
-  //   try {
-  //     const response = await UserApi.getUserById(userId);
-  //     setUser(response);
-  //   } catch (error) {}
-  // };
+  const getCurrentUser = async () => {
+    try {
+      const response = await UserApi.getUserById(userId);
+      setUser(response);
+    } catch (error) {}
+  };
   useEffect(() => {
-    const res = GetCurrentUserService.getCurrentUser();
-    setUser(res);
+    getCurrentUser();
+    // const res = GetCurrentUserService.getCurrentUser();
+    // setUser(res);
   }, [userId, isUpdateUser]);
   const handleEditProfile = () => {
     showModal();
