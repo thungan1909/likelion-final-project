@@ -16,8 +16,7 @@ export default function ExploreIdeaSection() {
     showAllIdeas();
   }, []);
   return (
-    <>
-      <h1>Idea List</h1>
+    <div style={{ margin: "24px" }}>
       <Row justify={"space-between"}>
         {data?.length === 0 ? (
           <div></div>
@@ -29,6 +28,6 @@ export default function ExploreIdeaSection() {
           })
         )}
       </Row>
-    </>
+    </div>
   );
 }

@@ -1,11 +1,17 @@
 .banner-section{
-    height: 100%;
+    height: 340px;
     width: 100%;
     display: flex;
     flex-direction: row;
-    background-color: rgba(189, 153, 251, 0.3);
+    background-color: #c49bfa;
+    justify-content: center;
+    align-items: center;
    
 }
+/* .bannner-section__search{
+    width: 630px;
+    height: 65px;
+} */
 .banner-section__info{
     display: flex;
     flex-direction: column;
@@ -41,5 +47,7 @@
     background-color: var(--primary-hover-color);
 }
 .banner-section__img{
-    width: 40%;
+    width: 30%;
+    margin: 24px;
+    
 }

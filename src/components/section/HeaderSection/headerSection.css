@@ -1,9 +1,10 @@
 .header{
     height: 60px;
-    background-color: #9543ff;
+    /* background-color: #9543ff; */
     display: flex;
     font-family: inherit;
-    color: var(--white-color);
+    /* color: var(--white-color); */
+    background-color: #FFF;
   
 }
 .header__logo{
@@ -14,18 +15,18 @@
     flex: 1;
     font-family: inherit;
     background-color: transparent;
-    color: inherit;
+    /* color: inherit; */
 
 }
-.ant-menu-title-content{
+/* .ant-menu-title-content{
     color: inherit;
-}
-.ant-menu-title-content:hover{
+} */
+/* .ant-menu-title-content:hover{
     color: #000;
 }
 .ant-menu-title-content:active{
     color: #000;
-}
+} */
 /* :where(.css-dev-only-do-not-override-1me4733).ant-menu-light .ant-menu-item-selected
 {
     color: #000;
@@ -37,13 +38,6 @@
     width: 75px;
     height: 35px;
     margin-right: 16px;
-    border-radius: 4px;
-    font-family: inherit;
     font-size: 16px;
-    text-align: center;
-    color: var(--white-color);
-    background-color: var(--primary-color);
-    border: none;
-    box-shadow: 1px;
-    cursor: pointer;
+   
 }

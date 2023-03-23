@@ -6,6 +6,7 @@
     border: 1px solid var(--primary-color);
     padding: 16px;
     border-radius: 8px;
+    font-family: inherit;
 }
 .idea-card__author-avatar{
     width: 50px;
@@ -46,4 +47,23 @@
 }
 .idea-card__actionBtn--count{
     margin-left: 4px;
+}
+.popover__content{
+    display: flex;
+    flex-direction: column;
+    font-family: inherit;
+    margin-left: 20px;
+}
+.popover__content--action{
+    display: flex;
+    justify-content: flex-end;
+}
+.popover__content--action-btn{
+    background-color: var(--primary-color);
+    border-radius: 8px;
+    color: #FFF;
+    padding: 8px;
+    margin: 4px;
+    border: 1px solid;
+    font-family: inherit;
 }

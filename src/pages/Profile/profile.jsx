@@ -63,19 +63,6 @@ export default function Profile() {
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
-        // footer={[
-        //   <Button key="back" onClick={handleCancel}>
-        //     Return
-        //   </Button>,
-        //   <Button
-        //     key="submit"
-        //     type="primary"
-        //     htmlType="submit"
-        //     onClick={handleOk}
-        //   >
-        //     Submit
-        //   </Button>,
-        // ]}
       >
         <Input
           prefix={<MailOutlined className="site-form-item-icon" />}
