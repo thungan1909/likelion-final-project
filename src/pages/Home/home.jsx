@@ -9,24 +9,7 @@ import { checkIsAuthenticated } from "../../utils";
 
 export default function Home() {
   const [isAuthen, setIsAuthen] = useState();
-  // const userId = localStorage.getItem("userId")
-  // const [idea, setIdea] = useState({
-  //   userId: "",
-  //   content: "",
-  // });
-  // const handleChange = (e) => {
 
-  //   setIdea({
-  //     userId: userId,
-  //     content: e.target.value,
-  //   });
-  // };
-  // const handleCreateIdea = async () => {
-  //   try {
-  //     const response = await IdeaApi.addIdea(idea);
-  //     console.log(response);
-  //   } catch (error) {}
-  // };
   const handleCheckIsAuthen = () => {
     const token = localStorage.getItem("access_token");
     const _isAuthenticated = token && token.length > 0 ? true : false;

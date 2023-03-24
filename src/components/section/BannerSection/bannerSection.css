@@ -54,15 +54,3 @@
 .bannner-section__search{
     font-family: inherit;
 }
-:where(.css-dev-only-do-not-override-1me4733).ant-btn-primary {
-    color: #fff;
-    background-color: #D4B9FF;
-    box-shadow: 0 2px 0 rgba(5, 145, 255, 0.1);
-}
-:where(.css-dev-only-do-not-override-1me4733).ant-btn-primary:not(:disabled):hover {
-    color: #fff;
-    background-color:#D4B9FF;
-}
-:where(.css-dev-only-do-not-override-1me4733).ant-input-search .ant-input:hover, :where(.css-dev-only-do-not-override-1me4733).ant-input-search .ant-input:focus {
-    border-color: #D4B9FF;
-}

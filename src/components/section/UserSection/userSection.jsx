@@ -1,13 +1,14 @@
+import { Avatar, Divider, Dropdown, Input, Modal } from "antd";
 import { UserOutlined, BellOutlined } from "@ant-design/icons";
-import { Avatar, Divider, Dropdown } from "antd";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import UserApi from "../../../api/userApi";
 import "./userSection.css";
-
+import IdeaApi from "../../../api/ideaApi";
+const { TextArea } = Input;
 export default function UserSection({ isAuthen }) {
-  console.log(isAuthen);
   const navigate = useNavigate();
+  const [idea, setIdea] = useState("");
   const handleLogout = () => {
     // AuthenApi.DeleteSession({ sessionId });
     // localStorage.removeItem("token");
@@ -17,7 +18,7 @@ export default function UserSection({ isAuthen }) {
   };
   const userId = localStorage.getItem("userId");
   const [user, setUser] = useState("");
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const getCurrentUser = async () => {
     try {
       const response = await UserApi.getUserById(userId);
@@ -26,8 +27,6 @@ export default function UserSection({ isAuthen }) {
   };
   useEffect(() => {
     getCurrentUser();
-    // const res = GetCurrentUserService.getCurrentUser();
-    // setUser(res);
   }, [userId]);
   const items = [
     {
@@ -67,7 +66,7 @@ export default function UserSection({ isAuthen }) {
     },
     {
       key: "6",
-      label: <a target="_blank">Settings </a>,
+      label: <a target="_blank">Logout </a>,
     },
     {
       key: "7",
@@ -84,10 +83,30 @@ export default function UserSection({ isAuthen }) {
   const handleNavigateSignup = () => {
     navigate("/register", { replace: "true" });
   };
+  const handleAddIdea = () => {
+    setIsModalOpen(true);
+  };
 
-  useEffect(() => {
-    console.log(isAuthen);
-  }, [isAuthen]);
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+  const handleOk = () => {
+    handleCreateIdea();
+    setIsModalOpen(false);
+  };
+
+  const handleChange = (e) => {
+    setIdea({
+      userId: userId,
+      content: e.target.value,
+    });
+  };
+  const handleCreateIdea = async () => {
+    try {
+      const response = await IdeaApi.addIdea(idea);
+      console.log(response);
+    } catch (error) {}
+  };
   if (isAuthen === false) {
     return (
       <div className="user-section_Wrapper">
@@ -108,7 +127,9 @@ export default function UserSection({ isAuthen }) {
   } else {
     return (
       <div className="user-section_Wrapper">
-        <button className="user-section_addBtn btn">Add new idea</button>
+        <button className="user-section_addBtn btn" onClick={handleAddIdea}>
+          Add new idea
+        </button>
         <button className="user-section_notify">
           <BellOutlined />
         </button>
@@ -123,6 +144,23 @@ export default function UserSection({ isAuthen }) {
         >
           <Avatar size={40} icon={<UserOutlined />} />
         </Dropdown>
+        <Modal
+          title="Add new idea"
+          open={isModalOpen}
+          onOk={handleOk}
+          onCancel={handleCancel}
+          className="user-section-modal"
+          okText="Post"
+          cancelText="Cancel"
+        >
+          <TextArea
+            className="user-section-modal__input"
+            placeholder="Your idea..."
+            name="content"
+            rows={5}
+            onChange={handleChange}
+          />
+        </Modal>
       </div>
     );
   }

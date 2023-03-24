@@ -23,3 +23,26 @@
     align-items: center;
     justify-content: center;
 }
+.user-section-modal__input{
+    width: 450px;
+}
+.user-section-modal{
+    display: flex;
+ 
+}
+
+:where(.css-dev-only-do-not-override-1me4733).ant-input:hover {
+    border-color: #9543ff;
+    border-inline-end-width: 1px;
+}
+:where(.css-dev-only-do-not-override-1me4733).ant-input:focus, :where(.css-dev-only-do-not-override-1me4733).ant-input-focused {
+    border-color: #9543ff;
+    box-shadow: 0 0 0 2px rgba(149, 67, 255, 0.1);
+    border-inline-end-width: 1px;
+    outline: 0;
+}
+
+:where(.css-dev-only-do-not-override-1me4733).ant-btn-default:not(:disabled):hover {
+    color: #9543ff;
+    border-color:#9543ff;
+}

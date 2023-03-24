@@ -31,7 +31,7 @@ const adminItems = [
 const userItems = [
   getItem("Home", "1", <HomeOutlined />),
   getItem("My Profile", "4", <UserOutlined></UserOutlined>),
-  getItem("Logout", "5", <LogoutOutlined />),
+  getItem("Logout", "6", <LogoutOutlined />),
 ];
 export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
