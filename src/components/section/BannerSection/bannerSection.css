@@ -49,7 +49,7 @@
 }
 .banner-section__img{
     width: 400px;
-  
+    overflow: hidden;
 }
 .bannner-section__search{
     font-family: inherit;

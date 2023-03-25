@@ -19,35 +19,28 @@ export default function Home() {
     handleCheckIsAuthen();
   }, []);
 
-  return (
-    <div style={{ width: "100%", height: "100%" }}>
-      <HeaderSection isAuthen={isAuthen}></HeaderSection>
-      <BannerSection></BannerSection>
-      <ExploreIdeaSection></ExploreIdeaSection>
-    </div>
-  );
-  // if (isAuthen === false) {
-  //   return (
-  //     <>
-  //       {/* <Input
-  //         //   placeholder="Your email"
-  //         style={{ height: "33px" }}
-  //         name="idea"
-  //         onChange={handleChange}
-  //       />
-  //       <Button onClick={handleCreateIdea}>Add idea</Button> */}
-  //       <HeaderSection></HeaderSection>
-  //       <BannerSection></BannerSection>
-  //       <ExploreIdeaSection></ExploreIdeaSection>
-  //     </>
-  //   );
-  // } else {
-  //   return (
-  //     <div style={{ width: "100%", backgroundColor: "red" }}>
-  //       <HeaderSection isAuthen={isAuthen}></HeaderSection>
-  //       <BannerSection></BannerSection>
-  //       <ExploreIdeaSection></ExploreIdeaSection>
-  //     </div>
-  //   );
-  // }
+  // return (
+  //   <div style={{ width: "100%", height: "100%" }}>
+  //     <HeaderSection isAuthen={isAuthen}></HeaderSection>
+  //     <BannerSection></BannerSection>
+  //     <ExploreIdeaSection></ExploreIdeaSection>
+  //   </div>
+  // );
+  if (isAuthen === false) {
+    return (
+      <>
+        <HeaderSection></HeaderSection>
+        <BannerSection></BannerSection>
+        <ExploreIdeaSection></ExploreIdeaSection>
+      </>
+    );
+  } else {
+    return (
+      <div style={{ width: "100%" }}>
+        <HeaderSection isAuthen={isAuthen}></HeaderSection>
+        <BannerSection></BannerSection>
+        <ExploreIdeaSection></ExploreIdeaSection>
+      </div>
+    );
+  }
 }

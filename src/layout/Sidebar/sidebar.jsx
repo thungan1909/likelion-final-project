@@ -1,4 +1,3 @@
-import ProfileImg from "../../assets/img/profile.png";
 import {
   TeamOutlined,
   HomeOutlined,
@@ -8,9 +7,9 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
-import { useEffect, useState } from "react";
-import UserApi from "../../api/userApi";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import AuthApi from "../../api/authApi";
 const { Sider } = Layout;
 function getItem(label, key, icon, children) {
   return {
@@ -21,46 +20,35 @@ function getItem(label, key, icon, children) {
   };
 }
 const adminItems = [
-  getItem("Home", "1", <HomeOutlined />),
+  getItem("Dashboard", "1", <HomeOutlined />),
   getItem("Employee", "2", <TeamOutlined />),
   getItem("Statistic", "3", <BarChartOutlined />),
-  getItem("My Profile", "4", <UserOutlined></UserOutlined>),
+  getItem("Profile", "4", <UserOutlined />),
   getItem("Setting", "5", <SettingOutlined />),
   getItem("Logout", "6", <LogoutOutlined />),
 ];
-const userItems = [
-  getItem("Home", "1", <HomeOutlined />),
-  getItem("My Profile", "4", <UserOutlined></UserOutlined>),
-  getItem("Logout", "6", <LogoutOutlined />),
-];
-export default function Sidebar() {
+
+export default function Sidebar({ userId }) {
   const [collapsed, setCollapsed] = useState(false);
-  const userId = localStorage.getItem("userId");
-  const [user, setUser] = useState("");
-  const [isAdmin, setIsAdmin] = useState(false);
   const navigate = useNavigate();
-
-  const getCurrentUser = async () => {
+  const logoutFun = async () => {
     try {
-      const response = await UserApi.getUserById(userId);
-      setUser(response);
-      // console.log(response.isAdmin);
-      setIsAdmin(response.isAdmin);
-    } catch (error) {}
+      const response = await AuthApi.logout(userId);
+      // AuthenApi.DeleteSession({ sessionId });
+      localStorage.removeItem("access_token");
+      localStorage.removeItem("userId");
+      navigate(`/login`, { replace: true });
+    } catch (error) {
+      console.log("error");
+    }
   };
-  useEffect(() => {
-    getCurrentUser();
-  }, [userId]);
-
   const handleLogout = () => {
-    localStorage.removeItem("access_token");
-    localStorage.removeItem("userId");
-    navigate("/login", { replace: true });
+    logoutFun();
   };
   const handleSwitchCase = (number) => {
     switch (number) {
       case 1:
-        navigate("/home", { replace: true });
+        navigate("/admindashboard", { replace: true });
         break;
       case 2:
         navigate("/employee", { replace: true });
@@ -90,7 +78,7 @@ export default function Sidebar() {
       onCollapse={(value) => setCollapsed(value)}
       theme="light"
     >
-      <div
+      {/* <div
         style={{
           // height: 32,
           margin: 16,
@@ -116,13 +104,13 @@ export default function Sidebar() {
         <span style={{ fontWeight: "400", fontSize: "14px" }}>
           {isAdmin ? "Admin" : "User"}
         </span>
-      </div>
+      </div> */}
 
       <Menu
         onClick={onClick}
         defaultSelectedKeys={["1"]}
         mode="inline"
-        items={isAdmin ? adminItems : userItems}
+        items={adminItems}
       />
     </Sider>
   );

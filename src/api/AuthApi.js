@@ -27,4 +27,14 @@ export default class AuthApi {
      
     }
   }
+  static async logout (req) {
+    try {
+      console.log(req);
+      const response = await AxiosClient.post("auth/logout");
+      return response;
+    }
+    catch (error) {
+      throw new Error (error.message);
+    }
+  }
 }
