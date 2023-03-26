@@ -21,9 +21,15 @@ export default function DashboardLayout({ children }) {
     getCurrentUser();
   }, [userId]);
   return (
-    <Layout style={{ width: "100%", display: "flex", flexDirection: "column" }}>
+    <Layout
+      style={{
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
       <DashboardHeaderSection user={user} />
-      <Layout>
+      <Layout style={{ backgroundColor: "#FFF" }}>
         <Sidebar userId={userId}></Sidebar>
         <Content style={{ margin: "0 16px" }}>
           <CustomBreadCrumb></CustomBreadCrumb>

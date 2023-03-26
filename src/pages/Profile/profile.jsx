@@ -1,7 +1,14 @@
 import { useEffect, useState } from "react";
+import "./profile.css";
+import ProfileImg from "../../assets/img/profile.png";
 import UserApi from "../../api/userApi";
-import { EditOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Input, Modal } from "antd";
+import {
+  EditOutlined,
+  MailOutlined,
+  QuestionCircleOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
+import { Button, Input, Modal, Popconfirm } from "antd";
 import GetCurrentUserService from "../../service/getCurrentUserSevice";
 export default function Profile() {
   const userId = localStorage.getItem("userId");
@@ -9,17 +16,27 @@ export default function Profile() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newData, setNewData] = useState(null);
   const [isUpdateUser, setIsUpdateUser] = useState(false);
+  const [emailDefault, setEmailDefault] = useState("");
+  const [usernameDefault, setUsernameDefault] = useState("");
   const getCurrentUser = async () => {
     try {
       const response = await UserApi.getUserById(userId);
       setUser(response);
+      setEmailDefault(response.email);
+      setUsernameDefault(response.username);
     } catch (error) {}
   };
   useEffect(() => {
     getCurrentUser();
-    // const res = GetCurrentUserService.getCurrentUser();
-    // setUser(res);
-  }, [userId, isUpdateUser]);
+  }, [userId]);
+  useEffect(() => {
+    if (isUpdateUser) {
+      getCurrentUser();
+      setIsUpdateUser(false);
+    }
+  }, [isUpdateUser]);
+  useEffect(() => {}, [emailDefault, usernameDefault]);
+
   const handleEditProfile = () => {
     showModal();
   };
@@ -27,16 +44,36 @@ export default function Profile() {
     setIsModalOpen(true);
   };
 
-  const handleCancel = () => {
+  const resetAllData = () => {
+    setEmailDefault(user.email);
+    setUsernameDefault(user.username);
+  };
+  const handleConfirmCancel = () => {
+    resetAllData();
     setIsModalOpen(false);
   };
+  const handleCancel = () => {};
 
-  const handleChange = (e) => {
+  const handleChangeEmail = (e) => {
+    setEmailDefault(e.target.value);
     setNewData({
       ...newData,
       [e.target.name]: e.target.value,
     });
   };
+  const handleChangeUsername = (e) => {
+    setUsernameDefault(e.target.value);
+    setNewData({
+      ...newData,
+      [e.target.name]: e.target.value,
+    });
+  };
+  // const handleChange = (e) => {
+  //   setNewData({
+  //     ...newData,
+  //     [e.target.name]: e.target.value,
+  //   });
+  // };
   const updateUserInfo = async () => {
     try {
       const response = await UserApi.updateUser(userId, newData);
@@ -48,40 +85,80 @@ export default function Profile() {
     setIsModalOpen(false);
   };
 
+  console.log(emailDefault);
   return (
-    <>
-      Profile
+    <div className="profile">
       <div style={{ display: "flex", flexDirection: "column" }}>
-        <Button onClick={handleEditProfile} style={{ width: "50px" }}>
-          <EditOutlined key="edit" />
-        </Button>
-        <span>Email: {user.email}</span>
-        <span>Username: {user.username} </span>
-        <span>Role: {user.isAdmin ? "Admin" : "User"}</span>
+        <div className="profile-banner">
+          <div className="profile-info">
+            <img className="profile-avt-img" src={ProfileImg}></img>
+            <span className="profile-info__username"> {user.username} </span>
+          </div>
+          <Button className="profile_editBtn" onClick={handleEditProfile}>
+            <EditOutlined></EditOutlined>
+          </Button>
+        </div>
+
+        <div className="profile-detail">
+          <div className="profile-detail__wrapper">
+            <div className="profile-detail__title">Email</div>
+            <div className="profile-detail__value">{user.email}</div>
+          </div>
+          <div className="profile-detail__wrapper">
+            <div className="profile-detail__title">Role</div>
+            <div className="profile-detail__value">
+              {user.isAdmin ? "Admin" : "User"}
+            </div>
+          </div>
+          <div className="profile-detail__wrapper">
+            <div className="profile-detail__title">Country</div>
+            <div className="profile-detail__value">
+              Ho Chi Minh City, Viet Nam
+            </div>
+          </div>
+        </div>
       </div>
       <Modal
-        title="Basic Modal"
+        title="Edit profile"
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
+        footer={[
+          <Popconfirm
+            title="Confirm cancel"
+            description="Your unsaved changes will be lost if you confirm cancellation. Are you sure to cancel edit profile?"
+            okText="Yes"
+            cancelText="No"
+            onConfirm={handleConfirmCancel}
+            icon={<QuestionCircleOutlined style={{ color: "red" }} />}
+          >
+            <Button key="back" onClick={handleCancel}>
+              Cancel
+            </Button>
+          </Popconfirm>,
+          <Button key="submit" type="primary" onClick={handleOk}>
+            Ok
+          </Button>,
+        ]}
       >
+        <div className="profile-detail__title">Email</div>
         <Input
+          className="modal__input"
           prefix={<MailOutlined className="site-form-item-icon" />}
-          //   placeholder="Your email"
-          style={{ height: "33px" }}
-          defaultValue={user.email}
+          defaultValue={emailDefault}
+          value={emailDefault}
           name="email"
-          onChange={handleChange}
+          onChange={handleChangeEmail}
         />
+        <div className="profile-detail__title">Username</div>
         <Input
+          className="modal__input"
           prefix={<UserOutlined className="site-form-item-icon" />}
-          //   placeholder="Your username"
-          defaultValue={user.username}
-          onChange={handleChange}
+          defaultValue={usernameDefault}
+          onChange={handleChangeUsername}
           name="username"
-          style={{ height: "33px" }}
         />
       </Modal>
-    </>
+    </div>
   );
 }
