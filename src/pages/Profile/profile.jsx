@@ -10,6 +10,7 @@ import {
 } from "@ant-design/icons";
 import { Button, Input, Modal, Popconfirm } from "antd";
 import GetCurrentUserService from "../../service/getCurrentUserSevice";
+import HeaderSection from "../../components/section/HeaderSection/headerSection";
 export default function Profile() {
   const userId = localStorage.getItem("userId");
   const [user, setUser] = useState("");
@@ -88,7 +89,8 @@ export default function Profile() {
   console.log(emailDefault);
   return (
     <div className="profile">
-      <div style={{ display: "flex", flexDirection: "column" }}>
+      <HeaderSection isAuthen={true} />
+      <div style={{ display: "flex", flexDirection: "column", margin: "24px" }}>
         <div className="profile-banner">
           <div className="profile-info">
             <img className="profile-avt-img" src={ProfileImg}></img>

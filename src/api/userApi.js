@@ -10,9 +10,11 @@ export default class UserApi {
             throw new Error(error.message);
         }
     }
-    static async getAllUser () {
+    static async getAllUsersAPI () {
+     
         try {
             const response = await AxiosClient.get(`user`);
+            console.log(response);
             return response;
         }
         catch (error) {
@@ -36,6 +38,17 @@ export default class UserApi {
         }
         catch (error) {
             throw new Error(error.message);
+        }
+    }
+
+    static async getNumberUsersAPI () {
+        try {
+            const response = await AxiosClient.get(`user/count`);
+            console.log(response);
+            return response;
+        }
+        catch (error) {
+            throw new Error (error.message);
         }
     }
 }

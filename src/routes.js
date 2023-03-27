@@ -64,9 +64,7 @@ const routes = [
     route: "/profile",
     component: (
       <ProtectedAuth>
-        <DashboardLayout>
           <Profile />
-        </DashboardLayout>
       </ProtectedAuth>
     ),
   },
