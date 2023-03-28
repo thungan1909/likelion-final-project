@@ -19,6 +19,8 @@ body {
 :root {
   --primary-color: #9543ff;
   --primary-hover-color: #6834ab;
+  --secondary-color: #b299da;
+  --third-color: #af83f4;
   --white-color: #FFF;
   --black-color: #000;
   --text-color: #333;

@@ -1,0 +1,24 @@
+.custom-card{
+    width: 150px;
+    height: 150px;
+    margin-right: 24px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--third-color);
+    color: var(--white-color);
+    font-family: inherit;
+
+}
+.custom-card:hover{
+    background-color: var(--primary-hover-color);
+}
+.custom-card__title{
+    font-size: 16px;
+    
+}
+.custom-card__statistic{
+    font-size: 48px;
+}

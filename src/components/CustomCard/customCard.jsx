@@ -1,16 +1,10 @@
 import { Card } from "antd";
-export default function CustomCard() {
+import "./customCard.css";
+export default function CustomCard({ title, statistic }) {
   return (
-    <Card
-      title="User"
-      bordered={false}
-      style={{
-        width: 400,
-        height: 200,
-        marginRight: 24,
-      }}
-    >
-      <h2>5537</h2>
-    </Card>
+    <div className="custom-card">
+      <span className="custom-card__title">{title}</span>
+      <h2 className="custom-card__statistic">{statistic}</h2>
+    </div>
   );
 }

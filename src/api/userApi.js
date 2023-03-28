@@ -41,9 +41,19 @@ export default class UserApi {
         }
     }
 
-    static async getNumberUsersAPI () {
+    static async getUsersPerWeekInMonthAPI () {
         try {
-            const response = await AxiosClient.get(`user/count`);
+            const response = await AxiosClient.get(`user/new-users-per-week-in-month`);
+            console.log(response);
+            return response;
+        }
+        catch (error) {
+            throw new Error (error.message);
+        }
+    }
+    static async getUsersInMonthAPI () {
+        try {
+            const response = await AxiosClient.get(`user/new-users-month`);
             console.log(response);
             return response;
         }
