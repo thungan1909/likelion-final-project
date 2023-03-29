@@ -1,3 +1,10 @@
+.user-section_Wrapper{
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
 .user-section_addBtn{
     width: 100px;
     height: 35px;
@@ -15,9 +22,7 @@
     padding: 0px 6px;
     
 }
-.user-section_Wrapper{
-    margin: 0;
-}
+
 .account-menu__user-info{
     display: flex;
     flex-direction: column;

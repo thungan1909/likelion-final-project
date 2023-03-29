@@ -1,6 +1,8 @@
 import { Avatar, Divider, Dropdown } from "antd";
 import { UserOutlined } from "@ant-design/icons";
+import AvtImg from "../../../assets/img/avt/avt1.jpg";
 import AuthApi from "../../../api/authApi";
+
 import { useNavigate } from "react-router-dom";
 export default function AccountDropdown({ user }) {
   const navigate = useNavigate();
@@ -100,7 +102,15 @@ export default function AccountDropdown({ user }) {
       arrow
       className="dropdown"
     >
-      <Avatar size={40} icon={<UserOutlined />} />
+      <img
+        style={{
+          width: "45px",
+          height: "45px",
+          alignItems: "center",
+          flexDirection: "column",
+        }}
+        src={AvtImg}
+      ></img>
     </Dropdown>
   );
 }

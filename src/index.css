@@ -17,7 +17,8 @@ body {
 }
 
 :root {
-  --primary-color: #9543ff;
+  /* --primary-color: #9543ff; */
+  --primary-color: #9f86c0;
   --primary-hover-color: #810CA8;
   /* --secondary-color: #b299da; */
     --secondary-color:#C147E9;

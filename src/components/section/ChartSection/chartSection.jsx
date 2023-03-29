@@ -34,7 +34,6 @@ export default function ChartSection() {
   const getNewUsersPerWeekInMonth = async () => {
     try {
       const response = await UserApi.getUsersPerWeekInMonthAPI();
-      console.log(response);
       handleMapData({ response });
     } catch (error) {}
   };

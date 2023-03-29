@@ -30,7 +30,7 @@ export default function IdeaCard({ idea, isAuthen }) {
   // };
   const handleLike = () => {
     // const isAuthen = handleCheckIsAuthen();
-    console.log("isAuthen3", isAuthen);
+
     if (!isAuthen) {
       setOpenLike(true);
     }
@@ -38,7 +38,7 @@ export default function IdeaCard({ idea, isAuthen }) {
 
   const handleDislike = () => {
     // const isAuthen = handleCheckIsAuthen();
-    console.log("isAuthen4", isAuthen);
+
     if (!isAuthen) {
       setOpenDislike(true);
     }

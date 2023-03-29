@@ -10,6 +10,8 @@ import { checkIsAuthenticated } from "../../utils";
 export default function Home() {
   const [isAuthen, setIsAuthen] = useState();
 
+  const [isAddNewIdea, setIsAddNewIdea] = useState();
+
   const handleCheckIsAuthen = () => {
     const token = localStorage.getItem("access_token");
     const _isAuthenticated = token && token.length > 0 ? true : false;
@@ -18,13 +20,21 @@ export default function Home() {
   useEffect(() => {
     handleCheckIsAuthen();
   }, []);
+  console.log(isAddNewIdea);
 
   if (isAuthen !== undefined) {
     return (
       <>
-        <HeaderSection isAuthen={isAuthen}></HeaderSection>
+        <HeaderSection
+          isAuthen={isAuthen}
+          setIsAddNewIdea={setIsAddNewIdea}
+        ></HeaderSection>
         <BannerSection></BannerSection>
-        <ExploreIdeaSection isAuthen={isAuthen}></ExploreIdeaSection>
+        <ExploreIdeaSection
+          isAuthen={isAuthen}
+          isAddNewIdea={isAddNewIdea}
+          setIsAddNewIdea={setIsAddNewIdea}
+        ></ExploreIdeaSection>
       </>
     );
   }

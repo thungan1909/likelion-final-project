@@ -4,7 +4,7 @@ import LogoImg from "../../../assets/img/logo.png";
 import { Input, Menu } from "antd";
 import UserSection from "../UserSection/userSection";
 const { Search } = Input;
-export default function HeaderSection({ isAuthen }) {
+export default function HeaderSection({ isAuthen, setIsAddNewIdea }) {
   const items = [
     { key: 1, label: "Home Page" },
     { key: 2, label: "Exloper ideas" },
@@ -32,7 +32,10 @@ export default function HeaderSection({ isAuthen }) {
         placeholder="Search..."
         onSearch={onSearch}
       />
-      <UserSection isAuthen={isAuthen}></UserSection>
+      <UserSection
+        isAuthen={isAuthen}
+        setIsAddNewIdea={setIsAddNewIdea}
+      ></UserSection>
     </Header>
   );
 }

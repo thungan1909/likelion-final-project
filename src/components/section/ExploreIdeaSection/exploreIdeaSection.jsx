@@ -3,7 +3,11 @@ import { useEffect, useState } from "react";
 import IdeaApi from "../../../api/ideaApi";
 import IdeaCard from "../../base/IdeaCard/IdeaCard";
 
-export default function ExploreIdeaSection({ isAuthen }) {
+export default function ExploreIdeaSection({
+  isAuthen,
+  isAddNewIdea,
+  setIsAddNewIdea,
+}) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [tableParams, setTableParams] = useState({
@@ -15,7 +19,6 @@ export default function ExploreIdeaSection({ isAuthen }) {
   const showAllIdeas = async () => {
     try {
       const response = await IdeaApi.getAllIdea();
-      console.log(response);
       setData(response);
       setLoading(false);
       setTableParams({
@@ -31,6 +34,12 @@ export default function ExploreIdeaSection({ isAuthen }) {
     showAllIdeas();
   }, []);
 
+  useEffect(() => {
+    if (isAddNewIdea) {
+      showAllIdeas();
+      setIsAddNewIdea(false);
+    }
+  }, [isAddNewIdea]);
   return (
     <div style={{ margin: "24px" }}>
       <Row gutter={16}>

@@ -14,7 +14,6 @@ export default class UserApi {
      
         try {
             const response = await AxiosClient.get(`user`);
-            console.log(response);
             return response;
         }
         catch (error) {
@@ -33,7 +32,6 @@ export default class UserApi {
     static async updateUser(userId, userInfo) {
         try {
             const response = await AxiosClient.put(`user/${userId}/update`, userInfo);
-            console.log(response);
             return response;
         }
         catch (error) {
@@ -44,7 +42,6 @@ export default class UserApi {
     static async getUsersPerWeekInMonthAPI () {
         try {
             const response = await AxiosClient.get(`user/new-users-per-week-in-month`);
-            // console.log(response);
             return response;
         }
         catch (error) {
@@ -54,7 +51,6 @@ export default class UserApi {
     static async getUsersInMonthAPI () {
         try {
             const response = await AxiosClient.get(`user/new-users-month`);
-            // console.log(response);
             return response;
         }
         catch (error) {

@@ -39,12 +39,8 @@ export default function Profile() {
   useEffect(() => {}, [emailDefault, usernameDefault]);
 
   const handleEditProfile = () => {
-    showModal();
-  };
-  const showModal = () => {
     setIsModalOpen(true);
   };
-
   const resetAllData = () => {
     setEmailDefault(user.email);
     setUsernameDefault(user.username);
@@ -69,12 +65,7 @@ export default function Profile() {
       [e.target.name]: e.target.value,
     });
   };
-  // const handleChange = (e) => {
-  //   setNewData({
-  //     ...newData,
-  //     [e.target.name]: e.target.value,
-  //   });
-  // };
+
   const updateUserInfo = async () => {
     try {
       const response = await UserApi.updateUser(userId, newData);
@@ -86,7 +77,6 @@ export default function Profile() {
     setIsModalOpen(false);
   };
 
-  console.log(emailDefault);
   return (
     <div className="profile">
       <HeaderSection isAuthen={true} />
@@ -134,9 +124,7 @@ export default function Profile() {
             onConfirm={handleConfirmCancel}
             icon={<QuestionCircleOutlined style={{ color: "red" }} />}
           >
-            <Button key="back" onClick={handleCancel}>
-              Cancel
-            </Button>
+            <Button onClick={handleCancel}>Cancel</Button>
           </Popconfirm>,
           <Button key="submit" type="primary" onClick={handleOk}>
             Ok
