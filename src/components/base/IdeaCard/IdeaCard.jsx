@@ -7,7 +7,7 @@ import UserApi from "../../../api/userApi";
 import { checkIsAuthenticated } from "../../../utils";
 import { Popover } from "antd";
 
-export default function IdeaCard({ idea }) {
+export default function IdeaCard({ idea, isAuthen }) {
   let userId = idea.userId;
   const [user, setUser] = useState("");
   const [openLike, setOpenLike] = useState(false);
@@ -24,19 +24,21 @@ export default function IdeaCard({ idea }) {
     gettUser();
   }, [userId]);
 
-  const handleCheckIsAuthen = () => {
-    const token = localStorage.getItem("access_token");
-    return token && token.length > 0 ? checkIsAuthenticated(token) : false;
-  };
+  // const handleCheckIsAuthen = () => {
+  //   const token = localStorage.getItem("access_token");
+  //   return token && token.length > 0 ? checkIsAuthenticated(token) : false;
+  // };
   const handleLike = () => {
-    const isAuthen = handleCheckIsAuthen();
+    // const isAuthen = handleCheckIsAuthen();
+    console.log("isAuthen3", isAuthen);
     if (!isAuthen) {
       setOpenLike(true);
     }
   };
 
   const handleDislike = () => {
-    const isAuthen = handleCheckIsAuthen();
+    // const isAuthen = handleCheckIsAuthen();
+    console.log("isAuthen4", isAuthen);
     if (!isAuthen) {
       setOpenDislike(true);
     }
@@ -67,12 +69,15 @@ export default function IdeaCard({ idea }) {
                     community to make your opinion count.
                   </span>
                   <div className="popover__content--action">
-                    <button className="popover__content--action-btn">
+                    <a href="/login" className="popover__content--action-btn">
                       Login
-                    </button>
-                    <button className="popover__content--action-btn">
+                    </a>
+                    <a
+                      href="/register"
+                      className="popover__content--action-btn"
+                    >
                       Register
-                    </button>
+                    </a>
                   </div>
                   <a onClick={hide}>Close</a>
                 </div>

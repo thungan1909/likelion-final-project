@@ -13,34 +13,21 @@ export default function Home() {
   const handleCheckIsAuthen = () => {
     const token = localStorage.getItem("access_token");
     const _isAuthenticated = token && token.length > 0 ? true : false;
+    console.log("isAu", _isAuthenticated);
     setIsAuthen(_isAuthenticated);
   };
   useEffect(() => {
     handleCheckIsAuthen();
   }, []);
 
-  // return (
-  //   <div style={{ width: "100%", height: "100%" }}>
-  //     <HeaderSection isAuthen={isAuthen}></HeaderSection>
-  //     <BannerSection></BannerSection>
-  //     <ExploreIdeaSection></ExploreIdeaSection>
-  //   </div>
-  // );
-  if (isAuthen === false) {
+  console.log("isAuthen1", isAuthen);
+  if (isAuthen !== undefined) {
     return (
       <>
-        <HeaderSection></HeaderSection>
-        <BannerSection></BannerSection>
-        <ExploreIdeaSection></ExploreIdeaSection>
-      </>
-    );
-  } else {
-    return (
-      <div style={{ width: "100%" }}>
         <HeaderSection isAuthen={isAuthen}></HeaderSection>
         <BannerSection></BannerSection>
-        <ExploreIdeaSection></ExploreIdeaSection>
-      </div>
+        <ExploreIdeaSection isAuthen={isAuthen}></ExploreIdeaSection>
+      </>
     );
   }
 }

@@ -8,38 +8,59 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import IdeaApi from "../../../api/ideaApi";
 import UserApi from "../../../api/userApi";
 export default function ChartSection() {
-  // const [usersData, setUsersData] = useState([]);
-  const [mapUserData, setMapUserData] = useState([]);
+  const [listUserData, setListUserData] = useState([]);
+  const [listIdeaData, setListIdeaData] = useState([]);
 
-  const mapData = ({ response }) => {
+  const handleMapData = ({ response }) => {
     const newData = response.map((item, index) => ({
       index: index,
       name: `${item.start} - ${item.end}`,
-      count: item.count,
+      countUser: item.countUser,
     }));
-    setMapUserData(newData);
+    setListUserData(newData);
+  };
+
+  const handleMapIdeaData = ({ response }) => {
+    const newData = response.map((item, index) => ({
+      index: index,
+      countIdea: item.countIdea,
+    }));
+    setListIdeaData(newData);
   };
 
   const getNewUsersPerWeekInMonth = async () => {
     try {
       const response = await UserApi.getUsersPerWeekInMonthAPI();
-      mapData({ response });
+      console.log(response);
+      handleMapData({ response });
     } catch (error) {}
   };
 
+  const getNewIdeaPerWeekInMonth = async () => {
+    try {
+      const response = await IdeaApi.getIdeasPerWeekInMonthAPI();
+      handleMapIdeaData({ response });
+    } catch (error) {}
+  };
+
+  const mergedArr = listUserData.map((item1) => {
+    const item2 = listIdeaData.find((item2) => item2.index === item1.index);
+    return { ...item1, ...item2 };
+  });
   useEffect(() => {
     getNewUsersPerWeekInMonth();
+    getNewIdeaPerWeekInMonth();
   }, []);
 
-  console.log(mapUserData);
   return (
     <>
       <BarChart
         width={1000}
         height={250}
-        data={mapUserData}
+        data={mergedArr}
         barGap={12}
         barSize={50}
       >
@@ -48,7 +69,8 @@ export default function ChartSection() {
         <YAxis />
         <Tooltip />
         <Legend />
-        <Bar dataKey="count" fill="#8884d8" />
+        <Bar dataKey="countUser" name="New Users" fill="#8884d8" />
+        <Bar dataKey="countIdea" name="New Ideas" fill="#82ca9d" />
       </BarChart>
     </>
   );

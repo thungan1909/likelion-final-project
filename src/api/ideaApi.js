@@ -21,4 +21,14 @@ export default class IdeaApi{
             throw new Error (error.message);
         }
     }
+    static async getIdeasPerWeekInMonthAPI () {
+        try {
+            const response = await AxiosClient.get(`idea/new-ideas-per-week-in-month`);
+            // console.log(response);
+            return response;
+        }
+        catch (error) {
+            throw new Error (error.message);
+        }
+    }
 }

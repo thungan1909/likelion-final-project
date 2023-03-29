@@ -8,7 +8,6 @@ export default function HeaderSection({ isAuthen }) {
   const items = [
     { key: 1, label: "Popular" },
     { key: 2, label: "Exloper ideas" },
-    // { key: 3, label: "Your ideas" },
   ];
 
   const onSearch = (value) => console.log(value);

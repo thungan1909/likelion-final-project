@@ -16,6 +16,8 @@ export default function UserSection({ isAuthen }) {
   const [messageApi, contextHolder] = message.useMessage();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  console.log("authen2", isAuthen);
+
   const getCurrentUser = async () => {
     try {
       const response = await UserApi.getUserById(userId);
@@ -24,7 +26,10 @@ export default function UserSection({ isAuthen }) {
     } catch (error) {}
   };
   useEffect(() => {
-    getCurrentUser();
+    console.log("userId", userId);
+    if (userId.length > 0) {
+      getCurrentUser();
+    }
   }, [userId]);
 
   const handleNavigateLogin = () => {
@@ -69,24 +74,8 @@ export default function UserSection({ isAuthen }) {
       }, 500);
     } catch (error) {}
   };
-  if (isAuthen === false) {
-    return (
-      <div className="user-section_Wrapper">
-        <button
-          className="header-section__btn btn"
-          onClick={handleNavigateLogin}
-        >
-          Login
-        </button>
-        <button
-          className="header-section__btn btn"
-          onClick={handleNavigateSignup}
-        >
-          Sign up
-        </button>
-      </div>
-    );
-  } else {
+
+  if (isAuthen === true) {
     return (
       <div className="user-section_Wrapper">
         {contextHolder}
@@ -147,6 +136,23 @@ export default function UserSection({ isAuthen }) {
             </Form.Item>
           </Form>
         </Modal>
+      </div>
+    );
+  } else {
+    return (
+      <div className="user-section_Wrapper">
+        <button
+          className="header-section__btn btn"
+          onClick={handleNavigateLogin}
+        >
+          Login
+        </button>
+        <button
+          className="header-section__btn btn"
+          onClick={handleNavigateSignup}
+        >
+          Sign up
+        </button>
       </div>
     );
   }

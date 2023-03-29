@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import IdeaApi from "../../../api/ideaApi";
 import IdeaCard from "../../base/IdeaCard/IdeaCard";
 
-export default function ExploreIdeaSection() {
+export default function ExploreIdeaSection({ isAuthen }) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [tableParams, setTableParams] = useState({
@@ -40,7 +40,7 @@ export default function ExploreIdeaSection() {
           data.map((item, index) => {
             return (
               <Col span={6} key={index}>
-                <IdeaCard idea={item}></IdeaCard>
+                <IdeaCard idea={item} isAuthen={isAuthen}></IdeaCard>
               </Col>
             );
           })
