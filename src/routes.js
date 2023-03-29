@@ -34,9 +34,9 @@ const routes = [
     component: <Home />,
   },
   {
-    key: "admindashboard",
-    name: "Admin dashboard",
-    route: "/admindashboard",
+    key: "overview",
+    name: "Overview",
+    route: "/overview",
     component: 
     (
       <ProtectedAdmin>

@@ -69,12 +69,15 @@ export default function IdeaCard({ idea, isAuthen }) {
                     community to make your opinion count.
                   </span>
                   <div className="popover__content--action">
-                    <a href="/login" className="popover__content--action-btn">
+                    <a
+                      href="/login"
+                      className="popover__content--action-btn btn"
+                    >
                       Login
                     </a>
                     <a
                       href="/register"
-                      className="popover__content--action-btn"
+                      className="popover__content--action-btn btn"
                     >
                       Register
                     </a>
@@ -88,11 +91,11 @@ export default function IdeaCard({ idea, isAuthen }) {
               trigger="click"
             >
               <button
-                className="idea-card__actionBtn idea-card__like"
+                className="idea-card__actionBtn btn idea-card__like"
                 onClick={handleLike}
               >
                 <LikeOutlined />
-                <span className="idea-card__actionBtn--count">
+                <span className="idea-card__actionBtn--count btn">
                   {idea.countLike}
                 </span>
               </button>
@@ -108,10 +111,10 @@ export default function IdeaCard({ idea, isAuthen }) {
                     community to make your opinion count.
                   </span>
                   <div className="popover__content--action">
-                    <button className="popover__content--action-btn">
+                    <button className="popover__content--action-btn btn">
                       Login
                     </button>
-                    <button className="popover__content--action-btn">
+                    <button className="popover__content--action-btn btn">
                       Register
                     </button>
                   </div>
@@ -123,7 +126,7 @@ export default function IdeaCard({ idea, isAuthen }) {
               open={openDislike}
               onOpenChange={handleDislike}
             >
-              <button className="idea-card__actionBtn idea-card__dislike">
+              <button className="idea-card__actionBtn btn idea-card__dislike">
                 <DislikeOutlined />
                 <span className="idea-card__actionBtn--count">
                   {idea.countDislike}

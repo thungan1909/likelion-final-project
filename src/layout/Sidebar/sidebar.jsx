@@ -20,7 +20,7 @@ function getItem(label, key, icon, children) {
   };
 }
 const adminItems = [
-  getItem("Dashboard", "1", <HomeOutlined />),
+  getItem("Overview", "1", <HomeOutlined />),
   getItem("Employee", "2", <TeamOutlined />),
   getItem("Statistic", "3", <BarChartOutlined />),
   getItem("Profile", "4", <UserOutlined />),
@@ -48,7 +48,7 @@ export default function Sidebar({ userId }) {
   const handleSwitchCase = (number) => {
     switch (number) {
       case 1:
-        navigate("/admindashboard", { replace: true });
+        navigate("/overview", { replace: true });
         break;
       case 2:
         navigate("/employee", { replace: true });

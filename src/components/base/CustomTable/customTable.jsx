@@ -1,7 +1,7 @@
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import { Button, Popconfirm, Table } from "antd";
 import { useEffect, useState } from "react";
-import UserApi from "../../api/userApi";
+import UserApi from "../../../api/userApi";
 
 export default function CustomTable() {
   const [data, setData] = useState([]);

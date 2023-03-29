@@ -3,6 +3,7 @@
     height: 35px;
     padding: 0 4px;
     margin-right: 16px;
+    background-color: var(--primary-color);
 }
 .user-section_notify{
     position: relative;

@@ -1,4 +1,4 @@
-import CustomTable from "../../components/CustomTable/customTable";
+import CustomTable from "../../components/base/CustomTable/customTable";
 
 export default function EmployeeManagement() {
   return (

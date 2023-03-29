@@ -18,16 +18,23 @@ body {
 
 :root {
   --primary-color: #9543ff;
-  --primary-hover-color: #6834ab;
-  --secondary-color: #b299da;
+  --primary-hover-color: #810CA8;
+  /* --secondary-color: #b299da; */
+    --secondary-color:#C147E9;
   --third-color: #af83f4;
+
   --white-color: #FFF;
   --black-color: #000;
   --text-color: #333;
   --border-color: #DBDBDB;
-  /* --header-height: 120px;
-  --navbar-height: 34px;
-  --header-with-search-height: calc(var(--header-height) - var (--navbar-height)); */
+
+
+  --dark-bg-color: #2D033B;
+  --dark--primary-color: #810CA8;
+  --dark--second-color: #C147E9;
+  --dark-third-color: #E5B8F4;
+  --light-bg-color: #FFF;
+
 }
 .btn {
   border-radius: 4px;
@@ -38,6 +45,9 @@ body {
   border: none;
   box-shadow: 1px;
   cursor: pointer;
+}
+.btn:hover {
+  background-color: var(--primary-hover-color);
 }
 
 :where(.css-dev-only-do-not-override-1me4733).ant-btn-primary {

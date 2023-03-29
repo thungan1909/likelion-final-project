@@ -6,10 +6,12 @@ import UserSection from "../UserSection/userSection";
 const { Search } = Input;
 export default function HeaderSection({ isAuthen }) {
   const items = [
-    { key: 1, label: "Popular" },
+    { key: 1, label: "Home Page" },
     { key: 2, label: "Exloper ideas" },
+    { key: 3, label: "Popular" },
   ];
 
+  //TODO: SEARCH FEATURE
   const onSearch = (value) => console.log(value);
 
   return (
@@ -21,7 +23,7 @@ export default function HeaderSection({ isAuthen }) {
       <Menu
         className="header__menu"
         mode="horizontal"
-        defaultSelectedKeys={["2"]}
+        defaultSelectedKeys={["1"]}
         items={items}
       />
       <Search

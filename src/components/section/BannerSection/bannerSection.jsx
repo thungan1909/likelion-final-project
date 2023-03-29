@@ -14,22 +14,6 @@ export default function BannerSection() {
   const onSearch = (value) => console.log(value);
   return (
     <div className="banner-section">
-      {/* <div className="banner-section__info">
-        <div className="banner-section__quotes">
-          Share your ideas with others around the world
-        </div>
-        <div className="banner-section__btnWrapper">
-          <button className="banner-section__btn" onClick={handleNavigateLogin}>
-            Login
-          </button>
-          <button
-            className="banner-section__btn"
-            onClick={handleNavigateSignup}
-          >
-            Sign up
-          </button>
-        </div>
-      </div> */}
       <Search
         style={{ margin: "0px 24px" }}
         size="large"

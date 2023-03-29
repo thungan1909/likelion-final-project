@@ -1,46 +1,59 @@
 import { useEffect, useState } from "react";
 import UserApi from "../../../api/userApi";
-import CustomCard from "../../CustomCard/customCard";
-import { LineChart, Line } from "recharts";
+
 import ChartSection from "../ChartSection/chartSection";
 import IdeaApi from "../../../api/ideaApi";
+import CustomCard from "../../base/CustomCard/customCard";
 
 export default function UserStatisticSection() {
-  const [data, setData] = useState([]);
-  const [usersInMonth, setUsersInMonth] = useState([]);
-  const getNewUserInMonth = async () => {
+  const [newUsersInMonth, setNewUsersInMonth] = useState([]);
+  const [newIdeasInMonth, setNewIdeasInMonth] = useState([]);
+  const getNewUsersInMonth = async () => {
     try {
       const response = await UserApi.getUsersInMonthAPI();
-      setUsersInMonth(response);
+      setNewUsersInMonth(response);
+    } catch (error) {}
+  };
+  const getNewIdeasInMonth = async () => {
+    try {
+      const response = await IdeaApi.getIdeasInMonthAPI();
+      setNewIdeasInMonth(response);
     } catch (error) {}
   };
 
-
   useEffect(() => {
-    getNewUserInMonth();
+    getNewUsersInMonth();
+    getNewIdeasInMonth();
   }, []);
-  if (usersInMonth !== undefined) {
-    return (
-      <>
-        <h1 style={{ fontSize: "32px", marginBottom: "16px" }}>
-          User statistics for the past month
-        </h1>
-        <div style={{ display: "flex", marginBottom: "48px" }}>
+
+  return (
+    <>
+      <h1
+        style={{ textAlign: "center", fontSize: "20px", marginBottom: "24px" }}
+      >
+        Statistics for the previous month
+      </h1>
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <div
+          style={{
+            display: "flex",
+            marginBottom: "24px",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <CustomCard
-            title={"New user"}
-            statistic={usersInMonth.length}
+            title={"New users"}
+            statistic={newUsersInMonth ? newUsersInMonth.length : 0}
           ></CustomCard>
           <CustomCard
-            title={"User login"}
-            statistic={usersInMonth.length}
-          ></CustomCard>
-          <CustomCard
-            title={"New idea"}
-            statistic={usersInMonth.length}
+            title={"New ideas"}
+            statistic={newIdeasInMonth ? newIdeasInMonth.length : 0}
           ></CustomCard>
         </div>
         <ChartSection></ChartSection>
-      </>
-    );
-  }
+      </div>
+    </>
+  );
 }

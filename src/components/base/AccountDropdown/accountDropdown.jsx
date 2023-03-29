@@ -55,7 +55,7 @@ export default function AccountDropdown({ user }) {
         <>
           {user.isAdmin ? (
             <>
-              <a target={"_blank"} href="/admindashboard">
+              <a target={"_blank"} href="/overview">
                 Admin Dashboard
               </a>
               <Divider

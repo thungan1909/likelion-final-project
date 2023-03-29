@@ -13,14 +13,12 @@ export default function Home() {
   const handleCheckIsAuthen = () => {
     const token = localStorage.getItem("access_token");
     const _isAuthenticated = token && token.length > 0 ? true : false;
-    console.log("isAu", _isAuthenticated);
     setIsAuthen(_isAuthenticated);
   };
   useEffect(() => {
     handleCheckIsAuthen();
   }, []);
 
-  console.log("isAuthen1", isAuthen);
   if (isAuthen !== undefined) {
     return (
       <>

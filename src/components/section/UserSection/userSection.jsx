@@ -16,8 +16,6 @@ export default function UserSection({ isAuthen }) {
   const [messageApi, contextHolder] = message.useMessage();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  console.log("authen2", isAuthen);
-
   const getCurrentUser = async () => {
     try {
       const response = await UserApi.getUserById(userId);
@@ -82,6 +80,7 @@ export default function UserSection({ isAuthen }) {
         <button className="user-section_addBtn btn" onClick={handleAddIdea}>
           Add new idea
         </button>
+        {/* TODO: NOTIFICATION */}
         <button className="user-section_notify">
           <BellOutlined />
         </button>
@@ -92,8 +91,6 @@ export default function UserSection({ isAuthen }) {
           onOk={handleOk}
           onCancel={handleCancel}
           className="user-section-modal"
-          // okText="Post"
-          // cancelText="Cancel"
           footer={[
             <Button key="back" onClick={handleCancel}>
               Cancel

@@ -39,14 +39,6 @@
     box-shadow: 1px;
     cursor: pointer;
 }
-.banner-section__btn:hover{
-    top: 0.125em;
-}
-
-
-.banner-section__btn:hover{
-    background-color: var(--primary-hover-color);
-}
 .banner-section__img{
     width: 400px;
     overflow: hidden;
