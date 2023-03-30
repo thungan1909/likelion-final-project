@@ -1,0 +1,27 @@
+.notfound__page{
+    width: 100%;
+    height: 100%;
+}
+.notfound__content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 64px;
+ 
+}
+.notfound__code{
+    color: var(--primary-color);
+    font-size: 150px;
+    font-weight: 700;
+}
+.notfound__message{
+    font-size: 50px;
+    font-weight: 500;
+    color: var(--white-color);
+    margin-bottom: 16px;
+}
+.notfound__home-link{
+    font-size: 24px;
+    color: var(--primary-color);
+}

@@ -40,7 +40,7 @@ export default function ExploreIdeaSection({
       </h1>
       <Row gutter={16} className="exploreIdea__row">
         {data?.length === 0 ? (
-          <div></div>
+          <div className="exploreIdea__empty">No idea. Add new idea now</div>
         ) : (
           data.map((item, index) => {
             return (

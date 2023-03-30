@@ -4,6 +4,7 @@ import UserManagement from "./pages/EmployeeManagement/employeeManagement";
 
 import Home from "./pages/Home/home";
 import Login from "./pages/Login/login";
+import NotFound from "./pages/NotFound/notFound";
 import Profile from "./pages/Profile/profile";
 import ProtectedAdmin from "./pages/ProtectedAuth/protectedAdmin";
 import ProtectedAuth from "./pages/ProtectedAuth/protectedAuth";
@@ -69,5 +70,11 @@ const routes = [
       </ProtectedAuth>
     ),
   },
+  {
+    key: 'notFound',
+    name: "Not found",
+    route: "*",
+    component: <NotFound/>
+  }
 ];
 export default routes;
