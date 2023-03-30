@@ -10,7 +10,6 @@ const { TextArea } = Input;
 export default function UserSection({ isAuthen, setIsAddNewIdea }) {
   const navigate = useNavigate();
   const [idea, setIdea] = useState({ userId: "", content: "" });
-  const [isAdmin, setIsAdmin] = useState(false);
   const userId = localStorage.getItem("userId");
   const [user, setUser] = useState("");
   const [messageApi, contextHolder] = message.useMessage();
@@ -21,7 +20,6 @@ export default function UserSection({ isAuthen, setIsAddNewIdea }) {
     try {
       const response = await UserApi.getUserById(userId);
       setUser(response);
-      setIsAdmin(response.isAdmin);
     } catch (error) {}
   };
 
@@ -52,7 +50,7 @@ export default function UserSection({ isAuthen, setIsAddNewIdea }) {
   };
   const handleCreateIdea = async () => {
     try {
-      const response = await IdeaApi.addIdea(idea);
+      IdeaApi.addIdea(idea);
       messageApi.open({
         type: "success",
         content: "Add new ideas successfully",
@@ -62,12 +60,8 @@ export default function UserSection({ isAuthen, setIsAddNewIdea }) {
     } catch (error) {}
   };
 
-  const resetAllData = () => {
-    // setContentDefault(" ");
-    // setIdea({ userId: "", content: "" });
-  };
+  const resetAllData = () => {};
 
-  // useEffect(() => {}, [initialContent]);
   const handleConfirmCancel = () => {
     setInitialContent("JK");
     setIsModalOpen(false);
@@ -91,7 +85,6 @@ export default function UserSection({ isAuthen, setIsAddNewIdea }) {
           title="Add new idea"
           open={isModalOpen}
           onOk={handleClickOkBtn}
-          // onCancel={handleCancel}
           className="user-section-modal"
           footer={[
             <Popconfirm

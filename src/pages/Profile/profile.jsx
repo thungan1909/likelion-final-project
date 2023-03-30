@@ -9,7 +9,7 @@ import {
   QuestionCircleOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Button, Form, Input, Modal, Popconfirm } from "antd";
+import { Button, Input, Modal, Popconfirm } from "antd";
 import HeaderSection from "../../components/section/HeaderSection/headerSection";
 export default function Profile() {
   const userId = localStorage.getItem("userId");
@@ -68,7 +68,7 @@ export default function Profile() {
 
   const updateUserInfo = async () => {
     try {
-      const response = await UserApi.updateUser(userId, newData);
+      UserApi.updateUser(userId, newData);
       setIsUpdateUser(true);
     } catch (error) {}
   };
@@ -83,7 +83,11 @@ export default function Profile() {
       <div style={{ display: "flex", flexDirection: "column", margin: "24px" }}>
         <div className="profile-banner">
           <div className="profile-info">
-            <img className="profile-avt-img" src={ProfileImg}></img>
+            <img
+              alt="profile image"
+              className="profile-avt-img"
+              src={ProfileImg}
+            ></img>
             <span className="profile-info__username"> {user.username} </span>
           </div>
           <Button className="profile_editBtn btn" onClick={handleEditProfile}>

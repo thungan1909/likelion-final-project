@@ -1,11 +1,7 @@
-import { Button, Input } from "antd";
 import { useEffect, useState } from "react";
-import IdeaApi from "../../api/ideaApi";
 import BannerSection from "../../components/section/BannerSection/bannerSection";
-import CreateIdeaSection from "../../components/section/CreateIdeaSection/createIdeaSection";
 import ExploreIdeaSection from "../../components/section/ExploreIdeaSection/exploreIdeaSection";
 import HeaderSection from "../../components/section/HeaderSection/headerSection";
-import { checkIsAuthenticated } from "../../utils";
 
 export default function Home() {
   const [isAuthen, setIsAuthen] = useState();

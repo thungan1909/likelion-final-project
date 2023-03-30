@@ -66,11 +66,14 @@
     justify-content: flex-end;
 }
 .popover__content--action-btn{
-    background-color: var(--primary-color);
-    border-radius: 8px;
-    color: #FFF;
     padding: 8px;
     margin: 4px;
-    border: 1px solid;
-    font-family: inherit;
+    width: 80px;
+}
+.popover__content--closeBtn{
+    width: 50px;
+    background-color: transparent;
+    border: none;
+    color: var(--primary-color);
+    cursor: pointer;
 }

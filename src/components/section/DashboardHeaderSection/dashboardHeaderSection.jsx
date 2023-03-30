@@ -1,7 +1,6 @@
 import { Header } from "antd/es/layout/layout";
 import LogoImg from "../../../assets/img/logo.png";
 import AccountDropdown from "../../base/AccountDropdown/accountDropdown";
-import UserSection from "../UserSection/userSection";
 export default function DashboardHeaderSection({ user }) {
   return (
     <Header
@@ -12,7 +11,7 @@ export default function DashboardHeaderSection({ user }) {
       }}
     >
       <a className="header__logo-link" href="/home">
-        <img src={LogoImg} className="header__logo"></img>
+        <img alt="logo image" src={LogoImg} className="header__logo"></img>
       </a>
       <AccountDropdown user={user}></AccountDropdown>
     </Header>

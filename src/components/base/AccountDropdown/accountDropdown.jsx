@@ -1,5 +1,4 @@
-import { Avatar, Divider, Dropdown } from "antd";
-import { UserOutlined } from "@ant-design/icons";
+import { Divider, Dropdown } from "antd";
 import AvtImg from "../../../assets/img/profile.png";
 
 import { useNavigate } from "react-router-dom";
@@ -9,6 +8,7 @@ export default function AccountDropdown({ user }) {
   const logoutFun = async () => {
     try {
       const response = await AuthenApi.logout(user._id);
+      console.log(response);
       localStorage.removeItem("access_token");
       localStorage.removeItem("userId");
       navigate(`/login`, { replace: true });
@@ -23,7 +23,7 @@ export default function AccountDropdown({ user }) {
     {
       key: "1",
       label: (
-        <a className="account-menu__user-info" target="_blank">
+        <a href="/profile" className="account-menu__user-info" target="_blank">
           <span style={{ fontWeight: "bold" }}>{user.username}</span>
           <span>{user.isAdmin ? "Admin" : "User"}</span>
           <Divider
@@ -36,12 +36,16 @@ export default function AccountDropdown({ user }) {
     },
     {
       key: "2",
-      label: <a target="_blank">My ideas</a>,
+      label: (
+        <a href="/myidea" target="_blank">
+          My ideas
+        </a>
+      ),
     },
     {
       key: "3",
       label: (
-        <a target="_blank">
+        <a href="/mylikes" target="_blank">
           My likes
           <Divider
             style={{
@@ -82,12 +86,16 @@ export default function AccountDropdown({ user }) {
     },
     {
       key: "6",
-      label: <a target="_blank">Settings </a>,
+      label: (
+        <a href="/settings" target="_blank">
+          Settings{" "}
+        </a>
+      ),
     },
     {
       key: "7",
       label: (
-        <a target="_blank" rel="register" onClick={handleLogout}>
+        <a target="_blank" href="#" onClick={handleLogout}>
           Log out
         </a>
       ),
@@ -103,6 +111,7 @@ export default function AccountDropdown({ user }) {
       className="dropdown"
     >
       <img
+        alt="user avatar"
         style={{
           width: "45px",
           height: "45px",

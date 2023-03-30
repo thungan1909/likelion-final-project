@@ -4,7 +4,6 @@ import { LikeOutlined } from "@ant-design/icons";
 import { DislikeOutlined } from "@ant-design/icons/lib/icons";
 import { useEffect, useState } from "react";
 import UserApi from "../../../api/userApi";
-import { checkIsAuthenticated } from "../../../utils";
 import { Popover } from "antd";
 
 export default function IdeaCard({ idea, isAuthen }) {
@@ -12,7 +11,7 @@ export default function IdeaCard({ idea, isAuthen }) {
   const [user, setUser] = useState("");
   const [openLike, setOpenLike] = useState(false);
   const [openDislike, setOpenDislike] = useState(false);
-  const gettUser = async () => {
+  const getthisUser = async () => {
     try {
       const response = await UserApi.getUserById(userId);
       setUser(response);
@@ -21,24 +20,16 @@ export default function IdeaCard({ idea, isAuthen }) {
   };
 
   useEffect(() => {
-    gettUser();
+    getthisUser();
   }, [userId]);
 
-  // const handleCheckIsAuthen = () => {
-  //   const token = localStorage.getItem("access_token");
-  //   return token && token.length > 0 ? checkIsAuthenticated(token) : false;
-  // };
   const handleLike = () => {
-    // const isAuthen = handleCheckIsAuthen();
-
     if (!isAuthen) {
       setOpenLike(true);
     }
   };
 
   const handleDislike = () => {
-    // const isAuthen = handleCheckIsAuthen();
-
     if (!isAuthen) {
       setOpenDislike(true);
     }
@@ -51,7 +42,11 @@ export default function IdeaCard({ idea, isAuthen }) {
   if (idea) {
     return (
       <div className="idea-card">
-        <img className="idea-card__author-avatar" src={Avt1}></img>
+        <img
+          alt="author avatar image"
+          className="idea-card__author-avatar"
+          src={Avt1}
+        ></img>
         <div className="idea-card__wrapper">
           <div style={{ display: "flex", alignItems: "center" }}>
             <span className="idea-card__author-username">{user.username}</span>
@@ -82,7 +77,9 @@ export default function IdeaCard({ idea, isAuthen }) {
                       Register
                     </a>
                   </div>
-                  <a onClick={hide}>Close</a>
+                  <button className="popover__content--closeBtn" onClick={hide}>
+                    Close
+                  </button>
                 </div>
               }
               title="Like this idea?"
@@ -118,7 +115,7 @@ export default function IdeaCard({ idea, isAuthen }) {
                       Register
                     </button>
                   </div>
-                  <a onClick={hide}>Close</a>
+                  <button onClick={hide}>Close</button>
                 </div>
               }
               title="Don't like this idea?"

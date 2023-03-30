@@ -1,5 +1,4 @@
 import axios from "axios";
-import queryString from "query-string";
 
 //set up default config for http requests here
 const AxiosClient = axios.create({

@@ -1,8 +1,6 @@
 import {
   TeamOutlined,
   HomeOutlined,
-  BarChartOutlined,
-  SettingOutlined,
   LogoutOutlined,
   UserOutlined,
 } from "@ant-design/icons";
@@ -35,8 +33,7 @@ export default function Sidebar({ userId }) {
   const navigate = useNavigate();
   const logoutFun = async () => {
     try {
-      const response = await AuthenApi.logout(userId);
-      // AuthenApi.DeleteSession({ sessionId });
+      AuthenApi.logout(userId);
       localStorage.removeItem("access_token");
       localStorage.removeItem("userId");
       navigate(`/login`, { replace: true });
@@ -67,6 +64,9 @@ export default function Sidebar({ userId }) {
       case 6:
         handleLogout();
         break;
+      default:
+        navigate("/notfound", { replace: true });
+        break;
     }
   };
   const onClick = (e) => {
@@ -75,9 +75,9 @@ export default function Sidebar({ userId }) {
 
   return (
     <Sider
-      // collapsible
-      // collapsed={collapsed}
-      // onCollapse={(value) => setCollapsed(value)}
+      collapsible
+      collapsed={collapsed}
+      onCollapse={(value) => setCollapsed(value)}
       theme="dark"
       style={{ backgroundColor: "var(--white-color)", height: "100%" }}
     >

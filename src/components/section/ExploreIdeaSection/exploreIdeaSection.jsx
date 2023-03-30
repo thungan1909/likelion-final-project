@@ -1,4 +1,4 @@
-import { Col, Row, Space, Table } from "antd";
+import { Col, Row } from "antd";
 import { useEffect, useState } from "react";
 import IdeaApi from "../../../api/ideaApi";
 import IdeaCard from "../../base/IdeaCard/IdeaCard";
@@ -9,25 +9,11 @@ export default function ExploreIdeaSection({
   setIsAddNewIdea,
 }) {
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [tableParams, setTableParams] = useState({
-    pagination: {
-      current: 1,
-      pageSize: 10,
-    },
-  });
+
   const showAllIdeas = async () => {
     try {
       const response = await IdeaApi.getAllIdea();
       setData(response);
-      setLoading(false);
-      setTableParams({
-        ...tableParams,
-        pagination: {
-          ...tableParams.pagination,
-          total: data.length,
-        },
-      });
     } catch (error) {}
   };
   useEffect(() => {

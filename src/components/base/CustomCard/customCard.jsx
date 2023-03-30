@@ -1,4 +1,3 @@
-import { Card } from "antd";
 import "./customCard.css";
 export default function CustomCard({ title, statistic, backgroundColor }) {
   return (

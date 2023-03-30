@@ -60,7 +60,7 @@ export default function CustomTable() {
           onConfirm={() => handleConfirmDelete(_id)}
           icon={<QuestionCircleOutlined style={{ color: "red" }} />}
         >
-          <a>Delete</a>
+          <button className="btn deleteBtn">Delete</button>
         </Popconfirm>
       ),
       width: "20%",
@@ -69,7 +69,6 @@ export default function CustomTable() {
   const getAllUsers = async () => {
     try {
       const response = await UserApi.getAllUsersAPI();
-      // console.log(response);
       setData(response);
       setLoading(false);
       setTableParams({
@@ -83,14 +82,15 @@ export default function CustomTable() {
   };
   const deleteUser = async (id) => {
     try {
-      const response = await UserApi.deleteUserById(id);
+      UserApi.deleteUserById(id);
       getAllUsers();
     } catch (error) {}
   };
 
   useEffect(() => {
     getAllUsers();
-  }, [JSON.stringify(tableParams)]);
+  }, [tableParams]);
+
   const handleTableChange = (pagination, filters, sorter) => {
     setTableParams({
       pagination,

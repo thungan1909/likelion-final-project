@@ -2,7 +2,6 @@ import { Layout } from "antd";
 import { useEffect, useState } from "react";
 import UserApi from "../../../api/userApi";
 import DashboardHeaderSection from "../../../components/section/DashboardHeaderSection/dashboardHeaderSection";
-import HeaderSection from "../../../components/section/HeaderSection/headerSection";
 import CustomBreadCrumb from "../../CustomBreadCrumb/customBreadCrumb";
 import Sidebar from "../../Sidebar/sidebar";
 
@@ -14,7 +13,6 @@ export default function DashboardLayout({ children }) {
     try {
       const response = await UserApi.getUserById(userId);
       setUser(response);
-      // setIsAdmin(response.isAdmin);
     } catch (error) {}
   };
   useEffect(() => {
