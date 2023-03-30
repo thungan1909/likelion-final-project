@@ -90,8 +90,8 @@ export default function Profile() {
             ></img>
             <span className="profile-info__username"> {user.username} </span>
           </div>
-          <Button className="profile_editBtn btn" onClick={handleEditProfile}>
-            <EditOutlined></EditOutlined>
+          <Button className="profile__editBtn btn" onClick={handleEditProfile}>
+            <EditOutlined className="profile__editBtn__icon"></EditOutlined>
           </Button>
         </div>
 

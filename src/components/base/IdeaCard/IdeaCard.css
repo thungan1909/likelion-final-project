@@ -77,3 +77,9 @@
     color: var(--primary-color);
     cursor: pointer;
 }
+/* @media (max-width : 739px) */
+@media (max-width : 46.1875em)
+{
+   
+    
+}

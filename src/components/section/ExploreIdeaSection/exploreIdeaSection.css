@@ -1,0 +1,36 @@
+
+/* Tablet */
+/* @media (min-width: 740px) and (max-width : 1023px) */
+@media (min-width: 46.25em) and (max-width : 63.9375em)
+{
+    .exploreIdea__wrapper{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .exploreIdea__column{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+/* @media (max-width : 739px) */
+@media (max-width : 46.1875em)
+{
+    .exploreIdea__wrapper{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .exploreIdea__column{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+   
+}

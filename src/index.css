@@ -36,10 +36,7 @@ body {
   --text-color: #e83367;
   --white-color: #FFF;
 
-
-
-
-  --basicTransitionDuration:  0.3s;
+  /* --basicTransitionDuration:  0.3s;
   --cursorBtnHoverColor:  #e83367;
   --cursorBtnHoverTextColor:  #121212;
   --cursorHoverColor:  #e83367;
@@ -50,7 +47,7 @@ body {
   --btnIconSize:  28px;
   --btnIconMargin:  12px;
   --btnColor:  #e83367;
-  --headerDisplayColor:  #fff;
+  --headerDisplayColor:  #fff; */
 
 }
 .btn {
@@ -68,6 +65,7 @@ body {
 .btn:hover {
   background-color: var(--primary-hover-color);
   color: var(--white-color);
+
 }
 
 :where(.css-dev-only-do-not-override-1me4733).ant-btn-primary {

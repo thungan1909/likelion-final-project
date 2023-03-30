@@ -47,3 +47,11 @@
 .bannner-section__search{
     font-family: inherit;
 }
+
+/* @media (max-width : 739px) */
+@media (max-width : 46.1875em)
+{
+    .banner-section__img{
+        display: none;
+    }
+}

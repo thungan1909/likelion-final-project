@@ -22,12 +22,15 @@
   margin: 130px 48px 0px;
   display: flex;
   justify-content: space-between;
+  font-family: inherit;
+  align-items: center;
   
 }
 
 .profile-detail__value {
   width: 300px;
-  height: 45px;
+  height: max-content;
+  min-height: 45px;
   border: 1px solid;
   border-radius: 4px;
   border-color: var(--primary-border-color);
@@ -36,11 +39,13 @@
   justify-content: left;
   align-items: center;
   padding-left: 16px;
+  font-family: inherit;
 }
 .profile-info__username {
   font-size: 24px;
   font-weight: 600;
   color: var(--text-in-primary-color);
+  font-family: inherit;
 }
 
 .profile-detail__title{
@@ -56,9 +61,41 @@
   position: absolute;
   right: 0;
   bottom: -50px;
-
+}
+.profile__editBtn__icon{
+  color: var(--white-color);
 }
 .modal__input{
 margin-bottom: 16px;
 height: 45px;
+}
+
+
+
+/* Tablet */
+/* @media (min-width: 740px) and (max-width : 1023px) */
+@media (min-width: 46.25em) and (max-width : 63.9375em)
+{
+  .profile-detail{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .profile-detail__value{
+    width: 230px;
+    height: max-content;
+    min-height: 45px;
+    margin-right: 8px;
+    margin-left: 8px;
+  }
+   
+}
+
+/* @media (max-width : 739px) */
+@media (max-width : 46.1875em)
+{
+  .profile-detail{
+    flex-direction: column;
+  }
+   
 }

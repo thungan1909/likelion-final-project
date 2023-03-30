@@ -1,5 +1,5 @@
 import { Button, Form, Input, message, Modal, Popconfirm } from "antd";
-import { BellOutlined, QuestionCircleOutlined } from "@ant-design/icons";
+import { BellFilled, QuestionCircleOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import UserApi from "../../../api/userApi";
@@ -78,7 +78,7 @@ export default function UserSection({ isAuthen, setIsAddNewIdea }) {
         </button>
         {/* TODO: NOTIFICATION */}
         <button className="user-section_notify">
-          <BellOutlined />
+          <BellFilled />
         </button>
         <AccountDropdown user={user}></AccountDropdown>
         <Modal
