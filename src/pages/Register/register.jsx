@@ -9,7 +9,8 @@ import {
 import { Button, Form, Input, message } from "antd";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import AuthApi from "../../api/authApi";
+import AuthenApi from "../../api/authenApi";
+
 import "../Login/login.css";
 export default function Register() {
   const [user, setUser] = useState({
@@ -32,7 +33,7 @@ export default function Register() {
 
   const register = async (req) => {
     try {
-      const response = await AuthApi.createUser(req);
+      const response = await AuthenApi.createUser(req);
       console.log(response);
       //TODO: Return exists users error
       navigate("/login", { replace: "true" });

@@ -12,7 +12,7 @@ import { useDispatch } from "react-redux";
 // import LoginImg from "../../assets/img/login-img.jpg";
 import "./login.css";
 import { login, loginSuccess } from "../../redux/actions/auth";
-import AuthApi from "../../api/authApi";
+import AuthenApi from "../../api/authenApi";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ export default function Login() {
     };
     dispatch(login());
     try {
-      const response = await AuthApi.login(user);
+      const response = await AuthenApi.login(user);
       dispatch(
         loginSuccess({
           accessToken: response.accessToken,

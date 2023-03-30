@@ -1,14 +1,14 @@
 import { Avatar, Divider, Dropdown } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import AvtImg from "../../../assets/img/profile.png";
-import AuthApi from "../../../api/authApi";
 
 import { useNavigate } from "react-router-dom";
+import AuthenApi from "../../../api/authenApi";
 export default function AccountDropdown({ user }) {
   const navigate = useNavigate();
   const logoutFun = async () => {
     try {
-      const response = await AuthApi.logout(user._id);
+      const response = await AuthenApi.logout(user._id);
       localStorage.removeItem("access_token");
       localStorage.removeItem("userId");
       navigate(`/login`, { replace: true });

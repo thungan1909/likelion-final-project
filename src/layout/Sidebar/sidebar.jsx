@@ -9,7 +9,7 @@ import {
 import { Layout, Menu } from "antd";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import AuthApi from "../../api/authApi";
+import AuthenApi from "../../api/authenApi";
 import "./sidebar.css";
 const { Sider } = Layout;
 
@@ -35,7 +35,7 @@ export default function Sidebar({ userId }) {
   const navigate = useNavigate();
   const logoutFun = async () => {
     try {
-      const response = await AuthApi.logout(userId);
+      const response = await AuthenApi.logout(userId);
       // AuthenApi.DeleteSession({ sessionId });
       localStorage.removeItem("access_token");
       localStorage.removeItem("userId");

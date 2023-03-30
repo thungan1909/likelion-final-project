@@ -1,7 +1,8 @@
-import AuthApi from "../api/authApi";
+import AuthenApi from "../api/authenApi";
+
 const createNewUser = async (req) => {
   try {
-    const response = await AuthApi.createUser(req);
+    const response = await AuthenApi.createUser(req);
     // if (response.returnCode === 200) {
     console.log("Register success");
     return response;
@@ -14,7 +15,7 @@ const createNewUser = async (req) => {
 
 const login = async (req) => {
   try {
-    const response = await AuthApi.login(req);
+    const response = await AuthenApi.login(req);
     console.log("response", response);
     return response.data;
   } catch (error) {

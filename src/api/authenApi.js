@@ -1,6 +1,6 @@
 import AxiosClient from "./axiosClient";
 
-export default class AuthApi {
+export default class AuthenApi {
 
   //async function to handle asynchronous tasks
   //async return a promise
