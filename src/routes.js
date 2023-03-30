@@ -1,6 +1,7 @@
 import DashboardLayout from "./layout/LayoutContainers/DashboardLayout/dashboardLayout";
 import AdminDashboard from "./pages/AdminDashboard/adminDashboard";
-import EmployeeManagement from "./pages/EmployeeManagement/employeeManagement";
+import UserManagement from "./pages/EmployeeManagement/employeeManagement";
+
 import Home from "./pages/Home/home";
 import Login from "./pages/Login/login";
 import Profile from "./pages/Profile/profile";
@@ -47,13 +48,13 @@ const routes = [
     ),
   },
   {
-    key: "employee",
-    name: "Employee",
-    route: "/employee",
+    key: "usermanagement",
+    name: "User Management",
+    route: "/usermanagement",
     component: (
       <ProtectedAuth>
         <DashboardLayout>
-          <EmployeeManagement></EmployeeManagement>
+          <UserManagement></UserManagement>
         </DashboardLayout>
       </ProtectedAuth>
     ),

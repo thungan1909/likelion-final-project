@@ -6,7 +6,7 @@ export default function CreateIdeaSection() {
         width: "max-content",
         padding: "0 24px",
         height: "61px",
-        backgroundColor: "#9543ff",
+        backgroundColor: "var(--primary-color)",
         color: "#FFF",
         borderRadius: "8px",
         display: "flex",

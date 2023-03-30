@@ -7,7 +7,7 @@
     padding: 16px;
     border-radius: 8px;
     font-family: inherit;
-   
+    color: var(--white-color);
 
 }
 .idea-card__author-avatar{
@@ -48,15 +48,9 @@
 .idea-card__actionBtn {
     width: 80px;
     height: 30px;
-    margin-right: 8px;
-    background-color: var(--primary-color);
-    border-radius: 8px;
-    color: #FFF;
-    border: 1px solid;
+    margin-right: 8px;  
 }
-.idea-card__actionBtn:hover{
-    background-color: var(--primary-hover-color);
-}
+
 .idea-card__actionBtn--count{
     margin-left: 4px;
 }

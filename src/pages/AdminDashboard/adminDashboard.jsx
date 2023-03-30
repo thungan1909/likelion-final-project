@@ -5,9 +5,13 @@ import UserStatisticSection from "../../components/section/UserStatisticSection/
 
 export default function AdminDashboard() {
   return (
-    <>
-      <h1 style={{ fontSize: "32px", marginBottom: "16px" }}>Overview page</h1>
+    <div>
+      <h1
+        style={{ fontSize: "32px", lineHeight: "32px", marginBottom: "16px" }}
+      >
+        Overview page
+      </h1>
       <UserStatisticSection />
-    </>
+    </div>
   );
 }

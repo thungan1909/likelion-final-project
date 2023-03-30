@@ -10,7 +10,9 @@ import { Layout, Menu } from "antd";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthApi from "../../api/authApi";
+import "./sidebar.css";
 const { Sider } = Layout;
+
 function getItem(label, key, icon, children) {
   return {
     key,
@@ -21,10 +23,10 @@ function getItem(label, key, icon, children) {
 }
 const adminItems = [
   getItem("Overview", "1", <HomeOutlined />),
-  getItem("Employee", "2", <TeamOutlined />),
-  getItem("Statistic", "3", <BarChartOutlined />),
+  getItem("User Management", "2", <TeamOutlined />),
+  // getItem("Statistic", "3", <BarChartOutlined />),
   getItem("Profile", "4", <UserOutlined />),
-  getItem("Setting", "5", <SettingOutlined />),
+  // getItem("Setting", "5", <SettingOutlined />),
   getItem("Logout", "6", <LogoutOutlined />),
 ];
 
@@ -51,7 +53,7 @@ export default function Sidebar({ userId }) {
         navigate("/overview", { replace: true });
         break;
       case 2:
-        navigate("/employee", { replace: true });
+        navigate("/usermanagement", { replace: true });
         break;
       case 3:
         navigate("/statistic", { replace: true });
@@ -73,44 +75,19 @@ export default function Sidebar({ userId }) {
 
   return (
     <Sider
-      collapsible
-      collapsed={collapsed}
-      onCollapse={(value) => setCollapsed(value)}
-      theme="light"
+      // collapsible
+      // collapsed={collapsed}
+      // onCollapse={(value) => setCollapsed(value)}
+      theme="dark"
+      style={{ backgroundColor: "var(--white-color)", height: "100%" }}
     >
-      {/* <div
-        style={{
-          // height: 32,
-          margin: 16,
-          background: "rgba(255, 255,255, 0.2)",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          color: "#2B3674",
-        }}
-      >
-        <div style={{ fontSize: "26px", marginBottom: "16px" }}>
-          <span style={{ fontWeight: "bold" }}>Orange</span>
-          <span> HRM</span>
-        </div>
-        <img
-          src={ProfileImg}
-          style={{ width: "64px", height: "64px", marginBottom: "16px" }}
-        ></img>
-        <span style={{ fontWeight: "500", fontSize: "16px" }}>
-          {user.username}
-        </span>
-        <span style={{ fontWeight: "400", fontSize: "14px" }}>
-          {isAdmin ? "Admin" : "User"}
-        </span>
-      </div> */}
-
       <Menu
         onClick={onClick}
         defaultSelectedKeys={["1"]}
         mode="inline"
         items={adminItems}
+        theme="dark"
+        style={{ height: "100vh" }}
       />
     </Sider>
   );

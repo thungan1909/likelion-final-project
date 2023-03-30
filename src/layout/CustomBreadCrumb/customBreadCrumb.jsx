@@ -2,10 +2,10 @@ import { Link, useLocation } from "react-router-dom";
 import { Breadcrumb } from "antd";
 const breadcrumbNameMap = {
   "/overview": "Overview",
-  "/employee": "Employee",
+  "/usermanagement": "User management",
   "/profile": "Profile",
-  "/statictis": "Statictis",
-  "/settings": "Settings",
+  // "/statictis": "Statictis",
+  // "/settings": "Settings",
 };
 export default function CustomBreadCrumb() {
   const location = useLocation();

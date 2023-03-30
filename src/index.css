@@ -1,7 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Rashi+Hebrew:wght@100;200;300;400;500;600;700;800;900&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Noto+Rashi+Hebrew:wght@100;200;300;400;500;600;700;800;900&display=swap'); */
+
+  /* @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800&display=swap'); */
+
+
+  @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,100;1,300;1,500;1,600;1,700;1,900&display=swap');
+
 body {
-  background-color: #FFF;
-  font-family: 'Noto Rashi Hebrew', serif;
+  /* background-color: #FFF; */
+  background-color: var(--bg-color);
+  /* font-family: 'Noto Rashi Hebrew', serif; */
+  /* font-family: 'M PLUS Rounded 1c', sans-serif; */
+  font-family: 'Raleway', sans-serif;
   margin: 0;
   
  
@@ -17,24 +26,31 @@ body {
 }
 
 :root {
-  /* --primary-color: #9543ff; */
-  --primary-color: #9f86c0;
-  --primary-hover-color: #810CA8;
-  /* --secondary-color: #b299da; */
-    --secondary-color:#C147E9;
-  --third-color: #af83f4;
-
+  --primary-color: #e83367;
+  --bg-color:  #121212;
+  --primary-hover-color: #dc2a5c;
+  --primary-border-color:#ce2857;
+  --primary-bland-color: #fce5e7;
+  --text-in-primary-color: #FFF;
+  --black-color: #121212;
+  --text-color: #e83367;
   --white-color: #FFF;
-  --black-color: #000;
-  --text-color: #333;
-  --border-color: #DBDBDB;
 
 
-  --dark-bg-color: #2D033B;
-  --dark--primary-color: #810CA8;
-  --dark--second-color: #C147E9;
-  --dark-third-color: #E5B8F4;
-  --light-bg-color: #FFF;
+
+
+  --basicTransitionDuration:  0.3s;
+  --cursorBtnHoverColor:  #e83367;
+  --cursorBtnHoverTextColor:  #121212;
+  --cursorHoverColor:  #e83367;
+  --navBgColor:  #121212;
+  --navIconsColor:  #fff;
+  --navBurgerHoverColor:  var(--cursorHoverColor);
+  --btnFontSize:  28px;
+  --btnIconSize:  28px;
+  --btnIconMargin:  12px;
+  --btnColor:  #e83367;
+  --headerDisplayColor:  #fff;
 
 }
 .btn {
@@ -46,9 +62,12 @@ body {
   border: none;
   box-shadow: 1px;
   cursor: pointer;
+  font-size: 14px;
+  font-weight: 400;
 }
 .btn:hover {
   background-color: var(--primary-hover-color);
+  color: var(--white-color);
 }
 
 :where(.css-dev-only-do-not-override-1me4733).ant-btn-primary {

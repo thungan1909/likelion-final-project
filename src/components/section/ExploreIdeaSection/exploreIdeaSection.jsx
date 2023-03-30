@@ -42,6 +42,16 @@ export default function ExploreIdeaSection({
   }, [isAddNewIdea]);
   return (
     <div style={{ margin: "24px" }}>
+      <h1
+        style={{
+          color: "var(--primary-color)",
+          marginBottom: "24px",
+          fontFamily: "inherit",
+          fontSize: "40px",
+        }}
+      >
+        Top ideas
+      </h1>
       <Row gutter={16}>
         {data?.length === 0 ? (
           <div></div>

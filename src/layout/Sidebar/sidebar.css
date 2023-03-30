@@ -1,0 +1,11 @@
+:where(.css-dev-only-do-not-override-1me4733).ant-menu-dark .ant-menu-item-selected {
+    background-color: var(--primary-color);
+}
+:where(.css-dev-only-do-not-override-1me4733).ant-menu-dark .ant-menu-item:not(.ant-menu-item-disabled):focus-visible, :where(.css-dev-only-do-not-override-1me4733).ant-menu-dark .ant-menu-submenu-title:not(.ant-menu-item-disabled):focus-visible {
+    outline: 4px solid var(--primary-color);
+    outline-offset: 1px;
+    transition: outline-offset 0s,outline 0s;
+}
+:where(.css-dev-only-do-not-override-1me4733).ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item:not(.ant-menu-item-selected):active {
+    background-color: var(--primary-color)
+}

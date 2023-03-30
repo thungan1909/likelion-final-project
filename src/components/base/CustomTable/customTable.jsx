@@ -1,7 +1,8 @@
 import { QuestionCircleOutlined } from "@ant-design/icons";
-import { Button, Popconfirm, Table } from "antd";
+import { Popconfirm, Table } from "antd";
 import { useEffect, useState } from "react";
 import UserApi from "../../../api/userApi";
+import "./customTable.css";
 
 export default function CustomTable() {
   const [data, setData] = useState([]);
@@ -67,7 +68,8 @@ export default function CustomTable() {
   ];
   const getAllUsers = async () => {
     try {
-      const response = await UserApi.getAllUser();
+      const response = await UserApi.getAllUsersAPI();
+      console.log(response);
       setData(response);
       setLoading(false);
       setTableParams({
@@ -105,13 +107,20 @@ export default function CustomTable() {
     deleteUser(id);
   };
   return (
-    <Table
-      columns={columns}
-      // rowKey={(record) => record.login.uuid}
-      dataSource={data}
-      pagination={tableParams.pagination}
-      loading={loading}
-      onChange={handleTableChange}
-    ></Table>
+    <>
+      <span>
+        There are <span style={{ fontWeight: "600" }}>{data.length}</span> users
+        in total.
+      </span>
+      <Table
+        style={{ margin: "16px 0px" }}
+        columns={columns}
+        // rowKey={(record) => record.login.uuid}
+        dataSource={data}
+        pagination={tableParams.pagination}
+        loading={loading}
+        onChange={handleTableChange}
+      ></Table>
+    </>
   );
 }

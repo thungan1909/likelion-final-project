@@ -4,13 +4,15 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    font-family: inherit;
 }
 .user-section_addBtn{
-    width: 100px;
+    width: 120px;
     height: 35px;
-    padding: 0 4px;
     margin-right: 16px;
     background-color: var(--primary-color);
+    color: var(--text-in-primary-color);
+    font-family: inherit;
 }
 .user-section_notify{
     position: relative;
@@ -29,26 +31,42 @@
     align-items: center;
     justify-content: center;
 }
+
+
+ :where(.css-dev-only-do-not-override-1me4733).ant-modal .ant-modal-title {
+    margin: 0;
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.5;
+    word-wrap: break-word;
+     font-family: 'Raleway', sans-serif;
+}
+
+ :where(.css-dev-only-do-not-override-1me4733).ant-modal .ant-modal-header {
+    color: var(--primary-color);
+    font-family: inherit;
+    background: #ffffff;
+    border-radius: 8px 8px 0 0;
+    margin-bottom: 8px;
+}
 .user-section-modal__input{
     width: 450px;
 }
-.user-section-modal{
-    display: flex;
- 
-}
+
 
 :where(.css-dev-only-do-not-override-1me4733).ant-input:hover {
-    border-color: #9543ff;
+    border-color: var  (--primary-border-color);
     border-inline-end-width: 1px;
 }
 :where(.css-dev-only-do-not-override-1me4733).ant-input:focus, :where(.css-dev-only-do-not-override-1me4733).ant-input-focused {
-    border-color: #9543ff;
+    border-color: var  (--primary-border-color);
     box-shadow: 0 0 0 2px rgba(149, 67, 255, 0.1);
     border-inline-end-width: 1px;
     outline: 0;
 }
 
 :where(.css-dev-only-do-not-override-1me4733).ant-btn-default:not(:disabled):hover {
-    color: #9543ff;
-    border-color:#9543ff;
+    color:var(--primary-color);
+    border-color: var  (--primary-border-color);
 }

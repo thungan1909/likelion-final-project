@@ -3,13 +3,13 @@ import "./profile.css";
 import ProfileImg from "../../assets/img/profile.png";
 import UserApi from "../../api/userApi";
 import {
+  CloseOutlined,
   EditOutlined,
   MailOutlined,
   QuestionCircleOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Button, Input, Modal, Popconfirm } from "antd";
-import GetCurrentUserService from "../../service/getCurrentUserSevice";
+import { Button, Form, Input, Modal, Popconfirm } from "antd";
 import HeaderSection from "../../components/section/HeaderSection/headerSection";
 export default function Profile() {
   const userId = localStorage.getItem("userId");
@@ -86,7 +86,7 @@ export default function Profile() {
             <img className="profile-avt-img" src={ProfileImg}></img>
             <span className="profile-info__username"> {user.username} </span>
           </div>
-          <Button className="profile_editBtn" onClick={handleEditProfile}>
+          <Button className="profile_editBtn btn" onClick={handleEditProfile}>
             <EditOutlined></EditOutlined>
           </Button>
         </div>
@@ -115,6 +115,21 @@ export default function Profile() {
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
+        // closable={false}
+        closeIcon={
+          <>
+            <Popconfirm
+              title="Confirm cancel"
+              description="Your unsaved changes will be lost if you confirm cancellation. Are you sure to cancel edit profile?"
+              okText="Yes"
+              cancelText="No"
+              onConfirm={handleConfirmCancel}
+              icon={<QuestionCircleOutlined style={{ color: "red" }} />}
+            >
+              <CloseOutlined />
+            </Popconfirm>
+          </>
+        }
         footer={[
           <Popconfirm
             title="Confirm cancel"
@@ -140,6 +155,7 @@ export default function Profile() {
           name="email"
           onChange={handleChangeEmail}
         />
+
         <div className="profile-detail__title">Username</div>
         <Input
           className="modal__input"

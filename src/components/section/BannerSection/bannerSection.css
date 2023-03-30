@@ -3,7 +3,8 @@
     width: 100%;
     display: flex;
     flex-direction: row;
-    background-color: #c49bfa;
+    /* background-color: #c49bfa; */
+    background-color: var(--primary-bland-color);
     justify-content: center;
     align-items: center;
     font-family: inherit;

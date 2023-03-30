@@ -1,6 +1,6 @@
 import { Avatar, Divider, Dropdown } from "antd";
 import { UserOutlined } from "@ant-design/icons";
-import AvtImg from "../../../assets/img/avt/avt1.jpg";
+import AvtImg from "../../../assets/img/profile.png";
 import AuthApi from "../../../api/authApi";
 
 import { useNavigate } from "react-router-dom";

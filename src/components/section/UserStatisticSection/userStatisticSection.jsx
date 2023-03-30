@@ -46,11 +46,11 @@ export default function UserStatisticSection() {
           <CustomCard
             title={"New users"}
             statistic={newUsersInMonth ? newUsersInMonth.length : 0}
-            backgroundColor={"#610f7f"}
+            backgroundColor={"var(--primary-color)"}
           ></CustomCard>
           <CustomCard
             title={"New ideas"}
-            backgroundColor={"2f0147"}
+            backgroundColor={"#610f7f"}
             statistic={newIdeasInMonth ? newIdeasInMonth.length : 0}
           ></CustomCard>
         </div>

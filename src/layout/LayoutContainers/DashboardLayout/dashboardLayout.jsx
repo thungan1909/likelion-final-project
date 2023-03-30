@@ -26,12 +26,21 @@ export default function DashboardLayout({ children }) {
         width: "100%",
         display: "flex",
         flexDirection: "column",
+        height: "100%",
       }}
     >
       <DashboardHeaderSection user={user} />
-      <Layout style={{ backgroundColor: "#FFF" }}>
+      <Layout
+        style={{
+          backgroundColor: "#FFF",
+          display: "flex",
+          flexDirection: "row",
+        }}
+      >
         <Sidebar userId={userId}></Sidebar>
-        <Content style={{ margin: "0 16px" }}>
+        <Content
+          style={{ padding: "0 16px", minHeight: "100vh", height: "100%" }}
+        >
           <CustomBreadCrumb></CustomBreadCrumb>
           {children}
         </Content>

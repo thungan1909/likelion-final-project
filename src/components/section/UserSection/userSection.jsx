@@ -42,13 +42,6 @@ export default function UserSection({ isAuthen, setIsAddNewIdea }) {
     setInitialContent("");
     setIsModalOpen(true);
   };
-  // const handleChangeTextAreaData = (e) => {
-  //   setContentDefault(e.target.value);
-  //   setIdea({
-  //     userId: userId,
-  //     content: e.target.value,
-  //   });
-  // };
   const handleClickOkBtn = () => {
     if (idea && idea.content.length > 0) {
       handleCreateIdea();
@@ -121,7 +114,7 @@ export default function UserSection({ isAuthen, setIsAddNewIdea }) {
               label={
                 <label
                   style={{
-                    color: "#7e57c2",
+                    color: "var(--primary-color)",
                     fontWeight: "bold",
                   }}
                 >

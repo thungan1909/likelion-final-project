@@ -14,6 +14,7 @@ export default class UserApi {
      
         try {
             const response = await AxiosClient.get(`user`);
+            
             return response;
         }
         catch (error) {

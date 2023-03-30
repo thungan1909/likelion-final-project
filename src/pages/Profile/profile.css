@@ -1,6 +1,6 @@
 
 .profile-banner {
-  background-color: blueviolet;
+  background-color: var(--primary-color);
   height: 200px;
   position: relative;
   display: flex;
@@ -30,7 +30,7 @@
   height: 45px;
   border: 1px solid;
   border-radius: 4px;
-  border-color: #b299da;
+  border-color: var(--primary-border-color);
   text-align: center;
   display: flex;
   justify-content: left;
@@ -40,6 +40,7 @@
 .profile-info__username {
   font-size: 24px;
   font-weight: 600;
+  color: var(--text-in-primary-color);
 }
 
 .profile-detail__title{
@@ -47,13 +48,15 @@
   font-weight: 500;
   color: var(--primary-color);
 }
+.profile-detail__value{
+  color: var(--text-in-primary-color);
+}
 .profile_editBtn{
   width: 50px;
   position: absolute;
   right: 0;
   bottom: -50px;
-  background-color: #b299da;
-  color: #FFF;
+
 }
 .modal__input{
 margin-bottom: 16px;

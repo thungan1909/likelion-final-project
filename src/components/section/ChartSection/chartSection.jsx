@@ -68,8 +68,8 @@ export default function ChartSection() {
         <YAxis />
         <Tooltip />
         <Legend />
-        <Bar dataKey="countUser" name="New Users" fill="#8884d8" />
-        <Bar dataKey="countIdea" name="New Ideas" fill="#82ca9d" />
+        <Bar dataKey="countUser" name="New Users" fill="var(--primary-color)" />
+        <Bar dataKey="countIdea" name="New Ideas" fill="#610f7f" />
       </BarChart>
     </>
   );

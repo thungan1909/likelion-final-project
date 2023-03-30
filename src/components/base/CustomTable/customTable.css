@@ -1,0 +1,6 @@
+:where(.css-dev-only-do-not-override-1me4733) a {
+    color: var(--primary-color)
+}
+:where(.css-dev-only-do-not-override-1me4733) a:hover {
+    color:var(--primary-hover-color);
+}
