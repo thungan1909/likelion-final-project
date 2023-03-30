@@ -8,10 +8,11 @@ import {
 import { Button, Form, Input, message } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import AuthApi from "../../api/authApi";
+
 // import LoginImg from "../../assets/img/login-img.jpg";
 import "./login.css";
 import { login, loginSuccess } from "../../redux/actions/auth";
+import AuthApi from "../../api/authApi";
 
 export default function Login() {
   const navigate = useNavigate();

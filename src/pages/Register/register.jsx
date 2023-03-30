@@ -266,7 +266,7 @@ export default function Register() {
           you tell them to the world.
         </span>
         <span className="login-intro__contact-email">
-          nganthudoan2001@gmail.com
+          Contact: nganthudoan2001@gmail.com
         </span>
         <ul className="login-intro__social-media">
           <li className="login-intro__social-media-item">
