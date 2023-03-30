@@ -5,7 +5,7 @@ import {
   LockOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, message } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import AuthApi from "../../api/authApi";
@@ -15,7 +15,7 @@ import { login, loginSuccess } from "../../redux/actions/auth";
 
 export default function Login() {
   const navigate = useNavigate();
-
+  const [messageApi, contextHolder] = message.useMessage();
   const dispatch = useDispatch();
   const onFinish = async (value) => {
     const user = {
@@ -33,7 +33,11 @@ export default function Login() {
       );
       navigate("/home", { replace: "true" });
     } catch (error) {
-      console.log(error);
+      messageApi.open({
+        type: "error",
+        content: `${error.data}. Please try again`,
+        duration: 3,
+      });
     }
   };
 
@@ -49,6 +53,7 @@ export default function Login() {
         fontFamily: "inherit",
       }}
     >
+      {contextHolder}
       <div className="login-wrapper">
         <div className="login-title">
           <h1 className="login-name">IDEA HUB</h1>

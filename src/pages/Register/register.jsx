@@ -6,7 +6,7 @@ import {
   UserOutlined,
   MailOutlined,
 } from "@ant-design/icons";
-import { Button, Form, Input, Space } from "antd";
+import { Button, Form, Input, message } from "antd";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthApi from "../../api/authApi";
@@ -17,7 +17,7 @@ export default function Register() {
     username: "",
     password: "",
   });
-
+  const [messageApi, contextHolder] = message.useMessage();
   const [isFinish, setIsFinish] = useState(false);
   const navigate = useNavigate();
   const onFinish = (value) => {
@@ -37,12 +37,17 @@ export default function Register() {
       //TODO: Return exists users error
       navigate("/login", { replace: "true" });
     } catch (error) {
-      console.log("register error", error);
+      messageApi.open({
+        type: "error",
+        content: `${error.data}. Please try again`,
+        duration: 3,
+      });
     }
   };
   useEffect(() => {
     if (isFinish) {
       register(user);
+      setIsFinish(false);
     }
   }, [isFinish]);
 
@@ -58,6 +63,7 @@ export default function Register() {
         fontFamily: "inherit",
       }}
     >
+      {contextHolder}
       <div className="login-wrapper">
         <div className="login-title">
           <h1 className="login-name">IDEA HUB</h1>

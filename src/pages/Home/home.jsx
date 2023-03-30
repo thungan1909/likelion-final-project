@@ -20,7 +20,6 @@ export default function Home() {
   useEffect(() => {
     handleCheckIsAuthen();
   }, []);
-  console.log(isAddNewIdea);
 
   if (isAuthen !== undefined) {
     return (

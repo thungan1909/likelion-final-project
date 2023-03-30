@@ -12,7 +12,9 @@ export default function HeaderSection({ isAuthen, setIsAddNewIdea }) {
   ];
 
   //TODO: SEARCH FEATURE
-  const onSearch = (value) => console.log(value);
+  const onSearch = (value) => {
+    // console.log(value)
+  };
 
   return (
     <Header className="header">

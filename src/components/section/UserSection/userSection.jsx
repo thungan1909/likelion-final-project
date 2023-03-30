@@ -135,16 +135,12 @@ export default function UserSection({ isAuthen, setIsAddNewIdea }) {
                 placeholder="Your idea..."
                 name="content"
                 rows={5}
-                // onChange={handleChangeTextAreaData}
-                // value={contentDefault}
                 onChange={(e) => {
-                  console.log(e.target.value);
                   setIdea({
                     userId: userId,
                     content: e.target.value,
                   });
                 }}
-                // value={initialContent}
                 defaultValue={initialContent}
                 allowClear
                 onPressEnter

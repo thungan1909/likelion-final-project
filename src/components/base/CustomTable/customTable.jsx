@@ -69,7 +69,7 @@ export default function CustomTable() {
   const getAllUsers = async () => {
     try {
       const response = await UserApi.getAllUsersAPI();
-      console.log(response);
+      // console.log(response);
       setData(response);
       setLoading(false);
       setTableParams({

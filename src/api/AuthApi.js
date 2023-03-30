@@ -9,12 +9,9 @@ export default class AuthApi {
     
     try {
       const response = await AxiosClient.post("auth/register", req);
-    
       return response;
-      
     } catch (error) {
-      
-      throw new Error(error.message);
+      throw error.response;
     }
   }
   static async login(req) {
@@ -22,8 +19,7 @@ export default class AuthApi {
       const response = await AxiosClient.post("auth/login", req);
       return response;
     } catch (error) {
-      throw new Error(error.message);
-     
+      throw error.response;
     }
   }
   static async logout (req) {
@@ -32,7 +28,7 @@ export default class AuthApi {
       return response;
     }
     catch (error) {
-      throw new Error (error.message);
+      throw error.response;
     }
   }
 }

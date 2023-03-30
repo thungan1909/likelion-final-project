@@ -11,7 +11,9 @@ export default function BannerSection() {
   const handleNavigateSignup = () => {
     navigate("/register", { replace: "true" });
   };
-  const onSearch = (value) => console.log(value);
+  const onSearch = (value) => {
+    // console.log(value)
+  };
   return (
     <div className="banner-section">
       <Search

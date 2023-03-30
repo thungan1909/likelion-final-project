@@ -41,7 +41,7 @@ export default function Sidebar({ userId }) {
       localStorage.removeItem("userId");
       navigate(`/login`, { replace: true });
     } catch (error) {
-      console.log("error");
+      // console.log("error");
     }
   };
   const handleLogout = () => {
