@@ -1,13 +1,15 @@
 .idea-card{
-    width: 350px;
+    width: 320px;
     display: flex;
-    flex-direction: row;
+    
     margin-bottom: 32px;
     border: 1px solid var(--primary-color);
     border-radius: 8px;
     font-family: inherit;
     color: var(--white-color);
     padding: 16px;
+    margin-right: 24px;
+    flex-direction: column;
 
 }
 .idea-card__author-avatar{

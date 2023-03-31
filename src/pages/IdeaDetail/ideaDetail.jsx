@@ -12,17 +12,22 @@ import ExploreIdeaSection from "../../components/section/ExploreIdeaSection/expl
 export default function IdeaDetail() {
   const { id } = useParams();
 
-  const isAuthen = true;
+  const [isAuthen, setIsAuthen] = useState();
+
   const [idea, setIdea] = useState({});
   const [user, setUser] = useState("");
   const [openLike, setOpenLike] = useState(false);
   const [openDislike, setOpenDislike] = useState(false);
   const [isAddNewIdea, setIsAddNewIdea] = useState(false);
-
+  const handleCheckIsAuthen = () => {
+    const token = localStorage.getItem("access_token");
+    const _isAuthenticated = token && token.length > 0 ? true : false;
+    setIsAuthen(_isAuthenticated);
+  };
   const getIdea = async () => {
     try {
       const response = await IdeaApi.getIdeaByIdAPI(id);
-      console.log(response);
+      // console.log(response);
       setIdea(response);
       getthisUser(response.userId);
     } catch (error) {}
@@ -56,11 +61,16 @@ export default function IdeaDetail() {
     setOpenLike(false);
     setOpenDislike(false);
   };
+  useEffect(() => {
+    handleCheckIsAuthen();
+  }, []);
 
-  if (idea) {
+  console.log(isAuthen);
+  console.log(idea);
+  if (isAuthen !== undefined && idea) {
     return (
       <div className="idea-detail">
-        <HeaderSection isAuthen={true} setIsAddNewIdea={setIsAddNewIdea} />
+        <HeaderSection isAuthen={isAuthen} setIsAddNewIdea={setIsAddNewIdea} />
         <div style={{ margin: "24px" }}>
           <h1
             style={{
