@@ -1,14 +1,13 @@
 .idea-card{
-    width: 300px;
+    width: 350px;
     display: flex;
     flex-direction: row;
     margin-bottom: 32px;
     border: 1px solid var(--primary-color);
-    padding: 16px;
     border-radius: 8px;
     font-family: inherit;
     color: var(--white-color);
-
+    padding: 16px;
 
 }
 .idea-card__author-avatar{
@@ -19,7 +18,8 @@
 .idea-card__wrapper{
     display: flex;
     flex-direction: column;
-    margin: 0 16px;
+    margin: 0px 16px;
+ 
 }
 .idea-card__author-username{
     color: var(--primary-color);
@@ -38,18 +38,27 @@
     line-height: 1.6rem;
     height: 4.8rem;
     overflow: hidden;
-    /* display: block; */
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
-    inline-size: 180px;
     overflow-wrap: break-word;
+    margin-right: 16px;
     
 }
+.idea-card__action{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 16px;
+}
 .idea-card__actionBtn {
-    width: 80px;
-    height: 30px;
+    min-width: 80px;
+    min-height: 30px;
+    height: max-content;
+    width: max-content;
     margin-right: 8px;  
+    padding: 4px;
 }
 
 .idea-card__actionBtn--count{

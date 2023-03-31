@@ -9,7 +9,6 @@ export default function ExploreIdeaSection({
   setIsAddNewIdea,
 }) {
   const [data, setData] = useState([]);
-
   const showAllIdeas = async () => {
     try {
       const response = await IdeaApi.getAllIdea();
@@ -26,6 +25,7 @@ export default function ExploreIdeaSection({
       setIsAddNewIdea(false);
     }
   }, [isAddNewIdea]);
+
   return (
     <div className="exploreIdea__wrapper" style={{ margin: "24px" }}>
       <h1
@@ -40,7 +40,7 @@ export default function ExploreIdeaSection({
       </h1>
       <Row gutter={16} className="exploreIdea__row">
         {data?.length === 0 ? (
-          <div className="exploreIdea__empty">No idea. Add new idea now</div>
+          <div className="exploreIdea__empty">No idea. Add new ideas now</div>
         ) : (
           data.map((item, index) => {
             return (

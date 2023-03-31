@@ -4,13 +4,15 @@ import { LikeOutlined } from "@ant-design/icons";
 import { DislikeOutlined } from "@ant-design/icons/lib/icons";
 import { useEffect, useState } from "react";
 import UserApi from "../../../api/userApi";
-import { Popover } from "antd";
+import { Button, Popover } from "antd";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export default function IdeaCard({ idea, isAuthen }) {
   let userId = idea.userId;
   const [user, setUser] = useState("");
   const [openLike, setOpenLike] = useState(false);
   const [openDislike, setOpenDislike] = useState(false);
+  const navigate = useNavigate();
   const getthisUser = async () => {
     try {
       const response = await UserApi.getUserById(userId);
@@ -38,6 +40,9 @@ export default function IdeaCard({ idea, isAuthen }) {
     setOpenLike(false);
     setOpenDislike(false);
   };
+  const handleClickSeeDetail = (ideaId) => {
+    navigate(`/detail/${ideaId}`, { replace: true });
+  };
 
   if (idea) {
     return (
@@ -53,6 +58,7 @@ export default function IdeaCard({ idea, isAuthen }) {
             <span className="idea-card__createAt">{idea.createAt}</span>
           </div>
           <p className="idea-card__content">{idea.content}</p>
+
           <div className="idea-card__action">
             <Popover
               placement="rightBottom"
@@ -130,6 +136,12 @@ export default function IdeaCard({ idea, isAuthen }) {
                 </span>
               </button>
             </Popover>
+            <button
+              className=" idea-card__actionBtn btn"
+              onClick={() => handleClickSeeDetail(idea._id)}
+            >
+              See details
+            </button>
           </div>
         </div>
       </div>

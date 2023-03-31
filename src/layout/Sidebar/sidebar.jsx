@@ -79,7 +79,6 @@ export default function Sidebar({ userId }) {
       collapsed={collapsed}
       onCollapse={(value) => setCollapsed(value)}
       theme="dark"
-      style={{ backgroundColor: "var(--white-color)", height: "100%" }}
     >
       <Menu
         onClick={onClick}

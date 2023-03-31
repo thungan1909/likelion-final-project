@@ -3,6 +3,7 @@ import AdminDashboard from "./pages/AdminDashboard/adminDashboard";
 import UserManagement from "./pages/EmployeeManagement/employeeManagement";
 
 import Home from "./pages/Home/home";
+import IdeaDetail from "./pages/IdeaDetail/ideaDetail";
 import Login from "./pages/Login/login";
 import MyIdeas from "./pages/MyIdeas/myIdeas";
 import NotFound from "./pages/NotFound/notFound";
@@ -40,11 +41,10 @@ const routes = [
     key: "overview",
     name: "Overview",
     route: "/overview",
-    component: 
-    (
+    component: (
       <ProtectedAdmin>
         <DashboardLayout>
-        <AdminDashboard></AdminDashboard>
+          <AdminDashboard></AdminDashboard>
         </DashboardLayout>
       </ProtectedAdmin>
     ),
@@ -54,11 +54,11 @@ const routes = [
     name: "User Management",
     route: "/usermanagement",
     component: (
-      <ProtectedAuth>
+      <ProtectedAdmin>
         <DashboardLayout>
           <UserManagement></UserManagement>
         </DashboardLayout>
-      </ProtectedAuth>
+      </ProtectedAdmin>
     ),
   },
   {
@@ -67,7 +67,7 @@ const routes = [
     route: "/profile",
     component: (
       <ProtectedAuth>
-          <Profile />
+        <Profile />
       </ProtectedAuth>
     ),
   },
@@ -77,15 +77,21 @@ const routes = [
     route: "/myideas",
     component: (
       <ProtectedAuth>
-          <MyIdeas />
+        <MyIdeas />
       </ProtectedAuth>
     ),
   },
   {
-    key: 'notFound',
+    key: "idea-detail",
+    name: "Idea detail",
+    route: "/detail/:id",
+    component: <IdeaDetail />,
+  },
+  {
+    key: "notFound",
     name: "Not found",
     route: "*",
-    component: <NotFound/>
-  }
+    component: <NotFound />,
+  },
 ];
 export default routes;

@@ -7,13 +7,10 @@ import HeaderSection from "../../components/section/HeaderSection/headerSection"
 export default function MyIdeas({ isAuthen }) {
   const [data, setData] = useState([]);
   const userId = localStorage.getItem("userId");
-
-  const [isAddNewIdea, setIsAddNewIdea] = useState();
-
+  const [isAddNewIdea, setIsAddNewIdea] = useState(false);
   const showAllMyIdeas = async () => {
     try {
-      const response = await IdeaApi.getIdeasById(userId);
-      console.log(response);
+      const response = await IdeaApi.getIdeasByUserId(userId);
       setData(response);
     } catch (error) {}
   };
@@ -45,7 +42,7 @@ export default function MyIdeas({ isAuthen }) {
         </h1>
         <Row gutter={16} className="exploreIdea__row">
           {data?.length === 0 ? (
-            <div className="exploreIdea__empty">No idea. Add new idea now</div>
+            <div className="exploreIdea__empty">No idea. Add new ideas now</div>
           ) : (
             data.map((item, index) => {
               return (

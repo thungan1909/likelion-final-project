@@ -6,9 +6,9 @@ import UserSection from "../UserSection/userSection";
 const { Search } = Input;
 export default function HeaderSection({ isAuthen, setIsAddNewIdea }) {
   const items = [
-    { key: 1, label: "Home Page" },
-    { key: 2, label: "Exloper ideas" },
-    { key: 3, label: "Popular" },
+    { key: 1, label: <a href="/home">Homepage</a> },
+    { key: 2, label: <a href="/myideas">My ideas</a> },
+    // { key: 3, label: "Popular" },
   ];
 
   //TODO: SEARCH FEATURE
@@ -22,12 +22,7 @@ export default function HeaderSection({ isAuthen, setIsAddNewIdea }) {
         <img src={LogoImg} className="header__logo"></img>
       </a>
 
-      <Menu
-        className="header__menu"
-        mode="horizontal"
-        defaultSelectedKeys={["1"]}
-        items={items}
-      />
+      <Menu className="header__menu" mode="horizontal" items={items} />
       <Search
         style={{ margin: "0px 32px", width: "230px", height: "33px" }}
         className="header-section__search"

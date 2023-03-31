@@ -1,0 +1,32 @@
+.idea-detail{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+   
+}
+.idea-detail__content{
+    width: 100%;
+    height: max-content;
+    min-height: 100px;
+    background-color: var(--white-color);
+    display: flex;
+    flex-direction: row;
+    padding: 24px;
+}
+.idea-detail__author-avatar{
+    width: 70px;
+    height: 70px;
+}
+.idea-detail__wrapper{
+    display: flex;
+    flex-direction: column;
+    margin: 0px 16px;
+}
+.idea-detail__content{
+    font-size: 16px;
+    margin: 4px 0px;
+    line-height: 1.6rem;
+    height: max-content;
+    margin-right: 16px;
+}

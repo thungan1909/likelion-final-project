@@ -3,11 +3,15 @@ import { Popconfirm, Table, message } from "antd";
 import { useEffect, useState } from "react";
 import UserApi from "../../../api/userApi";
 import "./customTable.css";
+import { useNavigate } from "react-router-dom";
+import AuthenApi from "../../../api/authenApi";
 
 export default function CustomTable() {
+  const navigate = useNavigate();
   const [messageApi, contextHolder] = message.useMessage();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const userId = localStorage.getItem("userId");
   const [tableParams, setTableParams] = useState({
     pagination: {
       current: 1,
@@ -81,6 +85,34 @@ export default function CustomTable() {
       });
     } catch (error) {}
   };
+  const logoutFun = async () => {
+    try {
+      const response = await AuthenApi.logout(userId);
+      localStorage.removeItem("access_token");
+      localStorage.removeItem("userId");
+      navigate(`/login`, { replace: true });
+    } catch (error) {
+      console.log("error");
+    }
+  };
+  const deleteMySelf = async (id) => {
+    try {
+      const response = await UserApi.deleteUserById(id);
+      messageApi
+        .open({
+          type: "success",
+          content: `Delete successfully`,
+          duration: 1.5,
+        })
+        .then(() => logoutFun());
+    } catch (error) {
+      messageApi.open({
+        type: "error",
+        content: `${error.data}. Please try again`,
+        duration: 3,
+      });
+    }
+  };
   const deleteUser = async (id) => {
     try {
       const response = await UserApi.deleteUserById(id);
@@ -101,7 +133,7 @@ export default function CustomTable() {
 
   useEffect(() => {
     getAllUsers();
-  }, [tableParams]);
+  }, [JSON.stringify(tableParams)]);
 
   const handleTableChange = (pagination, filters, sorter) => {
     setTableParams({
@@ -116,7 +148,11 @@ export default function CustomTable() {
     }
   };
   const handleConfirmDelete = (id) => {
-    deleteUser(id);
+    if (id === userId) {
+      deleteMySelf(id);
+    } else {
+      deleteUser(id);
+    }
   };
   return (
     <>
@@ -128,7 +164,6 @@ export default function CustomTable() {
       <Table
         style={{ margin: "16px 0px" }}
         columns={columns}
-        // rowKey={(record) => record.login.uuid}
         dataSource={data}
         pagination={tableParams.pagination}
         loading={loading}
