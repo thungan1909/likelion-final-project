@@ -1,70 +1,45 @@
-# Getting Started with Create React App
+# likelion_final_project - IDEA HUB
+## 📢Introduction
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a LIKELION FRONT-END CLASS final project. 
+Created by **Doan Thu Ngan**
 
-## Available Scripts
+- Description: A website where you can express your ideas to the globe.
 
-In the project directory, you can run:
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## How to run the program
+- The deployed website is accessible at: [Idea Hub](https://thungan-ideahub.netlify.app/)
+## 🔑 Core Requirements
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- [x] 1. Permissions: Admin & User.
+- [x] 2. Website management: List a user list in grid format (100 people, 5–10 users per page).
+- [x] 3. Direct deletion actions can be executed on the list by the admin.
+- [x] 4. Only the administrator is able to grant the delete permission.
+- [x] 5. User is immediately added to the list after creation.
+- [x] 6. The user is the only one who can edit that user.
+- [x] 7. The modify permission can only be executed by a single user
 
-### `npm test`
+## 💯 Additional and enhanced functions
+- [x] 1. Allow all visitors to view some ideas on the homepage without having to log in.
+- [x] 2. Only logged-in users can add new ideas
+- [x] 3. Permit users to view their list ideas.
+- [x] 4. Let the website's administrator to view some statistics (new users, new ideas in this month, ...)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 💯 The unique feature the project
+- [x] 1. In addition to the ones already available, I've created a few more APIs to help websites be more creative. 
+- Examples of APIs for generating, displaying, or viewing user-generated ideas
+- Add APIs to see charts and statistics for administrators.
+- To report errors when logging in and registering, edit the APIs related to authentication.
+- ...
+- [x] 2. All of the forms on the website have been validated.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## User interface (UI) for PC:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![image](https://user-images.githubusercontent.com/55989458/218959755-a3293197-3e0f-42aa-8549-41eabb333e90.png)
+![image](https://user-images.githubusercontent.com/55989458/218974904-6883932e-627f-4fb8-98c3-a7e7dec9f036.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+##  User interface (UI) for mobile:
+![image](https://user-images.githubusercontent.com/55989458/218960677-7891b026-5826-4d3c-ae0f-ebd39157360e.png)
