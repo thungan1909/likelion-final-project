@@ -38,12 +38,22 @@ Created by **Doan Thu Ngan**
 ## User interface (UI) for PC:
 
 
-![homepage_user](https://user-images.git![registerpage](https://user-images.githubusercontent.com/55989458/229026895-f7b7e258-892a-4d23-a45f-b11a59f05292.PNG)
-
+- Home page UI:
+* For guest (not login)
 ![home_guest](https://user-images.githubusercontent.com/55989458/229026964-2abb7d9b-3a7d-4c98-a68f-c4f97005d5dc.PNG)
-
+* For user (logged in)
+![homepage_user](https://user-images.githubusercontent.com/55989458/229027569-e45a0d7c-1119-48e2-99de-b1c82eae8990.PNG)
+- Register UI: 
 ![registerpage](https://user-images.githubusercontent.com/55989458/229026984-2dacb6cf-32f3-474e-9f42-5b5a120167e5.PNG)
+- Login UI:
 ![loginpage](https://user-images.githubusercontent.com/55989458/229027021-4bc22a5b-f6a4-4c35-99dd-afc2113f5818.PNG)
+- Profile page UI:
+![Profilepage](https://user-images.githubusercontent.com/55989458/229028020-d40fd01b-4172-40be-b57d-4b02a4713ae3.PNG)
+- Admin Dashboard - OverviewUI: 
+![adminDashboard_overview](https://user-images.githubusercontent.com/55989458/229028289-b3b724f1-170c-4a9a-b5fe-61c6109bb2e7.PNG)
+- Admin Dashboard - Users management![adminDashboard_usermanagement](https://user-images.githubusercontent.com/55989458/229028512-2f0da493-5cb0-45e8-920e-a6e29e675028.PNG)
+
+
 
 
 ##  User interface (UI) for mobile:
