@@ -34,7 +34,7 @@ Created by **Doan Thu Ngan**
 - ...
 - [x] 2. All of the forms on the website have been validated.
 ## 📌Instructions on how to run the project
-1. Download both Frontend and Backend folders to your computer. Open them with Visual Studio Code
+1. Download both [Frontend](https://github.com/thungan1909/likelion-final-project) and [Backend](https://github.com/thungan1909/likelion-final-project-BE) folders to your computer. Open them with Visual Studio Code
 2. Connect to database on MongoDB
 - Add your existing IP Addresses on MongoDB
 - Replace MONGODB_URL in the .env file of the backend folder with your mongodb link
