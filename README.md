@@ -4,7 +4,11 @@
 This is a LIKELION FRONT-END CLASS final project. 
 Created by **Doan Thu Ngan**
 
-- Description: A website where you can express your ideas to the globe.
+ Description: 
+- A website where you can express your ideas to the globe.
+- Visitors can see some ideas and idea's detail 
+- Users (logged-in) can add new ideas, see their ideas and update their profile
+- Admin can manage users by seeing list users, deleting user, and viewing some statistic
 
 
 
