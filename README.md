@@ -37,9 +37,14 @@ Created by **Doan Thu Ngan**
 
 ## User interface (UI) for PC:
 
-![image](https://user-images.githubusercontent.com/55989458/218959755-a3293197-3e0f-42aa-8549-41eabb333e90.png)
-![image](https://user-images.githubusercontent.com/55989458/218974904-6883932e-627f-4fb8-98c3-a7e7dec9f036.png)
+
+![homepage_user](https://user-images.git![registerpage](https://user-images.githubusercontent.com/55989458/229026895-f7b7e258-892a-4d23-a45f-b11a59f05292.PNG)
+
+![home_guest](https://user-images.githubusercontent.com/55989458/229026964-2abb7d9b-3a7d-4c98-a68f-c4f97005d5dc.PNG)
+
+![registerpage](https://user-images.githubusercontent.com/55989458/229026984-2dacb6cf-32f3-474e-9f42-5b5a120167e5.PNG)
+![loginpage](https://user-images.githubusercontent.com/55989458/229027021-4bc22a5b-f6a4-4c35-99dd-afc2113f5818.PNG)
 
 
 ##  User interface (UI) for mobile:
-![image](https://user-images.githubusercontent.com/55989458/218960677-7891b026-5826-4d3c-ae0f-ebd39157360e.png)
+
