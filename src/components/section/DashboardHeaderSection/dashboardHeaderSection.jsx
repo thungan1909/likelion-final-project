@@ -1,5 +1,5 @@
 import { Header } from "antd/es/layout/layout";
-import LogoImg from "../../../assets/img/logo.png";
+import LogoImg from "../../../assets/img/logo-1.PNG";
 import AccountDropdown from "../../base/AccountDropdown/accountDropdown";
 export default function DashboardHeaderSection({ user }) {
   return (

@@ -9,9 +9,10 @@ import {
   QuestionCircleOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Button, Input, Modal, Popconfirm } from "antd";
+import { Button, Input, Modal, Popconfirm, message } from "antd";
 import HeaderSection from "../../components/section/HeaderSection/headerSection";
 export default function Profile() {
+  const [messageApi, contextHolder] = message.useMessage();
   const userId = localStorage.getItem("userId");
   const [user, setUser] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -68,9 +69,20 @@ export default function Profile() {
 
   const updateUserInfo = async () => {
     try {
-      UserApi.updateUser(userId, newData);
+      const response = await UserApi.updateUser(userId, newData);
       setIsUpdateUser(true);
-    } catch (error) {}
+      messageApi.open({
+        type: "success",
+        content: `Update profile successfully`,
+        duration: 1.5,
+      });
+    } catch (error) {
+      messageApi.open({
+        type: "error",
+        content: `${error.data}. Please try again`,
+        duration: 3,
+      });
+    }
   };
   const handleOk = () => {
     updateUserInfo();
@@ -79,6 +91,7 @@ export default function Profile() {
 
   return (
     <div className="profile">
+      {contextHolder}
       <HeaderSection isAuthen={true} />
       <div style={{ display: "flex", flexDirection: "column", margin: "24px" }}>
         <div className="profile-banner">

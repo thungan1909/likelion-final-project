@@ -32,7 +32,13 @@ export default function Login() {
           userId: response._id,
         })
       );
-      navigate("/home", { replace: "true" });
+      messageApi
+        .open({
+          type: "success",
+          content: `Login successfully. Welcome back`,
+          duration: 1.5,
+        })
+        .then(() => navigate("/home", { replace: "true" }));
     } catch (error) {
       messageApi.open({
         type: "error",
@@ -98,6 +104,16 @@ export default function Login() {
                 required: true,
                 message: "This field is required!",
               },
+              {
+                min: 6,
+                message:
+                  "Your username needs to be between 6 and 20 characters long",
+              },
+              {
+                max: 20,
+                message:
+                  "Your username needs to be between 6 and 20 characters long",
+              },
             ]}
             style={{ width: "380px", marginBottom: "8px" }}
           >
@@ -125,6 +141,12 @@ export default function Login() {
               {
                 required: true,
                 message: "This field is required!",
+              },
+              {
+                pattern:
+                  "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{6,30}$",
+                message:
+                  "Your password needs to be between 6 and 30 characters long and contain one uppercase letter, one lowercase, one number and one special character.",
               },
             ]}
             style={{ width: "380px", marginBottom: "8px" }}

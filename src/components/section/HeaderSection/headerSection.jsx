@@ -1,6 +1,6 @@
 import { Header } from "antd/es/layout/layout";
 import "./headerSection.css";
-import LogoImg from "../../../assets/img/logo.png";
+import LogoImg from "../../../assets/img/logo-1.PNG";
 import { Input, Menu } from "antd";
 import UserSection from "../UserSection/userSection";
 const { Search } = Input;

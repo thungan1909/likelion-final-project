@@ -56,7 +56,7 @@
 .profile-detail__value{
   color: var(--text-in-primary-color);
 }
-.profile_editBtn{
+.profile__editBtn{
   width: 50px;
   position: absolute;
   right: 0;

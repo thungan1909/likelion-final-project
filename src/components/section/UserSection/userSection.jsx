@@ -54,7 +54,7 @@ export default function UserSection({ isAuthen, setIsAddNewIdea }) {
       messageApi.open({
         type: "success",
         content: "Add new ideas successfully",
-        duration: 5,
+        duration: 3,
       });
       setIsAddNewIdea(true);
     } catch (error) {}

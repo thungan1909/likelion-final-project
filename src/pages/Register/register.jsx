@@ -34,14 +34,18 @@ export default function Register() {
   const register = async (req) => {
     try {
       const response = await AuthenApi.createUser(req);
-      console.log(response);
-      //TODO: Return exists users error
-      navigate("/login", { replace: "true" });
+      messageApi
+        .open({
+          type: "success",
+          content: `Register successfully. Log in to join us now`,
+          duration: 1.5,
+        })
+        .then(() => navigate("/login", { replace: "true" }));
     } catch (error) {
       messageApi.open({
         type: "error",
         content: `${error.data}. Please try again`,
-        duration: 3,
+        duration: 2,
       });
     }
   };
@@ -145,12 +149,12 @@ export default function Register() {
               {
                 min: 6,
                 message:
-                  "Your password needs to be between 6 and 20 characters long",
+                  "Your username needs to be between 6 and 20 characters long",
               },
               {
                 max: 20,
                 message:
-                  "Your password needs to be between 6 and 20 characters long",
+                  "Your username needs to be between 6 and 20 characters long",
               },
             ]}
             style={{ width: "380px", marginBottom: "8px" }}

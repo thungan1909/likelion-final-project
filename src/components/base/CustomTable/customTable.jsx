@@ -1,10 +1,11 @@
 import { QuestionCircleOutlined } from "@ant-design/icons";
-import { Popconfirm, Table } from "antd";
+import { Popconfirm, Table, message } from "antd";
 import { useEffect, useState } from "react";
 import UserApi from "../../../api/userApi";
 import "./customTable.css";
 
 export default function CustomTable() {
+  const [messageApi, contextHolder] = message.useMessage();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [tableParams, setTableParams] = useState({
@@ -82,9 +83,20 @@ export default function CustomTable() {
   };
   const deleteUser = async (id) => {
     try {
-      UserApi.deleteUserById(id);
+      const response = await UserApi.deleteUserById(id);
       getAllUsers();
-    } catch (error) {}
+      messageApi.open({
+        type: "success",
+        content: `Delete user successfully`,
+        duration: 1.5,
+      });
+    } catch (error) {
+      messageApi.open({
+        type: "error",
+        content: `${error.data}. Please try again`,
+        duration: 3,
+      });
+    }
   };
 
   useEffect(() => {
@@ -108,6 +120,7 @@ export default function CustomTable() {
   };
   return (
     <>
+      {contextHolder}
       <span>
         There are <span style={{ fontWeight: "600" }}>{data.length}</span> users
         in total.

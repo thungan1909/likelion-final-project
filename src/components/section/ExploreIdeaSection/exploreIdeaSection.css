@@ -1,7 +1,9 @@
 
 .exploreIdea__empty{
-    font-size: 32px;
+    font-size: 24px;
     color: var(--white-color);
+    text-align: center;
+    margin: 24px;
 
 }
 /* Tablet */
