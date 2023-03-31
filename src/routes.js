@@ -4,6 +4,7 @@ import UserManagement from "./pages/EmployeeManagement/employeeManagement";
 
 import Home from "./pages/Home/home";
 import Login from "./pages/Login/login";
+import MyIdeas from "./pages/MyIdeas/myIdeas";
 import NotFound from "./pages/NotFound/notFound";
 import Profile from "./pages/Profile/profile";
 import ProtectedAdmin from "./pages/ProtectedAuth/protectedAdmin";
@@ -67,6 +68,16 @@ const routes = [
     component: (
       <ProtectedAuth>
           <Profile />
+      </ProtectedAuth>
+    ),
+  },
+  {
+    key: "myideas",
+    name: "My ideas",
+    route: "/myideas",
+    component: (
+      <ProtectedAuth>
+          <MyIdeas />
       </ProtectedAuth>
     ),
   },

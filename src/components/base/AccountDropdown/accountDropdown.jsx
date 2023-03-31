@@ -36,11 +36,7 @@ export default function AccountDropdown({ user }) {
     },
     {
       key: "2",
-      label: (
-        <a href="/myidea" target="_blank">
-          My ideas
-        </a>
-      ),
+      label: <a href="/myideas">My ideas</a>,
     },
     {
       key: "3",

@@ -35,4 +35,13 @@ export default class IdeaApi {
       throw error.response;
     }
   }
+  static async getIdeasById(userId) {
+    try{
+      const response = await AxiosClient.get(`idea/userId/${userId}`);
+      return response;
+    }
+    catch(error){
+      throw error.response;
+    }
+  }
 }
