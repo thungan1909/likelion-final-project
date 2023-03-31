@@ -33,8 +33,18 @@ Created by **Doan Thu Ngan**
 - To report errors when logging in and registering, edit the APIs related to authentication.
 - ...
 - [x] 2. All of the forms on the website have been validated.
-
-
+## 📌Instructions on how to run the project
+1. Download both Frontend and Backend folders to your computer. Open them with Visual Studio Code
+2. Connect to database on MongoDB
+- Add your existing IP Addresses on MongoDB
+- Replace MONGODB_URL in the .env file of the backend folder with your mongodb link
+3. Run Backend
+- Run the line up cd backend to point to the backend directory
+- Run the line up npm i to install the necessary modules
+- Run command line npm start to start the backend
+4. Run FrontEnd
+- Run the line up npm i to install the necessary modules
+- Run command line npm start to start the backend
 ## User interface (UI) for PC:
 
 
