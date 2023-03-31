@@ -38,20 +38,23 @@ Created by **Doan Thu Ngan**
 ## User interface (UI) for PC:
 
 
-- Home page UI:
+- Home page:
 * For guest (not login)
 ![home_guest](https://user-images.githubusercontent.com/55989458/229026964-2abb7d9b-3a7d-4c98-a68f-c4f97005d5dc.PNG)
 * For user (logged in)
-![homepage_user](https://user-images.githubusercontent.com/55989458/229027569-e45a0d7c-1119-48e2-99de-b1c82eae8990.PNG)
-- Register UI: 
+![homepage_user](https://user-images.githubusercontent.com/55989458/229097144-6798807e-9a0a-4a55-b017-ec79569b0f21.PNG)
+- Register: 
 ![registerpage](https://user-images.githubusercontent.com/55989458/229026984-2dacb6cf-32f3-474e-9f42-5b5a120167e5.PNG)
-- Login UI:
+- Login:
 ![loginpage](https://user-images.githubusercontent.com/55989458/229027021-4bc22a5b-f6a4-4c35-99dd-afc2113f5818.PNG)
-- Profile page UI:
+- Profile page:
 ![Profilepage](https://user-images.githubusercontent.com/55989458/229028020-d40fd01b-4172-40be-b57d-4b02a4713ae3.PNG)
-- Admin Dashboard - OverviewUI: 
+- Idea detail page
+![idea-detail](https://user-images.githubusercontent.com/55989458/229097402-499f9b5e-e03c-4907-8eae-64a41e460e10.PNG)
+- Admin Dashboard - Overview: 
 ![adminDashboard_overview](https://user-images.githubusercontent.com/55989458/229028289-b3b724f1-170c-4a9a-b5fe-61c6109bb2e7.PNG)
-- Admin Dashboard - Users management![adminDashboard_usermanagement](https://user-images.githubusercontent.com/55989458/229028512-2f0da493-5cb0-45e8-920e-a6e29e675028.PNG)
+- Admin Dashboard - Users management
+![adminDashboard_usermanagement](https://user-images.githubusercontent.com/55989458/229028512-2f0da493-5cb0-45e8-920e-a6e29e675028.PNG)
 
 
 
