@@ -4,7 +4,11 @@
 This is a LIKELION FRONT-END CLASS final project. 
 Created by **Doan Thu Ngan**
 
-- Description: A website where you can express your ideas to the globe.
+ Description: 
+- A website where you can express your ideas to the globe.
+- Visitors can see some ideas and idea's detail 
+- Users (logged-in) can add new ideas, see their ideas and update their profile
+- Admin can manage users by seeing list users, deleting user, and viewing some statistic
 
 
 
@@ -33,8 +37,18 @@ Created by **Doan Thu Ngan**
 - To report errors when logging in and registering, edit the APIs related to authentication.
 - ...
 - [x] 2. All of the forms on the website have been validated.
-
-
+## 📌Instructions on how to run the project
+1. Download both [Frontend](https://github.com/thungan1909/likelion-final-project) and [Backend](https://github.com/thungan1909/likelion-final-project-BE) folders to your computer. Open them with Visual Studio Code
+2. Connect to database on MongoDB
+- Add your existing IP Addresses on MongoDB
+- Replace MONGODB_URL in the .env file of the backend folder with your mongodb link
+3. Run Backend
+- Run the line up cd backend to point to the backend directory
+- Run the line up npm i to install the necessary modules
+- Run command line npm start to start the backend
+4. Run FrontEnd
+- Run the line up npm i to install the necessary modules
+- Run command line npm start to start the backend
 ## User interface (UI) for PC:
 
 
