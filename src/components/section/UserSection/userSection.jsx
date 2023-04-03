@@ -14,17 +14,18 @@ export default function UserSection({ isAuthen, setIsAddNewIdea }) {
   const [user, setUser] = useState("");
   const [messageApi, contextHolder] = message.useMessage();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [initialContent, setInitialContent] = useState("");
-  //  const [contentDefault, setContentDefault] = useState("");
   const getCurrentUser = async () => {
     try {
       const response = await UserApi.getUserById(userId);
       setUser(response);
     } catch (error) {}
   };
+  const resetAllData = () => {
+    setIdea({ userId: "", content: "" });
+  };
 
   useEffect(() => {
-    if (userId.length > 0) {
+    if (userId && userId.length > 0) {
       getCurrentUser();
     }
   }, [userId]);
@@ -37,35 +38,38 @@ export default function UserSection({ isAuthen, setIsAddNewIdea }) {
   };
 
   const handleClickAddIdeaBtn = () => {
-    setInitialContent("");
     setIsModalOpen(true);
   };
   const handleClickOkBtn = () => {
-    if (idea && idea.content.length > 0) {
+    if (idea && idea.content.trim().length > 0) {
       handleCreateIdea();
-      resetAllData();
       setIsModalOpen(false);
+      resetAllData();
+    } else {
+      messageApi.open({
+        type: "error",
+        content: "Content field cannot be empty",
+        duration: 3,
+      });
     }
-    //TODO: show error message empty field
   };
   const handleCreateIdea = async () => {
     try {
-      IdeaApi.addIdea(idea);
+      const response = await IdeaApi.addIdea(idea);
+      setIsAddNewIdea(true);
       messageApi.open({
         type: "success",
         content: "Add new ideas successfully",
         duration: 3,
       });
-      setIsAddNewIdea(true);
     } catch (error) {}
   };
 
-  const resetAllData = () => {};
-
   const handleConfirmCancel = () => {
-    setInitialContent("JK");
     setIsModalOpen(false);
+    resetAllData();
   };
+
   if (isAuthen === true) {
     return (
       <div className="user-section_Wrapper">
@@ -81,66 +85,69 @@ export default function UserSection({ isAuthen, setIsAddNewIdea }) {
           <BellFilled />
         </button>
         <AccountDropdown user={user}></AccountDropdown>
-        <Modal
-          title="Add new idea"
-          open={isModalOpen}
-          onOk={handleClickOkBtn}
-          className="user-section-modal"
-          footer={[
-            <Popconfirm
-              title="Confirm cancel"
-              description="Your unsaved changes will be lost if you confirm cancellation. Are you sure to cancel add new idea?"
-              okText="Yes"
-              cancelText="No"
-              onConfirm={handleConfirmCancel}
-              icon={<QuestionCircleOutlined style={{ color: "red" }} />}
-            >
-              <Button>Cancel</Button>
-            </Popconfirm>,
-            <Button key="submit" type="primary" onClick={handleClickOkBtn}>
-              Add
-            </Button>,
-          ]}
-        >
-          <Form>
-            <Form.Item
-              label={
-                <label
-                  style={{
-                    color: "var(--primary-color)",
-                    fontWeight: "bold",
-                  }}
-                >
-                  Content
-                </label>
-              }
-              name="content"
-              rules={[
-                {
-                  required: true,
-                  message: "This field is required!",
-                },
-              ]}
-              style={{ width: "380px", marginBottom: "8px" }}
-            >
-              <TextArea
-                className="user-section-modal__input"
-                placeholder="Your idea..."
+        {/* Bổ sung isModalOpen ở đây để sửa lỗi khi mở modal lại, modal không reset field */}
+        {/* Lý do:  modal isn't being unmounted, but only not displayed. (Modal không thực sự unmounted mà chỉ là không hiển thị ra thôi) */}
+        {isModalOpen && (
+          <Modal
+            title="Add new idea"
+            open={isModalOpen}
+            onOk={handleClickOkBtn}
+            className="user-section-modal"
+            footer={[
+              <Popconfirm
+                title="Confirm cancel"
+                description="Your unsaved changes will be lost if you confirm cancellation. Are you sure to cancel add new idea?"
+                okText="Yes"
+                cancelText="No"
+                onConfirm={handleConfirmCancel}
+                icon={<QuestionCircleOutlined style={{ color: "red" }} />}
+              >
+                <Button>Cancel</Button>
+              </Popconfirm>,
+              <Button key="submit" type="primary" onClick={handleClickOkBtn}>
+                Add
+              </Button>,
+            ]}
+          >
+            <Form>
+              <Form.Item
+                label={
+                  <label
+                    style={{
+                      color: "var(--primary-color)",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Content
+                  </label>
+                }
                 name="content"
-                rows={5}
-                onChange={(e) => {
-                  setIdea({
-                    userId: userId,
-                    content: e.target.value,
-                  });
-                }}
-                defaultValue={initialContent}
-                allowClear
-                onPressEnter
-              />
-            </Form.Item>
-          </Form>
-        </Modal>
+                rules={[
+                  {
+                    required: true,
+                    message: "This field is required!",
+                  },
+                ]}
+                style={{ width: "380px", marginBottom: "8px" }}
+              >
+                <TextArea
+                  className="user-section-modal__input"
+                  placeholder="Your idea..."
+                  name="content"
+                  rows={5}
+                  onChange={(e) => {
+                    setIdea({
+                      userId: userId,
+                      content: e.target.value,
+                    });
+                  }}
+                  value={idea.content}
+                  allowClear
+                />
+              </Form.Item>
+            </Form>
+          </Modal>
+        )}
       </div>
     );
   } else {

@@ -6,23 +6,29 @@ import HeaderSection from "../../components/section/HeaderSection/headerSection"
 
 export default function MyIdeas({ isAuthen }) {
   const [data, setData] = useState([]);
+  const [count, setCount] = useState(0);
   const userId = localStorage.getItem("userId");
   const [isAddNewIdea, setIsAddNewIdea] = useState(false);
   const showAllMyIdeas = async () => {
     try {
       const response = await IdeaApi.getIdeasByUserId(userId);
+      response.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
       setData(response);
     } catch (error) {}
   };
+  // useEffect(() => {
+  //   if (userId !== undefined) {
+  //     showAllMyIdeas();
+  //   }
+  // }, []);
   useEffect(() => {
     if (userId !== undefined) {
       showAllMyIdeas();
     }
-  }, []);
-
+  }, [count]);
   useEffect(() => {
     if (isAddNewIdea) {
-      showAllMyIdeas();
+      setCount((prevCount) => prevCount + 1);
       setIsAddNewIdea(false);
     }
   }, [isAddNewIdea]);

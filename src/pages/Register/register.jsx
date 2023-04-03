@@ -117,7 +117,7 @@ export default function Register() {
               },
               {
                 required: true,
-                message: "This field is required",
+                message: "This field is required!",
               },
             ]}
             style={{ width: "380px", marginBottom: "8px" }}

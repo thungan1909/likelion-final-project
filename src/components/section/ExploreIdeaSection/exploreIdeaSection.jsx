@@ -9,19 +9,33 @@ export default function ExploreIdeaSection({
   setIsAddNewIdea,
 }) {
   const [data, setData] = useState([]);
+  const [count, setCount] = useState(0);
   const showAllIdeas = async () => {
     try {
       const response = await IdeaApi.getAllIdea();
+      response.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
       setData(response);
     } catch (error) {}
   };
-  useEffect(() => {
-    showAllIdeas();
-  }, []);
 
   useEffect(() => {
+    showAllIdeas();
+  }, [count]);
+  //cách cũ
+  // useEffect(() => {
+  //   showAllIdeas();
+  // }, []);
+  useEffect(() => {
     if (isAddNewIdea) {
-      showAllIdeas();
+      //giải quyết vấn đề khi thêm một idea mới thì trang web không cập nhật ngay lập tức mà phải reload lại mới cập nhật
+      //Cách làm cũ:showAllIdeas()
+      //lý do: Khi state isAddNewIdea = true thì nó sẽ chạy bên trong useEffect này => và chạy hàm showAllIdeas()
+      //khi đó state data sẽ cập nhật
+      //mà mỗi làn re-render lại component này, state data lại bị cập nhật quay về mảng rỗng
+      //=> giải quyết: thêm state để quản lý số lần thêm mới ý tưởng
+      //=>count thay đổi => showAllIdeas()
+      //=> data thay đổi => re-render lại component và hiển thị ý tưởng vừa thêm
+      setCount((prevCount) => prevCount + 1);
       setIsAddNewIdea(false);
     }
   }, [isAddNewIdea]);
@@ -36,7 +50,7 @@ export default function ExploreIdeaSection({
           fontSize: "40px",
         }}
       >
-        Top ideas
+        Explore ideas
       </h1>
       <Row gutter={16} className="exploreIdea__row">
         {data?.length === 0 ? (

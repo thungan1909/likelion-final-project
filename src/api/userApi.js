@@ -53,4 +53,13 @@ export default class UserApi {
       throw error.response;
     }
   }
+  static async searchUserAPI(query) {
+    try {
+      const response = await AxiosClient.get(`user/search/${query}`);
+      return response;
+    }
+    catch (error) {
+      throw error.response;
+    }
+  }
 }

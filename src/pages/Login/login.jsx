@@ -36,14 +36,14 @@ export default function Login() {
         .open({
           type: "success",
           content: `Login successfully. Welcome back`,
-          duration: 1.5,
+          duration: 1,
         })
         .then(() => navigate("/home", { replace: "true" }));
     } catch (error) {
       messageApi.open({
         type: "error",
         content: `${error.data}. Please try again`,
-        duration: 3,
+        duration: 2,
       });
     }
   };

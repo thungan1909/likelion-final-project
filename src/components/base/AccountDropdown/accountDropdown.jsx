@@ -23,7 +23,7 @@ export default function AccountDropdown({ user }) {
     {
       key: "1",
       label: (
-        <a href="/profile" className="account-menu__user-info" target="_blank">
+        <a href="/profile" className="account-menu__user-info">
           <span style={{ fontWeight: "bold" }}>{user.username}</span>
           <span>{user.isAdmin ? "Admin" : "User"}</span>
           <Divider
@@ -41,7 +41,7 @@ export default function AccountDropdown({ user }) {
     {
       key: "3",
       label: (
-        <a href="/mylikes" target="_blank">
+        <a href="/mylikes">
           My likes
           <Divider
             style={{
@@ -57,9 +57,7 @@ export default function AccountDropdown({ user }) {
         <>
           {user.isAdmin ? (
             <>
-              <a target={"_blank"} href="/overview">
-                Admin Dashboard
-              </a>
+              <a href="/overview">Admin Dashboard</a>
               <Divider
                 style={{
                   marginBlock: "4px",
@@ -74,24 +72,16 @@ export default function AccountDropdown({ user }) {
     },
     {
       key: "5",
-      label: (
-        <a href="/profile" target="_blank">
-          Profile{" "}
-        </a>
-      ),
+      label: <a href="/profile">Profile </a>,
     },
     {
       key: "6",
-      label: (
-        <a href="/settings" target="_blank">
-          Settings{" "}
-        </a>
-      ),
+      label: <a href="/settings">Settings </a>,
     },
     {
       key: "7",
       label: (
-        <a target="_blank" href="#" onClick={handleLogout}>
+        <a href="#" onClick={handleLogout}>
           Log out
         </a>
       ),

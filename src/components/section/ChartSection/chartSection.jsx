@@ -57,7 +57,7 @@ export default function ChartSection() {
   return (
     <>
       <BarChart
-        width={1000}
+        width={1200}
         height={250}
         data={mergedArr}
         barGap={12}
