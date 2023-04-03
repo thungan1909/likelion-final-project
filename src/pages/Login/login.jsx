@@ -115,7 +115,7 @@ export default function Login() {
                   "Your username needs to be between 6 and 20 characters long",
               },
             ]}
-            style={{ width: "380px", marginBottom: "8px" }}
+            style={{ width: "380px", marginBottom: "8px", width: "100%" }}
           >
             <Input
               prefix={<UserOutlined className="site-form-item-icon" />}

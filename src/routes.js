@@ -1,11 +1,13 @@
 import DashboardLayout from "./layout/LayoutContainers/DashboardLayout/dashboardLayout";
 import AdminDashboard from "./pages/AdminDashboard/adminDashboard";
+import ComingSoon from "./pages/ComingSoon/comingSoon";
 import UserManagement from "./pages/EmployeeManagement/employeeManagement";
 
 import Home from "./pages/Home/home";
 import IdeaDetail from "./pages/IdeaDetail/ideaDetail";
 import Login from "./pages/Login/login";
 import MyIdeas from "./pages/MyIdeas/myIdeas";
+import MyLikes from "./pages/MyLikes/myLikes";
 import NotFound from "./pages/NotFound/notFound";
 import Profile from "./pages/Profile/profile";
 import ProtectedAdmin from "./pages/ProtectedAuth/protectedAdmin";
@@ -78,6 +80,26 @@ const routes = [
     component: (
       <ProtectedAuth>
         <MyIdeas />
+      </ProtectedAuth>
+    ),
+  },
+  {
+    key: "mylikes",
+    name: "My likes",
+    route: "/mylikes",
+    component: (
+      <ProtectedAuth>
+        <ComingSoon/>
+      </ProtectedAuth>
+    ),
+  },
+  {
+    key: "settings",
+    name: "Settings",
+    route: "/settings",
+    component: (
+      <ProtectedAuth>
+        <ComingSoon/>
       </ProtectedAuth>
     ),
   },

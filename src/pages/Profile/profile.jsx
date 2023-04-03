@@ -9,27 +9,20 @@ import {
   QuestionCircleOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Button, Input, Modal, Popconfirm, message } from "antd";
+import { Button, Form, Input, Modal, Popconfirm, message } from "antd";
 import HeaderSection from "../../components/section/HeaderSection/headerSection";
 export default function Profile() {
+  const [userId, setUserId] = useState(localStorage.getItem("userId"));
   const [messageApi, contextHolder] = message.useMessage();
-  const userId = localStorage.getItem("userId");
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState({ username: "", email: "" });
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [newData, setNewData] = useState(null);
+  const [form] = Form.useForm();
+  const [newData, setNewData] = useState({ email: "", username: "" });
   const [isUpdateUser, setIsUpdateUser] = useState(false);
-  const [emailDefault, setEmailDefault] = useState("");
-  const [usernameDefault, setUsernameDefault] = useState("");
-  const getCurrentUser = async () => {
-    try {
-      const response = await UserApi.getUserById(userId);
-      setUser(response);
-      setEmailDefault(response.email);
-      setUsernameDefault(response.username);
-    } catch (error) {}
-  };
   useEffect(() => {
-    getCurrentUser();
+    if (userId && userId.length > 0) {
+      getCurrentUser();
+    }
   }, [userId]);
   useEffect(() => {
     if (isUpdateUser) {
@@ -37,34 +30,34 @@ export default function Profile() {
       setIsUpdateUser(false);
     }
   }, [isUpdateUser]);
-  useEffect(() => {}, [emailDefault, usernameDefault]);
+  const getCurrentUser = async () => {
+    try {
+      const response = await UserApi.getUserById(userId);
+      setUser(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  const handleEditProfile = () => {
+  const handleClickEditProfileBtn = () => {
     setIsModalOpen(true);
   };
   const resetAllData = () => {
-    setEmailDefault(user.email);
-    setUsernameDefault(user.username);
+    setNewData({ email: user.email, username: user.username });
   };
   const handleConfirmCancel = () => {
     resetAllData();
     setIsModalOpen(false);
-  };
-  const handleCancel = () => {};
-
-  const handleChangeEmail = (e) => {
-    setEmailDefault(e.target.value);
-    setNewData({
-      ...newData,
-      [e.target.name]: e.target.value,
+    form.setFieldsValue({
+      email: user.email,
+      username: user.username,
     });
+  };
+  const handleChangeEmail = (e) => {
+    setNewData({ ...newData, email: e.target.value });
   };
   const handleChangeUsername = (e) => {
-    setUsernameDefault(e.target.value);
-    setNewData({
-      ...newData,
-      [e.target.name]: e.target.value,
-    });
+    setNewData({ ...newData, username: e.target.value });
   };
 
   const updateUserInfo = async () => {
@@ -76,7 +69,9 @@ export default function Profile() {
         content: `Update profile successfully`,
         duration: 1.5,
       });
+      setIsModalOpen(false);
     } catch (error) {
+      console.log(error);
       messageApi.open({
         type: "error",
         content: `${error.data}. Please try again`,
@@ -84,104 +79,196 @@ export default function Profile() {
       });
     }
   };
-  const handleOk = () => {
-    updateUserInfo();
-    setIsModalOpen(false);
+  const handleClickUpdateBtn = () => {
+    form
+      .validateFields()
+      .then((values) => {
+        console.log("Form values:", values);
+        updateUserInfo();
+        // setIsModalOpen(false);
+      })
+      .catch((errorInfo) => {
+        console.log("Validation error:", errorInfo);
+      });
   };
 
-  return (
-    <div className="profile">
-      {contextHolder}
-      <HeaderSection isAuthen={true} />
-      <div style={{ display: "flex", flexDirection: "column", margin: "24px" }}>
-        <div className="profile-banner">
-          <div className="profile-info">
-            <img
-              alt="profile image"
-              className="profile-avt-img"
-              src={ProfileImg}
-            ></img>
-            <span className="profile-info__username"> {user.username} </span>
-          </div>
-          <Button className="profile__editBtn btn" onClick={handleEditProfile}>
-            <EditOutlined className="profile__editBtn__icon"></EditOutlined>
-          </Button>
-        </div>
-
-        <div className="profile-detail">
-          <div className="profile-detail__wrapper">
-            <div className="profile-detail__title">Email</div>
-            <div className="profile-detail__value">{user.email}</div>
-          </div>
-          <div className="profile-detail__wrapper">
-            <div className="profile-detail__title">Role</div>
-            <div className="profile-detail__value">
-              {user.isAdmin ? "Admin" : "User"}
+  if (user._id && user._id.length > 0) {
+    return (
+      <div className="profile">
+        {contextHolder}
+        <HeaderSection isAuthen={true} />
+        <div
+          style={{ display: "flex", flexDirection: "column", margin: "24px" }}
+        >
+          <div className="profile-banner">
+            <div className="profile-info">
+              <img
+                alt="profile image"
+                className="profile-avt-img"
+                src={ProfileImg}
+              ></img>
+              <span className="profile-info__username"> {user.username} </span>
             </div>
-          </div>
-          <div className="profile-detail__wrapper">
-            <div className="profile-detail__title">Country</div>
-            <div className="profile-detail__value">
-              Ho Chi Minh City, Viet Nam
-            </div>
-          </div>
-        </div>
-      </div>
-      <Modal
-        title="Edit profile"
-        open={isModalOpen}
-        onOk={handleOk}
-        onCancel={handleCancel}
-        // closable={false}
-        closeIcon={
-          <>
-            <Popconfirm
-              title="Confirm cancel"
-              description="Your unsaved changes will be lost if you confirm cancellation. Are you sure to cancel edit profile?"
-              okText="Yes"
-              cancelText="No"
-              onConfirm={handleConfirmCancel}
-              icon={<QuestionCircleOutlined style={{ color: "red" }} />}
+            <Button
+              className="profile__editBtn btn"
+              onClick={handleClickEditProfileBtn}
             >
-              <CloseOutlined />
-            </Popconfirm>
-          </>
-        }
-        footer={[
-          <Popconfirm
-            title="Confirm cancel"
-            description="Your unsaved changes will be lost if you confirm cancellation. Are you sure to cancel edit profile?"
-            okText="Yes"
-            cancelText="No"
-            onConfirm={handleConfirmCancel}
-            icon={<QuestionCircleOutlined style={{ color: "red" }} />}
-          >
-            <Button onClick={handleCancel}>Cancel</Button>
-          </Popconfirm>,
-          <Button key="submit" type="primary" onClick={handleOk}>
-            Ok
-          </Button>,
-        ]}
-      >
-        <div className="profile-detail__title">Email</div>
-        <Input
-          className="modal__input"
-          prefix={<MailOutlined className="site-form-item-icon" />}
-          defaultValue={emailDefault}
-          value={emailDefault}
-          name="email"
-          onChange={handleChangeEmail}
-        />
+              <EditOutlined className="profile__editBtn__icon"></EditOutlined>
+            </Button>
+          </div>
 
-        <div className="profile-detail__title">Username</div>
-        <Input
-          className="modal__input"
-          prefix={<UserOutlined className="site-form-item-icon" />}
-          defaultValue={usernameDefault}
-          onChange={handleChangeUsername}
-          name="username"
-        />
-      </Modal>
-    </div>
-  );
+          <div className="profile-detail">
+            <div className="profile-detail__wrapper">
+              <div className="profile-detail__title">Email</div>
+              <div className="profile-detail__value">{user.email}</div>
+            </div>
+            <div className="profile-detail__wrapper">
+              <div className="profile-detail__title">Role</div>
+              <div className="profile-detail__value">
+                {user.isAdmin ? "Admin" : "User"}
+              </div>
+            </div>
+            <div className="profile-detail__wrapper">
+              <div className="profile-detail__title">Country</div>
+              <div className="profile-detail__value">
+                Ho Chi Minh City, Viet Nam
+              </div>
+            </div>
+          </div>
+        </div>
+        {isModalOpen && (
+          <Modal
+            title={<h2 className="modal__title">Update profile</h2>}
+            open={isModalOpen}
+            onOk={handleClickUpdateBtn}
+            closeIcon={
+              <>
+                <Popconfirm
+                  title="Confirm cancel"
+                  description="Your unsaved changes will be lost if you confirm cancellation. Are you sure to cancel edit profile?"
+                  okText="Yes"
+                  cancelText="No"
+                  onConfirm={handleConfirmCancel}
+                  icon={<QuestionCircleOutlined style={{ color: "red" }} />}
+                >
+                  <CloseOutlined />
+                </Popconfirm>
+              </>
+            }
+            footer={[
+              <Popconfirm
+                title="Confirm cancel"
+                description="Your unsaved changes will be lost if you confirm cancellation. Are you sure to cancel edit profile?"
+                okText="Yes"
+                cancelText="No"
+                onConfirm={handleConfirmCancel}
+                icon={<QuestionCircleOutlined style={{ color: "red" }} />}
+              >
+                <Button>Cancel</Button>
+              </Popconfirm>,
+              <Button
+                key="submit"
+                type="primary"
+                onClick={handleClickUpdateBtn}
+              >
+                Update
+              </Button>,
+            ]}
+          >
+            <Form
+              form={form}
+              onFinish={handleClickUpdateBtn}
+              onFinishFailed={console.log}
+              className="profile__form"
+              layout="vertical"
+            >
+              <Form.Item
+                label={
+                  <label
+                    style={{
+                      color: "var(--primary-color)",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Email
+                  </label>
+                }
+                name="email"
+                hasFeedback
+                rules={[
+                  {
+                    type: "email",
+                    message: "Please enter a valid email address",
+                  },
+                  {
+                    max: 50,
+                    message: "Your email needs to max 50 characters long",
+                  },
+                  {
+                    required: true,
+                    message: "This field is required!",
+                  },
+                ]}
+                style={{
+                  width: "100%",
+                  marginBottom: "8px",
+                }}
+              >
+                <Input
+                  prefix={<MailOutlined className="site-form-item-icon" />}
+                  placeholder="Your email"
+                  style={{ height: "35px" }}
+                  defaultValue={user.email}
+                  name="email"
+                  onChange={handleChangeEmail}
+                />
+              </Form.Item>
+              <Form.Item
+                label={
+                  <label
+                    style={{
+                      color: "var(--primary-color)",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Username
+                  </label>
+                }
+                name="username"
+                hasFeedback
+                rules={[
+                  {
+                    required: true,
+                    message: "This field is required!",
+                  },
+                  {
+                    min: 6,
+                    message:
+                      "Your username needs to be between 6 and 20 characters long",
+                  },
+                  {
+                    max: 20,
+                    message:
+                      "Your username needs to be between 6 and 20 characters long",
+                  },
+                ]}
+                style={{ width: "100%", marginBottom: "8px" }}
+              >
+                <Input
+                  prefix={<UserOutlined className="site-form-item-icon" />}
+                  placeholder="Your username"
+                  style={{ height: "35px" }}
+                  defaultValue={user.username}
+                  // value={newData?.username ?? user.username}
+                  // defaultValue={newData?.username ?? user.username}
+                  onChange={handleChangeUsername}
+                  name="username"
+                />
+              </Form.Item>
+            </Form>
+          </Modal>
+        )}
+      </div>
+    );
+  }
 }

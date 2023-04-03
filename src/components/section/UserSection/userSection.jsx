@@ -1,5 +1,9 @@
 import { Button, Form, Input, message, Modal, Popconfirm } from "antd";
-import { BellFilled, QuestionCircleOutlined } from "@ant-design/icons";
+import {
+  BellFilled,
+  CloseOutlined,
+  QuestionCircleOutlined,
+} from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import UserApi from "../../../api/userApi";
@@ -13,6 +17,7 @@ export default function UserSection({ isAuthen, setIsAddNewIdea }) {
   const userId = localStorage.getItem("userId");
   const [user, setUser] = useState("");
   const [messageApi, contextHolder] = message.useMessage();
+  const [form] = Form.useForm();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const getCurrentUser = async () => {
     try {
@@ -22,6 +27,10 @@ export default function UserSection({ isAuthen, setIsAddNewIdea }) {
   };
   const resetAllData = () => {
     setIdea({ userId: "", content: "" });
+    form.setFieldsValue({
+      userId: "",
+      content: "",
+    });
   };
 
   useEffect(() => {
@@ -41,17 +50,22 @@ export default function UserSection({ isAuthen, setIsAddNewIdea }) {
     setIsModalOpen(true);
   };
   const handleClickOkBtn = () => {
-    if (idea && idea.content.trim().length > 0) {
-      handleCreateIdea();
-      setIsModalOpen(false);
-      resetAllData();
-    } else {
-      messageApi.open({
-        type: "error",
-        content: "Content field cannot be empty",
-        duration: 3,
+    form
+      .validateFields()
+      .then((values) => {
+        console.log("Form values:", values);
+        handleCreateIdea();
+        setIsModalOpen(false);
+        resetAllData();
+      })
+      .catch((errorInfo) => {
+        console.log("Validation error:", errorInfo);
+        messageApi.open({
+          type: "error",
+          content: "Content field cannot be empty",
+          duration: 3,
+        });
       });
-    }
   };
   const handleCreateIdea = async () => {
     try {
@@ -89,9 +103,23 @@ export default function UserSection({ isAuthen, setIsAddNewIdea }) {
         {/* Lý do:  modal isn't being unmounted, but only not displayed. (Modal không thực sự unmounted mà chỉ là không hiển thị ra thôi) */}
         {isModalOpen && (
           <Modal
-            title="Add new idea"
+            title={<h2 className="modal__title">Add new idea</h2>}
             open={isModalOpen}
             onOk={handleClickOkBtn}
+            closeIcon={
+              <>
+                <Popconfirm
+                  title="Confirm cancel"
+                  description="Your unsaved changes will be lost if you confirm cancellation. Are you sure to cancel edit profile?"
+                  okText="Yes"
+                  cancelText="No"
+                  onConfirm={handleConfirmCancel}
+                  icon={<QuestionCircleOutlined style={{ color: "red" }} />}
+                >
+                  <CloseOutlined />
+                </Popconfirm>
+              </>
+            }
             className="user-section-modal"
             footer={[
               <Popconfirm
@@ -109,7 +137,12 @@ export default function UserSection({ isAuthen, setIsAddNewIdea }) {
               </Button>,
             ]}
           >
-            <Form>
+            <Form
+              form={form}
+              onFinish={handleClickAddIdeaBtn}
+              onFinishFailed={console.log}
+              layout="vertical"
+            >
               <Form.Item
                 label={
                   <label
@@ -128,7 +161,7 @@ export default function UserSection({ isAuthen, setIsAddNewIdea }) {
                     message: "This field is required!",
                   },
                 ]}
-                style={{ width: "380px", marginBottom: "8px" }}
+                style={{ width: "100%", marginBottom: "8px" }}
               >
                 <TextArea
                   className="user-section-modal__input"

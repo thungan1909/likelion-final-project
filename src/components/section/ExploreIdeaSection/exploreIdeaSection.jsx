@@ -1,4 +1,4 @@
-import { Col, Row } from "antd";
+import { Col, Row, Spin } from "antd";
 import { useEffect, useState } from "react";
 import IdeaApi from "../../../api/ideaApi";
 import IdeaCard from "../../base/IdeaCard/IdeaCard";
@@ -10,12 +10,17 @@ export default function ExploreIdeaSection({
 }) {
   const [data, setData] = useState([]);
   const [count, setCount] = useState(0);
+  const [loading, setLoading] = useState(false);
   const showAllIdeas = async () => {
     try {
+      setLoading(true);
       const response = await IdeaApi.getAllIdea();
       response.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
       setData(response);
-    } catch (error) {}
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -53,7 +58,9 @@ export default function ExploreIdeaSection({
         Explore ideas
       </h1>
       <Row gutter={16} className="exploreIdea__row">
-        {data?.length === 0 ? (
+        {loading ? (
+          <Spin tip="Loading" size="large" />
+        ) : data?.length === 0 ? (
           <div className="exploreIdea__empty">No idea. Add new ideas now</div>
         ) : (
           data.map((item, index) => {

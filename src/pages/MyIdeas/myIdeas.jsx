@@ -1,4 +1,4 @@
-import { Col, Row } from "antd";
+import { Col, Row, Spin } from "antd";
 import IdeaApi from "../../api/ideaApi";
 import { useEffect, useState } from "react";
 import IdeaCard from "../../components/base/IdeaCard/IdeaCard";
@@ -6,21 +6,21 @@ import HeaderSection from "../../components/section/HeaderSection/headerSection"
 
 export default function MyIdeas({ isAuthen }) {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [count, setCount] = useState(0);
   const userId = localStorage.getItem("userId");
   const [isAddNewIdea, setIsAddNewIdea] = useState(false);
   const showAllMyIdeas = async () => {
     try {
+      setLoading(true);
       const response = await IdeaApi.getIdeasByUserId(userId);
       response.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
       setData(response);
-    } catch (error) {}
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+    }
   };
-  // useEffect(() => {
-  //   if (userId !== undefined) {
-  //     showAllMyIdeas();
-  //   }
-  // }, []);
   useEffect(() => {
     if (userId !== undefined) {
       showAllMyIdeas();
@@ -47,7 +47,9 @@ export default function MyIdeas({ isAuthen }) {
           My ideas
         </h1>
         <Row gutter={16} className="exploreIdea__row">
-          {data?.length === 0 ? (
+          {loading ? (
+            <Spin tip="Loading" size="large" />
+          ) : data?.length === 0 ? (
             <div className="exploreIdea__empty">No idea. Add new ideas now</div>
           ) : (
             data.map((item, index) => {
