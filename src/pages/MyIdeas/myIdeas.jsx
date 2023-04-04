@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 import IdeaCard from "../../components/base/IdeaCard/IdeaCard";
 import HeaderSection from "../../components/section/HeaderSection/headerSection";
 
-export default function MyIdeas({ isAuthen }) {
+export default function MyIdeas() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [count, setCount] = useState(0);
+  const [countLike, setCountLike] = useState(0);
   const userId = localStorage.getItem("userId");
+  const [isChangeLike, setIsChangeLike] = useState(false);
   const [isAddNewIdea, setIsAddNewIdea] = useState(false);
   const showAllMyIdeas = async () => {
     try {
@@ -25,13 +27,19 @@ export default function MyIdeas({ isAuthen }) {
     if (userId !== undefined) {
       showAllMyIdeas();
     }
-  }, [count]);
+  }, [count, countLike]);
   useEffect(() => {
     if (isAddNewIdea) {
       setCount((prevCount) => prevCount + 1);
       setIsAddNewIdea(false);
     }
   }, [isAddNewIdea]);
+  useEffect(() => {
+    if (isAddNewIdea) {
+      setCountLike((prevCount) => prevCount + 1);
+      setIsChangeLike(false);
+    }
+  }, [isChangeLike]);
   if (userId !== undefined) {
     return (
       <div style={{ margin: "24px" }}>
@@ -68,7 +76,11 @@ export default function MyIdeas({ isAuthen }) {
                   }}
                   key={index}
                 >
-                  <IdeaCard idea={item} isAuthen={isAuthen}></IdeaCard>
+                  <IdeaCard
+                    idea={item}
+                    isAuthen={true}
+                    setIsChangeLike={setIsChangeLike}
+                  ></IdeaCard>
                 </Col>
               );
             })

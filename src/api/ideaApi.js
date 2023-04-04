@@ -1,6 +1,7 @@
 import AxiosClient from "./axiosServerClient";
 
 export default class IdeaApi {
+
   static async addIdea(req) {
     try {
       const response = await AxiosClient.post(`idea/add`, req);
@@ -37,20 +38,38 @@ export default class IdeaApi {
   }
   static async getIdeasByUserId(userId) {
     try{
-      const response = await AxiosClient.get(`idea/userId/${userId}`);
+      const response = await AxiosClient.get(`idea/author/${userId}`);
       return response;
     }
     catch(error){
       throw error.response;
     }
   }
-  static async getIdeaByIdAPI(ideaId) {
+  static async getIdeaByIdAPI(ideaId, userId) {
     try{
-      const response = await AxiosClient.get(`idea/${ideaId}`);
+      const response = await AxiosClient.get(`idea/${ideaId}`, userId);
       return response;
     }
     catch(error){
       throw error.response;
+    }
+  }
+  static async likeIdeaByIdAPI(ideaId, userId) {
+    try{
+      const response = await AxiosClient.post(`idea/like/${ideaId}`, {userId});
+      return response;
+    }
+    catch (error) {
+      throw (error.response);
+    }
+  }
+  static async unlikeIdeaByIdAPI(ideaId, userId) {
+    try{
+      const response = await AxiosClient.post(`idea/unlike/${ideaId}`, {userId});
+      return response;
+    }
+    catch (error) {
+      throw (error.response);
     }
   }
 }

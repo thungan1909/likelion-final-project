@@ -10,7 +10,9 @@ export default function ExploreIdeaSection({
 }) {
   const [data, setData] = useState([]);
   const [count, setCount] = useState(0);
+  const [countLike, setCountLike] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [isChangeLike, setIsChangeLike] = useState(false);
   const showAllIdeas = async () => {
     try {
       setLoading(true);
@@ -25,7 +27,7 @@ export default function ExploreIdeaSection({
 
   useEffect(() => {
     showAllIdeas();
-  }, [count]);
+  }, [count, countLike]);
   //cách cũ
   // useEffect(() => {
   //   showAllIdeas();
@@ -44,6 +46,12 @@ export default function ExploreIdeaSection({
       setIsAddNewIdea(false);
     }
   }, [isAddNewIdea]);
+  useEffect(() => {
+    if (isChangeLike) {
+      setCountLike((prevCount) => prevCount + 1);
+      setIsChangeLike(false);
+    }
+  }, [isChangeLike]);
 
   return (
     <div className="exploreIdea__wrapper" style={{ margin: "24px" }}>
@@ -79,7 +87,11 @@ export default function ExploreIdeaSection({
                 }}
                 key={index}
               >
-                <IdeaCard idea={item} isAuthen={isAuthen}></IdeaCard>
+                <IdeaCard
+                  idea={item}
+                  isAuthen={isAuthen}
+                  setIsChangeLike={setIsChangeLike}
+                ></IdeaCard>
               </Col>
             );
           })

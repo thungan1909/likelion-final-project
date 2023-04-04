@@ -5,9 +5,7 @@ import HeaderSection from "../../components/section/HeaderSection/headerSection"
 
 export default function Home() {
   const [isAuthen, setIsAuthen] = useState();
-
   const [isAddNewIdea, setIsAddNewIdea] = useState();
-
   const handleCheckIsAuthen = () => {
     const token = localStorage.getItem("access_token");
     const _isAuthenticated = token && token.length > 0 ? true : false;

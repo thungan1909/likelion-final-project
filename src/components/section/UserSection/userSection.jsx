@@ -13,7 +13,7 @@ import AccountDropdown from "../../base/AccountDropdown/accountDropdown";
 const { TextArea } = Input;
 export default function UserSection({ isAuthen, setIsAddNewIdea }) {
   const navigate = useNavigate();
-  const [idea, setIdea] = useState({ userId: "", content: "" });
+  const [idea, setIdea] = useState({ author: "", content: "" });
   const userId = localStorage.getItem("userId");
   const [user, setUser] = useState("");
   const [messageApi, contextHolder] = message.useMessage();
@@ -26,9 +26,9 @@ export default function UserSection({ isAuthen, setIsAddNewIdea }) {
     } catch (error) {}
   };
   const resetAllData = () => {
-    setIdea({ userId: "", content: "" });
+    setIdea({ author: "", content: "" });
     form.setFieldsValue({
-      userId: "",
+      author: "",
       content: "",
     });
   };
@@ -170,7 +170,7 @@ export default function UserSection({ isAuthen, setIsAddNewIdea }) {
                   rows={5}
                   onChange={(e) => {
                     setIdea({
-                      userId: userId,
+                      author: userId,
                       content: e.target.value,
                     });
                   }}
