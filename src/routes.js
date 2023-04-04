@@ -10,6 +10,7 @@ import MyIdeas from "./pages/MyIdeas/myIdeas";
 import MyLikes from "./pages/MyLikes/myLikes";
 import NotFound from "./pages/NotFound/notFound";
 import Profile from "./pages/Profile/profile";
+import NavigateAuth from "./pages/ProtectedAuth/navigateAuth";
 import ProtectedAdmin from "./pages/ProtectedAuth/protectedAdmin";
 import ProtectedAuth from "./pages/ProtectedAuth/protectedAuth";
 import Register from "./pages/Register/register";
@@ -25,13 +26,13 @@ const routes = [
     key: "login",
     name: "Login",
     route: "/login",
-    component: <Login></Login>,
+    component: <NavigateAuth><Login/></NavigateAuth>,
   },
   {
     key: "register",
     name: "Register",
     route: "/register",
-    component: <Register></Register>,
+    component: <NavigateAuth><Register></Register></NavigateAuth>,
   },
   {
     key: "home",
