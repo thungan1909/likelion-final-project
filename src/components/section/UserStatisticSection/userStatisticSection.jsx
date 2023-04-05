@@ -31,7 +31,7 @@ export default function UserStatisticSection() {
       <h1
         style={{ textAlign: "center", fontSize: "20px", marginBottom: "24px" }}
       >
-        Statistics for the previous month
+        Statistics for this month
       </h1>
       <div style={{ display: "flex", flexDirection: "column" }}>
         <div

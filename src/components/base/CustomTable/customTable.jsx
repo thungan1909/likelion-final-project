@@ -87,7 +87,7 @@ export default function CustomTable() {
   };
   const logoutFun = async () => {
     try {
-      const response = await AuthenApi.logout(userId);
+      // const response = await AuthenApi.logout(userId);
       localStorage.removeItem("access_token");
       localStorage.removeItem("userId");
       navigate(`/login`, { replace: true });
@@ -102,7 +102,7 @@ export default function CustomTable() {
         .open({
           type: "success",
           content: `Delete successfully`,
-          duration: 1.5,
+          duration: 1,
         })
         .then(() => logoutFun());
     } catch (error) {

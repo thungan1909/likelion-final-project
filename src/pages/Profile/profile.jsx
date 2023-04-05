@@ -4,6 +4,7 @@ import ProfileImg from "../../assets/img/profile.png";
 import UserApi from "../../api/userApi";
 import {
   CloseOutlined,
+  DeleteOutlined,
   EditOutlined,
   MailOutlined,
   QuestionCircleOutlined,
@@ -11,6 +12,7 @@ import {
 } from "@ant-design/icons";
 import { Button, Form, Input, Modal, Popconfirm, message } from "antd";
 import HeaderSection from "../../components/section/HeaderSection/headerSection";
+import { useNavigate } from "react-router-dom";
 export default function Profile() {
   const [userId, setUserId] = useState(localStorage.getItem("userId"));
   const [messageApi, contextHolder] = message.useMessage();
@@ -19,6 +21,7 @@ export default function Profile() {
   const [form] = Form.useForm();
   const [newData, setNewData] = useState({ email: "", username: "" });
   const [isUpdateUser, setIsUpdateUser] = useState(false);
+  const navigate = useNavigate();
   useEffect(() => {
     if (userId && userId.length > 0) {
       getCurrentUser();
@@ -42,6 +45,7 @@ export default function Profile() {
   const handleClickEditProfileBtn = () => {
     setIsModalOpen(true);
   };
+
   const resetAllData = () => {
     setNewData({ email: user.email, username: user.username });
   };
@@ -92,6 +96,32 @@ export default function Profile() {
       });
   };
 
+  const logoutFun = () => {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("userId");
+    navigate(`/login`, { replace: true });
+  };
+  const deleteMySelf = async () => {
+    try {
+      const response = await UserApi.deleteUserById(userId);
+      messageApi
+        .open({
+          type: "success",
+          content: `Delete successfully`,
+          duration: 1,
+        })
+        .then(() => logoutFun());
+    } catch (error) {
+      messageApi.open({
+        type: "error",
+        content: `${error.data}. Please try again`,
+        duration: 3,
+      });
+    }
+  };
+  const handleConfirmDelete = () => {
+    deleteMySelf();
+  };
   if (user._id && user._id.length > 0) {
     return (
       <div className="profile">
@@ -109,12 +139,26 @@ export default function Profile() {
               ></img>
               <span className="profile-info__username"> {user.username} </span>
             </div>
-            <Button
-              className="profile__editBtn btn"
-              onClick={handleClickEditProfileBtn}
-            >
-              <EditOutlined className="profile__editBtn__icon"></EditOutlined>
-            </Button>
+            <div className="profile__editBtn_wrapper">
+              <Button
+                className="profile__editBtn btn"
+                onClick={handleClickEditProfileBtn}
+              >
+                <EditOutlined className="profile__editBtn__icon"></EditOutlined>
+              </Button>
+              <Popconfirm
+                title="Delete user"
+                description="Are you sure to delete yourself? This action will make you logout and not be able to log back in"
+                okText="Yes"
+                cancelText="No"
+                onConfirm={handleConfirmDelete}
+                icon={<QuestionCircleOutlined style={{ color: "red" }} />}
+              >
+                <Button className="profile__editBtn btn">
+                  <DeleteOutlined className="profile__editBtn__icon"></DeleteOutlined>
+                </Button>
+              </Popconfirm>
+            </div>
           </div>
 
           <div className="profile-detail">

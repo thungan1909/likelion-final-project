@@ -60,11 +60,15 @@
 .profile-detail__value{
   color: var(--text-in-primary-color);
 }
-.profile__editBtn{
-  width: 50px;
+.profile__editBtn_wrapper{
   position: absolute;
   right: 0;
+  display: flex;
   bottom: -50px;
+}
+.profile__editBtn{
+  width: 50px;
+  margin-right: 12px;
 }
 .profile__editBtn__icon{
   color: var(--white-color);

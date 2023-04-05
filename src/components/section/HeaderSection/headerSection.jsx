@@ -7,7 +7,7 @@ const { Search } = Input;
 export default function HeaderSection({ isAuthen, setIsAddNewIdea }) {
   const items = [
     { key: 1, label: <a href="/home">Homepage</a> },
-    { key: 2, label: <a href="/myideas">My ideas</a> },
+    // { key: 2, label: <a href="/myideas">My ideas</a> },
     // { key: 3, label: "Popular" },
   ];
 
