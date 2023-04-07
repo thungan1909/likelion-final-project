@@ -72,4 +72,13 @@ export default class IdeaApi {
       throw (error.response);
     }
   }
+  static async searchIdeaAPI(query) {
+    try{
+      const response = await AxiosClient.get(`idea/search/${query}`);
+      return response;
+    }
+    catch (error) {
+      throw error.response;
+    }
+  }
 }

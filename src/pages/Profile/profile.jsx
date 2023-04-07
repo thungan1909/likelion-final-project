@@ -146,7 +146,7 @@ export default function Profile() {
               >
                 <EditOutlined className="profile__editBtn__icon"></EditOutlined>
               </Button>
-              <Popconfirm
+              {/* <Popconfirm
                 title="Delete user"
                 description="Are you sure to delete yourself? This action will make you logout and not be able to log back in"
                 okText="Yes"
@@ -157,7 +157,7 @@ export default function Profile() {
                 <Button className="profile__editBtn btn">
                   <DeleteOutlined className="profile__editBtn__icon"></DeleteOutlined>
                 </Button>
-              </Popconfirm>
+              </Popconfirm> */}
             </div>
           </div>
 

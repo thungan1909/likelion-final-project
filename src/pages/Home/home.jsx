@@ -22,7 +22,7 @@ export default function Home() {
           isAuthen={isAuthen}
           setIsAddNewIdea={setIsAddNewIdea}
         ></HeaderSection>
-        <BannerSection></BannerSection>
+
         <ExploreIdeaSection
           isAuthen={isAuthen}
           isAddNewIdea={isAddNewIdea}
